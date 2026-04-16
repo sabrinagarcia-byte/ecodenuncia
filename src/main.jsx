@@ -10,6 +10,8 @@ import FaleConosco from './pages/FaleConosco.jsx'
 import Noticias from './pages/Noticias.jsx'
 import Denunciar from './pages/Denunciar.jsx'
 import AboutUs from './pages/AboutUs.jsx'
+import Login from './pages/Login.jsx'
+import Cadastro from './pages/Cadastro.jsx'
 
 
 createRoot(document.getElementById('root')).render(
@@ -23,7 +25,8 @@ createRoot(document.getElementById('root')).render(
           <Route path='/noticias' element={<Noticias />} />
           <Route path='/denunciar' element={<Denunciar />} />
           <Route path='/aboutus' element={<AboutUs />} />
-          
+          <Route path='/login' element={<Login />} />
+          <Route path='/cadastro' element={<Cadastro />} />
         </Route>
       </Routes>
     </BrowserRouter>
