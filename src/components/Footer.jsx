@@ -17,13 +17,13 @@ export default function Header() {
           
           <div>
 
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center mb-7">
               <img src={Logo} alt="Logo" className="h-20 w-auto"/>
             </div>
             
-            <p className="text-green-100 text-sm leading-relaxed max-w-xs">
-              Cuidando do meio ambiente<br />
-              através do descarte<br />
+            <p className="text-green-100 text-sl leading-relaxed text-center max-w-xs">
+              Cuidando do meio ambiente <br/>
+              através do descarte
               consciente.
             </p>
 
@@ -31,7 +31,7 @@ export default function Header() {
 
      
           <div>
-            <h1 className="text-lg font-semibold mb-4 text-white">Links</h1>
+            <h1 className="text-2xl font-semibold mb-4 text-white">Links</h1>
 
             <nav className="flex flex-col gap-3 text-lg">
               <NavLink to="/" className={linkClass}>Página inicial</NavLink>
@@ -46,13 +46,13 @@ export default function Header() {
           </div>
 
           <div>
-            <h1 className="text-lg font-semibold mb-4 text-white">Contato</h1>
+            <h1 className="text-2xl font-semibold mb-4 text-white">Contato</h1>
 
             <div className="flex flex-col gap-3 text-sm">
 
-              <a href="https://www.google.com/gmail/about/signup_complete.html" className="flex items-center gap-2 hover:text-green-400 transition-colors">contato@ecodenuncia.com</a>
+              <a href="https://www.google.com/gmail/about/signup_complete.html" className="flex items-center text-lg gap-2 hover:text-green-400 transition-colors">contato@ecodenuncia.com</a>
 
-              <a href="https://web.whatsapp.com/" className="flex items-center gap-2 hover:text-green-400 transition-colors">(12) 99999-9999</a>
+              <a href="https://web.whatsapp.com/" className="flex items-center text-lg gap-2 hover:text-green-400 transition-colors">(12) 99999-9999</a>
             </div>
           </div>
 

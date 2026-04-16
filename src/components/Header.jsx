@@ -30,11 +30,9 @@ export default function Header() {
 
       </ul>
 
-
-
       {/* Botão */}
       <div className="">
-        <NavLink to="/login"><img src={user} alt="user" className=""/></NavLink>
+        
       <a href="#" className="bg-green-800 text-white rounded-lg flex gap-3 py-2 px-3" >
         
         <img src={globe} alt="globe" />
