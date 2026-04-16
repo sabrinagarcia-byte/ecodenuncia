@@ -12,7 +12,7 @@ function linkClass({ isActive }) {
 
 export default function Header() {
   return (
-    <header className="flex items-center justify-between px-10 py-4 bg-green-950">
+    <header className="flex items-center  justify-between px-10 py-4 bg-green-950">
       
       {/* Logo */}
       <div className="flex items-center gap-2">
