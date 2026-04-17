@@ -58,8 +58,8 @@ export default function Header() {
 
         </div>
      
-        <div className="mt-12 pt-8 border-t border-green-700 text-center text-lg text-white">
-          © 2026 Eco Denúncia - Todos os direitos reservados
+        <div className="mt-12 pt-8 border-t border-green-700 text-center text-lg text-gray-200">
+          &copy; 2026 Eco Denúncia <br/> Todos os direitos reservados
         </div>
 
           </div>
