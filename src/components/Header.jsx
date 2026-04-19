@@ -2,7 +2,6 @@ import logo from "../assets/images/logo.png";
 import globe from '../assets/images/fi-rr-globe.png'
 import { NavLink } from 'react-router'
 import user from '../assets/images/fi-rr-user.png'
-import { useParams } from 'react-router'
 
 function linkClass({ isActive }) {
   return isActive
@@ -10,10 +9,14 @@ function linkClass({ isActive }) {
     : "text-white"
 }
 
-export default function Header() {
-  return (
-    <header className="flex items-center justify-between px-10 py-4 bg-green-950">
 
+
+export default function Header({ lang, setLang }) {
+
+
+  return (
+
+    <header className="flex items-center  justify-between px-10 py-4 bg-green-950">
       {/* Logo */}
       <div className="flex items-center gap-2">
         <img src={logo} alt="Logotipo" />
@@ -31,21 +34,26 @@ export default function Header() {
       </ul>
 
       {/* Botão */}
-      <div style={{display: 'flex'}} className="">
+      <div style={{ display: 'flex' }} className="">
         <NavLink to="/login"><img src={user} alt="user" className=" mx-5 my-2" /></NavLink>
         <div>
-          <a href="#" className="bg-green-800 text-white rounded-lg flex gap-3 py-2 px-3" >
+          <div className="bg-green-800 text-white rounded-lg flex gap-3 py-2 px-3 items-center">
+
 
             <img src={globe} alt="globe" />
 
-            <select name="Linguagem" id="idiomas" className="border-none">
-              <option value="BR" id="portugues">BR</option>
-              <option value="EN" id="ingles">EN</option>
-              <option value="FR" id="frances">FR</option>
-
+            <select
+              value={lang}
+              onChange={(e) => setLang(e.target.value)}
+              className="bg-transparent text-white outline-none"
+            >
+              <option value="pt">BR</option>
+              <option value="en">EN</option>
+              <option value="fr">FR</option>
             </select>
 
-          </a>
+
+          </div>
         </div>
       </div>
 

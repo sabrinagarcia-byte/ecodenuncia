@@ -39,7 +39,7 @@ export default function Denunciar() {
             {/* Formulário */}
             <div className="p-10 lg:p-12">
               <h2 className="text-2xl font-bold text-slate-900 mb-8">Faça uma denúncia</h2>
-              
+
               <form onSubmit={handleSubmit} className="space-y-5">
                 {/* Nome */}
                 <div>
