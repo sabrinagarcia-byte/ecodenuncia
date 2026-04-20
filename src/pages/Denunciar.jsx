@@ -1,195 +1,156 @@
-import { useState } from "react"
+import BannerDenunciar from '../assets/images/bannerDenunciar.png'
+import ClipeSimbol from '../assets/images/anexos 1.png'
+import Mapa from '../assets/images/foto de mapa.png'
+
 
 export default function Denunciar() {
-  const [formData, setFormData] = useState({
-    nome: "",
-    email: "",
-    localizacao: "",
-    tipoResiduo: "",
-    descricao: "",
-    fotos: [],
-  })
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
-  }
-
-  const handleFileChange = (e) => {
-    setFormData(prev => ({ ...prev, fotos: e.target.files }))
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log("Denúncia enviada:", formData)
-  }
-
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-900 via-green-900 to-slate-900">
-      {/* Header */}
-      <div className="mx-auto max-w-6xl px-6 py-16 sm:px-10">
-        <div className="space-y-3 text-center mb-16">
-          <h1 className="text-5xl font-bold text-white">Denunciar</h1>
-          <p className="text-slate-300 text-lg">Ajude a comunidade a criar transparência</p>
-        </div>
+    <section className="w-full min-h-screen relative flex items-center justify-center">
 
-        {/* Main Card */}
-        <div className="rounded-3xl bg-white shadow-2xl overflow-hidden">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] min-h-[600px]">
-            {/* Formulário */}
-            <div className="p-10 lg:p-12">
-              <h2 className="text-2xl font-bold text-slate-900 mb-8">Faça uma denúncia</h2>
+      {/* IMAGEM DE FUNDO */}
+      <img
+        src={BannerDenunciar}
+        alt="Fundo"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
 
-              <form onSubmit={handleSubmit} className="space-y-5">
-                {/* Nome */}
-                <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">
-                    Nome
+      {/* OVERLAY */}
+      <div className="absolute inset-0 bg-black/10"></div>
+
+      {/* CONTEÚDO */}
+      <div className="relative z-10 w-full max-w-4xl px-6 py-10 text-white text-center">
+
+        {/* TÍTULO */}
+        <h1 className="text-4xl font-bold mb-2">Denunciar</h1>
+        <p className="mb-8 text-gray-200">
+          Ajude a proteger o meio ambiente
+        </p>
+
+        {/* CARD FORM */}
+        <div className="bg-white text-black rounded-2xl p-8 shadow-lg text-left">
+
+          <h2 className="text-2xl font-semibold mb-2 text-center">
+            Faça uma denúncia
+          </h2>
+          <p className="text-sm text-gray-500 text-center mb-6">
+            Sua denúncia será tratada com seriedade, sigilo e responsabilidade.
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-6">
+
+            {/* ESQUERDA */}
+            <div className="space-y-4">
+
+              {/* Tipo */}
+              <div>
+                <label className="text-sm"><h1 className='font-bold'>Tipo de denúncia</h1></label>
+                <select className="w-full border rounded-lg p-2 mt-1">
+                  <option>Tipo de denúncia</option>
+                  <option>Descarte irregular de lixo doméstico</option>
+                  <option>Descarte de entulho (construção)</option>
+                  <option>Lixo em via pública</option>
+                  <option>Descarte em área verde / mata</option>
+                  <option>Poluição de rios / água</option>
+                  <option>Queima de lixo</option>
+                  <option>Descarte de resíduos perigosos</option>
+                  <option>Outro</option>
+                </select>
+              </div>
+
+              {/* Problema */}
+              <div>
+                <textarea
+                  placeholder="Descreva o problema"
+                  className="w-full border rounded-lg p-2 h-24"
+                />
+              </div>
+
+              {/* Local */}
+              <div>
+                <label className="text-sm"><h1 className='font-bold'>Local da ocorrência</h1></label>
+                <input
+                  type="text"
+                  placeholder="Ex: Rua, bairro ou ponto de referência"
+                  className="w-full border rounded-lg p-2 mt-1"
+                />
+              </div>
+
+              {/* Nome */}
+              <div>
+                <label className="text-sm"><h1 className='font-bold'>Nome (opcional)</h1></label>
+                <input
+                  type="text"
+                  placeholder="Digite seu nome"
+                  className="w-full border rounded-lg p-2 mt-1"
+                />
+              </div>
+
+              {/* Anônimo */}
+              <div>
+                <p className="text-sm mb-1"><h1 className='font-bold'>Deseja ser anônimo?</h1></p>
+                <div className="flex gap-4 text-sm">
+                  <label className="flex items-center gap-1">
+                    <input type="radio" name="anonimo" /> Sim
                   </label>
-                  <input
-                    type="text"
-                    name="nome"
-                    value={formData.nome}
-                    onChange={handleInputChange}
-                    required
-                    placeholder="Seu nome"
-                    className="w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-2.5 text-slate-900 placeholder:text-slate-400 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-200"
-                  />
-                </div>
-
-                {/* Email */}
-                <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">
-                    Email
+                  <label className="flex items-center gap-1">
+                    <input type="radio" name="anonimo" /> Não
                   </label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                    placeholder="seu@email.com"
-                    className="w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-2.5 text-slate-900 placeholder:text-slate-400 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-200"
-                  />
-                </div>
-
-                {/* Localização */}
-                <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">
-                    Local da denúncia
-                  </label>
-                  <input
-                    type="text"
-                    name="localizacao"
-                    value={formData.localizacao}
-                    onChange={handleInputChange}
-                    required
-                    placeholder="Rua, bairro, cidade"
-                    className="w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-2.5 text-slate-900 placeholder:text-slate-400 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-200"
-                  />
-                </div>
-
-                {/* Tipo de Resíduo */}
-                <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">
-                    Tipo de resíduo
-                  </label>
-                  <select
-                    name="tipoResiduo"
-                    value={formData.tipoResiduo}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-2.5 text-slate-900 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-200"
-                  >
-                    <option value="">Selecione um tipo</option>
-                    <option value="lixo-domestico">Lixo Doméstico</option>
-                    <option value="lixo-eletronico">Lixo Eletrônico</option>
-                    <option value="lixo-hospitalar">Lixo Hospitalar</option>
-                    <option value="lixo-industrial">Lixo Industrial</option>
-                    <option value="entulho">Entulho</option>
-                    <option value="oleo-usado">Óleo Usado</option>
-                    <option value="outro">Outro</option>
-                  </select>
-                </div>
-
-                {/* Descrição */}
-                <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">
-                    Descreva o problema
-                  </label>
-                  <textarea
-                    name="descricao"
-                    value={formData.descricao}
-                    onChange={handleInputChange}
-                    required
-                    placeholder="Descreva em detalhes o descarte irregular..."
-                    rows="3"
-                    className="w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-2.5 text-slate-900 placeholder:text-slate-400 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-200 resize-none"
-                  />
-                </div>
-
-                {/* Botões */}
-                <div className="grid grid-cols-2 gap-3 pt-4">
-                  <label className="relative">
-                    <input
-                      type="file"
-                      onChange={handleFileChange}
-                      accept="image/*"
-                      multiple
-                      className="hidden"
-                    />
-                    <span className="flex items-center justify-center rounded-lg border border-slate-300 bg-slate-50 px-4 py-2.5 text-sm font-semibold text-slate-700 cursor-pointer hover:bg-slate-100 transition">
-                      📎 Anexar fotos
-                    </span>
-                  </label>
-                  <button
-                    type="submit"
-                    className="rounded-lg bg-green-600 px-6 py-2.5 text-sm font-semibold text-white hover:bg-green-700 transition"
-                  >
-                    Enviar denúncia
-                  </button>
-                </div>
-              </form>
-            </div>
-
-            {/* Mapa */}
-            <div className="relative bg-gradient-to-br from-green-100 to-green-200 hidden lg:flex items-center justify-center p-10">
-              <div className="rounded-2xl bg-white/80 backdrop-blur w-full h-80 flex items-center justify-center shadow-lg">
-                <div className="text-center">
-                  <div className="text-5xl mb-2">📍</div>
-                  <p className="text-slate-600 font-semibold">Clique no mapa para</p>
-                  <p className="text-slate-600 font-semibold">marcar a localização</p>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
 
-        {/* Info Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur text-white">
-            <div className="text-3xl mb-3">🌍</div>
-            <h3 className="font-semibold text-lg mb-2">Sua comunidade</h3>
-            <p className="text-slate-200 text-sm">
-              Ajude a manter sua comunidade limpa e saudável.
-            </p>
+            </div>
+
+            {/* DIREITA */}
+            <div className="space-y-4">
+
+              {/* MAPA (fake por enquanto) */}
+              <div className="w-full h-30 py-25 bg-gray-200 rounded-lg flex items-center justify-center text-sm text-gray-500">
+                <img src={Mapa} alt="Mapa do Denunciar" className='w-100 h-50' />
+              </div>
+
+              {/* Upload */}
+              <div className="bg-gray-100 p-4 rounded-lg text-center">
+                <button className="bg-green-900 text-white px-6 py-2 rounded-lg flex items-center justify-center gap-2 mx-auto">
+
+                  <img
+                    src={ClipeSimbol}
+                    alt="Simbolo para anexar"
+                    className="w-4 h-4 object-contain"
+                  />
+
+                  Anexar provas
+
+                </button>
+
+                <p className="text-xs text-gray-500 mt-2">
+                  Envie fotos ou vídeos que ajudem na investigação
+                </p>
+              </div>
+
+
+              {/* Email */}
+              <div>
+                <label className="text-sm"><h1 className='font-bold'>Email (opcional)</h1></label>
+                <input
+                  type="email"
+                  placeholder="Digite seu email"
+                  className="w-full border rounded-lg p-2 mt-1"
+                />
+              </div>
+
+            </div>
+
           </div>
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur text-white">
-            <div className="text-3xl mb-3">⚡</div>
-            <h3 className="font-semibold text-lg mb-2">Ação rápida</h3>
-            <p className="text-slate-200 text-sm">
-              As autoridades recebem sua denúncia e agem rapidamente.
-            </p>
+
+          {/* BOTÃO */}
+          <div className="flex justify-center mt-8">
+            <button className="bg-green-900 hover:bg-green-800 text-white px-8 py-3 rounded-full font-semibold">
+              Enviar denúncia
+            </button>
           </div>
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur text-white">
-            <div className="text-3xl mb-3">🔒</div>
-            <h3 className="font-semibold text-lg mb-2">Anônimo</h3>
-            <p className="text-slate-200 text-sm">
-              Você pode denunciar anonimamente com segurança.
-            </p>
-          </div>
+
         </div>
       </div>
-    </div>
-  )
+    </section>
+  );
 }
