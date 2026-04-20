@@ -1,5 +1,6 @@
 export default function Noticias() {
   return (
+
     <div className="font-nunito">
 
       {/* BANNER */}
@@ -105,5 +106,8 @@ export default function Noticias() {
       </section>
 
     </div>
-  );
+
+  )
 }
+
+    
