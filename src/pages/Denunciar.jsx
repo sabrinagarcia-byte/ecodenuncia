@@ -150,6 +150,7 @@ export default function Denunciar() {
                     </div>
 
                 </div>
+                
             </div>
         </section>
     );
