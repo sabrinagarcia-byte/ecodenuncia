@@ -27,8 +27,12 @@ createRoot(document.getElementById('root')).render(
           <Route path='/aboutus' element={<AboutUs />} />
           <Route path='/login' element={<Login />} />
           <Route path='/cadastro' element={<Cadastro />} />
-          <Route path="*" element={<NotFound />} />
+        
         </Route>
+
+           {/* 404 SEM HEADER E FOOTER */}
+        <Route path="*" element={<NotFound />} />
+       
       </Routes>
     </BrowserRouter>
   </StrictMode>,
