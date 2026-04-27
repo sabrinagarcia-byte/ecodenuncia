@@ -30,15 +30,15 @@ export default function AboutUs() {
       </div>
 
       
-      <div className="bg-gray-100 py-12 px-6 flex justify-center">
-        <div className="max-w-5xl w-full bg-white rounded-2xl shadow-2xl p-15 flex flex-col md:flex-row items-center gap-6">
+      <div className="bg-gray-100 py-24 px-6 flex justify-center">
+        <div className="max-w-6xl w-full bg-white rounded-4xl shadow-2xl p-30 flex flex-col md:flex-row items-center gap-6">
 
           <div className="flex-1">
-            <span className="bg-green-900 text-white px-4 py-1 rounded-full text-2xl">
+            <p className="bg-green-900 text-white px-4 py-1 rounded-2xl text-3xl">
               Quem Somos?
-            </span>
+            </p>
 
-            <h2 className="mt-4 font-bold text-lg">
+            <h2 className="mt-4 font-bold text-2xl pb-10">
               Somos uma plataforma dedicada a facilitar <br/>a denúncia de descarte irregular de resíduos.
             </h2>
 
@@ -49,7 +49,7 @@ export default function AboutUs() {
 
           <img
             src={ImgQuemSomos}
-            className="w-62.5 rounded-xl shadow-2xl"
+            className="w-90 rounded-xl shadow-2xl"
           />
         </div>
       </div>
