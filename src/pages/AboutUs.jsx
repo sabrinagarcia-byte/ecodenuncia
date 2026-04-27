@@ -16,15 +16,14 @@ export default function AboutUs() {
   return (
     <div className="w-full">
 
-      {/* 🔥 HERO */}
-      <div className="relative h-[50vh] min-h-[300px]">
+      <div className="relative h-[50vh] min-h-75">
         <img src={Banner} className="w-full h-full object-cover" />
 
         <div className="absolute inset-0 bg-black/40"></div>
 
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4">
-          <h1 className="text-4xl font-bold">Sobre Nós</h1>
-          <p className="mt-2 max-w-xl">
+          <h1 className="text-5xl font-bold py-4">Sobre Nós</h1>
+          <p className="mt-2 text-2xl py-2 max-w-xl">
             Nosso objetivo é combater o descarte irregular de lixo e promover um ambiente mais sustentável para todos.
           </p>
         </div>
@@ -36,7 +35,7 @@ export default function AboutUs() {
 
           <div className="flex-1">
             <span className="bg-green-900 text-white px-4 py-1 rounded-full text-2xl">
-              Quem Somos
+              Quem Somos?
             </span>
 
             <h2 className="mt-4 font-bold text-lg">
@@ -50,38 +49,38 @@ export default function AboutUs() {
 
           <img
             src={ImgQuemSomos}
-            className="w-[250px] rounded-xl shadow-2xl"
+            className="w-62.5 rounded-xl shadow-2xl"
           />
         </div>
       </div>
 
      
       <div className="bg-gray-100 pb-16 px-6 flex justify-center">
-        <div className="max-w-5xl w-full grid md:grid-cols-3 gap-6">
+        <div className="max-w-6xl w-full grid md:grid-cols-3 gap-6">
 
-          <div className="bg-white rounded-xl p-6 shadow border-2 border-green-800 text-center">
-            <img src={MissaoIcon} className="w-15 mx-auto mb-3" />
-            <h3 className="font-bold text-lg">Missão</h3>
-            <p className="text-sm text-black mt-2">
+         <div className="bg-white rounded-xl p-6 shadow-lg shadow-green-950/40 border-4 border-green-700 text-center">
+            <img src={MissaoIcon} className="w-20 mx-auto mb-4" />
+            <h3 className="font-bold text-green-900 text-2xl">Missão</h3>
+            <p className="text-lg text-black mt-2">
               Promover o descarte correto de resíduos por meio da conscientização e da tecnologia.
             </p>
           </div>
 
-          <div className="bg-white rounded-xl p-6 shadow border-2 border-green-800 text-center">
-            <img src={VisaoIcon} className="w-15 mx-auto mb-3" />
-            <h3 className="font-bold text-lg">Visão</h3>
-            <p className="text-sm text-black mt-2">
+         <div className="bg-white rounded-xl p-6 shadow-lg shadow-green-950/40 border-4 border-green-700 text-center">
+            <img src={VisaoIcon} className="w-20 mx-auto mb-4" />
+            <h3 className="font-bold text-green-900 text-2xl">Visão</h3>
+            <p className="text-lg text-black mt-2">
               Ser referência em soluções digitais para sustentabilidade.
             </p>
           </div>
 
-          <div className="bg-white rounded-xl p-6 shadow border-2 border-green-800 text-center">
-            <img src={ValoresIcon} className="w-15 mx-auto mb-3" />
-            <h3 className="font-bold text-lg">Valores</h3>
-            <ul className="text-sm text-black mt-2 space-y-1">
+         <div className="bg-white rounded-xl p-6 shadow-lg shadow-green-950/40 border-4 border-green-700 text-center">
+            <img src={ValoresIcon} className="w-20 mx-auto mb-4" />
+            <h3 className="font-bold text-green-900 text-2xl">Valores</h3>
+            <ul className="text-lg text-black mt-2 space-y-1">
+              <li>• Colaboração</li>
               <li>• Responsabilidade</li>
               <li>• Consciência ambiental</li>
-              <li>• Colaboração</li>
             </ul>
           </div>
 
@@ -93,12 +92,12 @@ export default function AboutUs() {
 
         <div className="relative z-10 text-center">
           <h2 className="text-5xl font-bold">Nossa Equipe</h2>
-          <p className="text-lg py-5 mb-10">Conheça as pessoas por trás do EcoDenúncia</p>
+          <p className="text-2xl py-5 mb-10">Conheça as pessoas por trás do EcoDenúncia</p>
 
           <div className="flex flex-col md:flex-row justify-center gap-6 px-4">
 
             {[Ana, Sabrina, Yasmin].map((img, i) => (
-              <div key={i} className="bg-white text-gray-800 rounded-xl p-6 w-[350px] mx-auto shadow">
+              <div key={i} className="bg-white text-gray-800 rounded-xl p-6 w-87.5 mx-auto shadow">
                 <img src={img} className="w-20 h-20 rounded-full mx-auto mb-5" />
                 <h4 className="font-semibold text-lg">Nome da Pessoa</h4>
                 <p className="text-ls text-gray-500">Desenvolvedor / Designer</p>
@@ -110,13 +109,13 @@ export default function AboutUs() {
       </div>
 
       {/* 🔥 CTA */}
-      <div className="relative h-[200px] flex items-center justify-center text-white text-center">
+      <div className="relative h-50 flex items-center justify-center text-white text-center">
         <img src={Banner2} className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-black/60"></div>
 
         <div className="relative z-10">
-          <h2 className="text-2xl font-bold">Faça parte da mudança!</h2>
-          <button className="mt-4 bg-green-800 px-6 py-2 rounded-full hover:bg-green-700">
+          <h2 className="text-3xl font-semibold">Faça parte da mudança!</h2>
+          <button className="mt-4 bg-green-800 text-lg px-6 py-2 rounded-full hover:bg-green-700">
             Denunciar agora
           </button>
         </div>

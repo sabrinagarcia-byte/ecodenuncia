@@ -11,6 +11,11 @@ import img9 from "../assets/images/imagemCard9.png"
 import img10 from "../assets/images/imagemCard10.png"
 import img11 from "../assets/images/imagemCard11.png"
 import img12 from "../assets/images/imagemCard12.png"
+import Planta from "../assets/images/plantar.png"
+import Lupa from "../assets/images/pesquisa-de-lupa 1.png"
+
+
+
 
 export default function Noticias() {
   return (
@@ -18,145 +23,90 @@ export default function Noticias() {
 
       {/* BANNER */}
       <section
-        className="h-[260px] flex items-center justify-center text-white bg-cover bg-center relative"
+        className="h-65 flex items-center justify-center text-white bg-cover bg-center relative"
         style={{ backgroundImage: `url(${banner})` }}
       >
-        <div className="absolute inset-0 bg-black/50"></div>
-        <h1 className="text-4xl font-bold z-10">Notícias</h1>
+        <div className="absolute inset-0 bg-black/30"></div>
+        <h1 className="text-6xl font-bold z-10">Notícias</h1>
       </section>
 
       {/* CONTEÚDO */}
-      <div className="bg-green-900 py-14 px-6">
+      <div className="bg-green-950 py-14 px-6">
 
         {/* TÍTULO + BUSCA */}
-        <div className="text-center mb-16">
+<div className="text-center mb-16">
 
-          <h2 className="text-white text-3xl font-bold mb-8">
-            🌱 Últimas notícias da semana
-          </h2>
+  <h2 className="text-white text-3xl font-bold mb-8 flex items-center justify-center gap-3">
+    <img 
+      src={Planta} 
+      alt="simbolo plantar" 
+      className="w-10 h-10"
+    />
+    Últimas notícias da semana
+  </h2>
 
-          <div className="flex justify-center mb-12">
-            <input
-              type="text"
-              placeholder="🔍 Buscar notícias..."
-              className="w-[420px] bg-gray-200 p-4 rounded-xl shadow outline-none"
-            />
-          </div>
+  <div className="flex justify-center mb-12">
+    
+    <div className="relative w-105">
+      
+      <img
+        src={Lupa}
+        alt="Lupa"
+        className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 opacity-60"
+      />
 
-        </div>
+      <input
+        type="text"
+        placeholder="Buscar notícias..."
+        className="w-full bg-gray-200 p-4 pl-12 rounded-xl shadow outline-none"
+      />
+
+    </div>
+
+  </div>
+
+</div>
+
 
         {/* GRID */}
-        <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3 max-w-6xl mx-auto">
+        <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-3 max-w-5xl mx-auto">
 
-          {/* CARD 1 */}
-          <div className="bg-white rounded-xl p-4 shadow">
-            <img src={img1} className="rounded-lg mb-3" />
-            <p className="text-[10px] text-gray-400">15/07/2025</p>
-            <h3 className="font-bold text-sm">Impacto do descarte ilegal</h3>
-            <p className="text-xs text-gray-500">Veja como o lixo afeta o meio ambiente.</p>
-            <p className="text-green-600 text-xs font-semibold cursor-pointer hover:underline hover:text-green-800">Ler mais</p>
-          </div>
+          {[
+            { img: img1, data: "12 Mar 2026", titulo: "Impacto do descarte ilegal", desc: "Veja como o descarte irregular do lixo afeta o meio ambiente." },
+            { img: img2, data: "20 Mar 2026", titulo: "Como reciclar corretamente", desc: "Dicas práticas para separar seu lixo de forma adequada." },
+            { img: img3, data: "15 Fev 2026", titulo: "Iniciativas ambientais locais", desc: "Projetos que estão fazendo a diferença na comunidade." },
+            { img: img4, data: "1 Abril 2026", titulo: "Uso consciente da água", desc: "Dicas simples para economizar água no dia a dia e preservar esse recurso essencial." },
+            { img: img5, data: "05 Jan 2026", titulo: "Áreas verdes nas cidades", desc: "A importância de parques e árvores para melhorar a qualidade de vida urbana." },
+            { img: img6, data: "25 Mar 2026", titulo: "Poluição urbana em crescimento", desc: "Entenda os desafios enfrentados pelas grandes cidades." },
+            { img: img7, data: "25 Fev 2026", titulo: "Começar a educação ambiental nas escolas", desc: "Conscientizando as crianças desde cedo é o melhor caminho a ser seguido." },
+            { img: img8, data: "31 Mar 2026", titulo: "Como participar e ajudar o meio ambiente", desc: "Dicas para se engajar na proteção da natureza." },
+            { img: img9, data: "07 Fev 2026", titulo: "Descarte correto de eletrônicos", desc: "Saiba como descartar celulares e computadores sem prejudicar o meio ambiente." },
+            { img: img10, data: "08 Fev 2026", titulo: "A importância da coleta seletiva", desc: "Dicas práticas para separar seu lixo de forma adequada." },
+            { img: img11, data: "20 Mar 2026", titulo: "Praias limpas: ações voluntárias", desc: "Grupos se unem para limpar praias e preservar a vida marinha." },
+            { img: img12, data: "12 Fev 2026", titulo: "Desperdício de alimentos", desc: "Veja como o desperdício impacta a natureza e o que você pode fazer para evitar." }
+          ].map((card, index) => (
 
-          {/* CARD 2 */}
-          <div className="bg-white rounded-xl p-4 shadow">
-            <img src={img2} className="rounded-lg mb-3" />
-            <p className="text-[10px] text-gray-400">10/07/2025</p>
-            <h3 className="font-bold text-sm">Como reciclar corretamente</h3>
-            <p className="text-xs text-gray-500">Dicas práticas para separar seu lixo de forma adequada.</p>
-            <p className="text-green-600 text-xs font-semibold cursor-pointer hover:underline hover:text-green-800">Ler mais</p>
-          </div>
+            <div key={index} className="bg-white rounded-xl p-4 shadow flex flex-col h-full">
 
-          {/* CARD 3 */}
-          <div className="bg-white rounded-xl p-4 shadow">
-            <img src={img3} className="rounded-lg mb-3" />
-            <p className="text-[10px] text-gray-400">05/07/2025</p>
-            <h3 className="font-bold text-sm">Iniciativas ambientais locais</h3>
-            <p className="text-xs text-gray-500">Projetos que estão fazendo a diferença na comunidade.</p>
-            <p className="text-green-600 text-xs font-semibold cursor-pointer hover:underline hover:text-green-800">Ler mais</p>
-          </div>
+              <img src={card.img} className="rounded-lg mb-4" />
 
-          {/* CARD 4 */}
-          <div className="bg-white rounded-xl p-4 shadow">
-            <img src={img4} className="rounded-lg mb-3" />
-            <p className="text-[10px] text-gray-400">01/07/2025</p>
-            <h3 className="font-bold text-sm">Uso da água</h3>
-            <p className="text-xs text-gray-500">Evite desperdícios.</p>
-            <p className="text-green-600 text-xs font-semibold cursor-pointer hover:underline hover:text-green-800">Ler mais</p>
-          </div>
+              <p className="text-[15px] text-gray-400">{card.data}</p>
 
-          {/* CARD 5 */}
-          <div className="bg-white rounded-xl p-4 shadow">
-            <img src={img5} className="rounded-lg mb-3" />
-            <p className="text-[10px] text-gray-400">28/06/2025</p>
-            <h3 className="font-bold text-sm">Áreas verdes</h3>
-            <p className="text-xs text-gray-500">Importância nas cidades.</p>
-            <p className="text-green-600 text-xs font-semibold cursor-pointer hover:underline hover:text-green-800">Ler mais</p>
-          </div>
+              <h3 className="font-bold text-green-900 text-lg">
+                {card.titulo}
+              </h3>
 
-          {/* CARD 6 */}
-          <div className="bg-white rounded-xl p-4 shadow">
-            <img src={img6} className="rounded-lg mb-3" />
-            <p className="text-[10px] text-gray-400">25/06/2025</p>
-            <h3 className="font-bold text-sm">Lixo eletrônico</h3>
-            <p className="text-xs text-gray-500">Descarte correto.</p>
-            <p className="text-green-600 text-xs font-semibold cursor-pointer hover:underline hover:text-green-800">Ler mais</p>
-          </div>
+              <p className="text-sm text-black py-2">
+                {card.desc}
+              </p>
 
-          {/* CARD 7 */}
-          <div className="bg-white rounded-xl p-4 shadow">
-            <img src={img7} className="rounded-lg mb-3" />
-            <p className="text-[10px] text-gray-400">20/06/2025</p>
-            <h3 className="font-bold text-sm">Poluição do ar</h3>
-            <p className="text-xs text-gray-500">Afeta a saúde.</p>
-            <p className="text-green-600 text-xs font-semibold cursor-pointer hover:underline hover:text-green-800">Ler mais</p>
-          </div>
+              <p className="mt-auto text-green-800 text-lg font-bold cursor-pointer hover:underline hover:text-green-900">
+                Ler mais
+              </p>
 
-          {/* CARD 8 */}
-          <div className="bg-white rounded-xl p-4 shadow">
-            <img src={img8} className="rounded-lg mb-3" />
-            <p className="text-[10px] text-gray-400">18/06/2025</p>
-            <h3 className="font-bold text-sm">Consumo consciente</h3>
-            <p className="text-xs text-gray-500">Reduza desperdícios.</p>
-            <p className="text-green-600 text-xs font-semibold cursor-pointer hover:underline hover:text-green-800">Ler mais</p>
-          </div>
+            </div>
 
-          {/* CARD 9 */}
-          <div className="bg-white rounded-xl p-4 shadow">
-            <img src={img9} className="rounded-lg mb-3" />
-            <p className="text-[10px] text-gray-400">15/06/2025</p>
-            <h3 className="font-bold text-sm">Preservação de rios</h3>
-            <p className="text-xs text-gray-500">Água limpa é essencial.</p>
-            <p className="text-green-600 text-xs font-semibold cursor-pointer hover:underline hover:text-green-800">Ler mais</p>
-          </div>
-
-          {/* CARD 10 */}
-          <div className="bg-white rounded-xl p-4 shadow">
-            <img src={img10} className="rounded-lg mb-3" />
-            <p className="text-[10px] text-gray-400">10/06/2025</p>
-            <h3 className="font-bold text-sm">Energia sustentável</h3>
-            <p className="text-xs text-gray-500">Fontes renováveis.</p>
-            <p className="text-green-600 text-xs font-semibold cursor-pointer hover:underline hover:text-green-800">Ler mais</p>
-          </div>
-
-          {/* CARD 11 */}
-          <div className="bg-white rounded-xl p-4 shadow">
-            <img src={img11} className="rounded-lg mb-3" />
-            <p className="text-[10px] text-gray-400">05/06/2025</p>
-            <h3 className="font-bold text-sm">Dia do meio ambiente</h3>
-            <p className="text-xs text-gray-500">Importância global.</p>
-            <p className="text-green-600 text-xs font-semibold cursor-pointer hover:underline hover:text-green-800">Ler mais</p>
-          </div>
-
-          {/* CARD 12 */}
-          <div className="bg-white rounded-xl p-4 shadow">
-            <img src={img12} className="rounded-lg mb-3" />
-            <p className="text-[10px] text-gray-400">01/06/2025</p>
-            <h3 className="font-bold text-sm">Sustentabilidade</h3>
-            <p className="text-xs text-gray-500">Cuidando do planeta.</p>
-            <p className="text-green-600 text-xs font-semibold cursor-pointer hover:underline hover:text-green-800">Ler mais</p>
-          </div>
-
-          
+          ))}
 
         </div>
 

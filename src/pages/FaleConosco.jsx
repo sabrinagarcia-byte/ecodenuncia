@@ -18,18 +18,18 @@ export default function FaleConosco() {
             <div className="absolute inset-0 bg-black/10"></div>
 
 
-            <div className="relative z-10 w-full max-w-4xl px-20 py-10 text-white text-center">
+            <div className="relative z-10 w-full max-w-5xl px-10 py-10 text-white text-center">
 
 
-                <h1 className="text-4xl font-bold mb-2">Fale Conosco</h1>
-                <p className="mb-8 text-gray-200">
+                <h1 className="text-5xl pb-5 font-bold mb-2">Fale Conosco</h1>
+                <p className="mb-8 text-gray-200 text-2xl ">
                     Tem alguma sugestão ou problema? Entre em contato com a gente.
                 </p>
 
 
                 <div className="bg-white text-black rounded-2xl p-8 shadow-lg text-left">
 
-                    <h1 className="text-3xl font-bold mb-2 text-center">
+                    <h1 className="text-4xl font-bold mb-2 text-center">
                         Contato
                     </h1>
 
@@ -40,7 +40,7 @@ export default function FaleConosco() {
                         <div className="space-y-4">
 
                             <div>
-                                <label ><h1 className='font-bold'>Nome</h1></label>
+                                <label ><h1 className='font-bold text-lg'>Nome</h1></label>
                                 <input
                                     type="text"
                                     placeholder="Digite seu nome"
@@ -50,7 +50,7 @@ export default function FaleConosco() {
 
 
                             <div>
-                                <label><h1 className='font-bold'>Email</h1></label>
+                                <label><h1 className='font-bold text-lg'>Email</h1></label>
                                 <input
                                     type="text"
                                     placeholder="Digite seu email"
@@ -58,7 +58,7 @@ export default function FaleConosco() {
                                 />
                             </div>
 
-                            <div> <h1 className='font-bold'>Mensagem</h1>
+                            <div> <h1 className='font-bold text-lg'>Mensagem</h1>
                                 <textarea
                                     placeholder="Escreva sua mensagem"
                                     className="w-full border rounded-lg p-2 h-24"
@@ -68,7 +68,7 @@ export default function FaleConosco() {
 
                             {/* BOTÃO */}
                             <div className="flex justify-center mt-8">
-                                <button className="bg-green-900 hover:bg-green-800 text-white px-8 py-3 rounded-full font-semibold">
+                                <button className="bg-green-900 hover:bg-green-800 text-white px-8 py-3 rounded-full  text-lg font-semibold">
                                     Enviar mensagem
                                 </button>
                             </div>
@@ -79,7 +79,7 @@ export default function FaleConosco() {
                         <div className="space-y-5">
 
 
-                            <div className="mt-8 space-y-3 text-sm">
+                            <div className="mt-8 space-y-3 text-xl">
 
                                 <div className="flex items-center gap-2"> 
                                     <img src={EmailSimbol} alt="email" className="w-5 h-5" />
@@ -97,9 +97,9 @@ export default function FaleConosco() {
 
                             </div>
 
-                            <div className="space-y-3">
+                            <div className="space-y-5 text-xl">
 
-                                <div className="flex items-center gap-3  text-green-800">
+                                <div className="flex items-center gap-3   text-green-800">
 
                                     <img src={CheckIcon} alt="check" className="w-5 h-5" />
 
