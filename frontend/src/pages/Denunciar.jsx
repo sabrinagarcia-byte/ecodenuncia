@@ -21,18 +21,18 @@ export default function Denunciar() {
       <div className="relative z-10 w-full max-w-4xl px-6 py-10 text-white text-center">
 
         {/* TÍTULO */}
-        <h1 className="text-4xl font-bold mb-2">Denunciar</h1>
-        <p className="mb-8 text-gray-200">
+        <h1 className="text-5xl py-4 font-bold mb-2">Denunciar</h1>
+        <p className="mb-8 py-2 text-gray-200 text-2xl">
           Ajude a proteger o meio ambiente
         </p>
 
         {/* CARD FORM */}
         <div className="bg-white text-black rounded-2xl p-8 shadow-lg text-left">
 
-          <h2 className="text-2xl font-semibold mb-2 text-center">
+          <h2 className="text-3xl font-bold mb-2 text-center">
             Faça uma denúncia
           </h2>
-          <p className="text-sm text-gray-500 text-center mb-6">
+          <p className="text-lg text-black text-center mb-6">
             Sua denúncia será tratada com seriedade, sigilo e responsabilidade.
           </p>
 
@@ -43,7 +43,7 @@ export default function Denunciar() {
 
               {/* Tipo */}
               <div>
-                <label className="text-sm"><h1 className='font-bold'>Tipo de denúncia</h1></label>
+                <label className="text-lg"><h1 className='font-bold'>Tipo de denúncia</h1></label>
                 <select className="w-full border rounded-lg p-2 mt-1">
                   <option>Tipo de denúncia</option>
                   <option>Descarte irregular de lixo doméstico</option>
@@ -67,7 +67,7 @@ export default function Denunciar() {
 
               {/* Local */}
               <div>
-                <label className="text-sm"><h1 className='font-bold'>Local da ocorrência</h1></label>
+                <label className="text-lg"><h1 className='font-bold'>Local da ocorrência</h1></label>
                 <input
                   type="text"
                   placeholder="Ex: Rua, bairro ou ponto de referência"
@@ -77,7 +77,7 @@ export default function Denunciar() {
 
               {/* Nome */}
               <div>
-                <label className="text-sm"><h1 className='font-bold'>Nome (opcional)</h1></label>
+                <label className="text-lg"><h1 className='font-bold'>Nome (opcional)</h1></label>
                 <input
                   type="text"
                   placeholder="Digite seu nome"
@@ -87,8 +87,8 @@ export default function Denunciar() {
 
               {/* Anônimo */}
               <div>
-                <p className="text-sm mb-1"><h1 className='font-bold'>Deseja ser anônimo?</h1></p>
-                <div className="flex gap-4 text-sm">
+                <p className="text-lg mb-1"><h1 className='font-bold'>Deseja ser anônimo?</h1></p>
+                <div className="flex gap-4 text-lg">
                   <label className="flex items-center gap-1">
                     <input type="radio" name="anonimo" /> Sim
                   </label>
@@ -123,7 +123,7 @@ export default function Denunciar() {
 
                 </button>
 
-                <p className="text-xs text-gray-500 mt-2">
+                <p className="text-sm text-black mt-2">
                   Envie fotos ou vídeos que ajudem na investigação
                 </p>
               </div>
@@ -131,7 +131,7 @@ export default function Denunciar() {
 
               {/* Email */}
               <div>
-                <label className="text-sm"><h1 className='font-bold'>Email (opcional)</h1></label>
+                <label className="text-lg"><h1 className='font-bold'>Email (opcional)</h1></label>
                 <input
                   type="email"
                   placeholder="Digite seu email"
@@ -144,7 +144,7 @@ export default function Denunciar() {
           </div>
 
           {/* BOTÃO */}
-          <div className="flex justify-center mt-8">
+          <div className="flex justify-center text-lg mt-8">
             <button className="bg-green-900 hover:bg-green-800 text-white px-8 py-3 rounded-full font-semibold">
               Enviar denúncia
             </button>
