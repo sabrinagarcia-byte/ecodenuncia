@@ -9,6 +9,7 @@ import * as DenunciaService from '../services/denunciaService.js';
 export async function createDenuncia(req, res) {
     try {
         const { tipo, descricao, local } = req.body;
+        console.log(req.body)
 
         // Verificar campos obrigatórios
         if (!tipo || !descricao || !local) {
