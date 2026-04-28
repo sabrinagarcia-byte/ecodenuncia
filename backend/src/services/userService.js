@@ -1,48 +1,55 @@
-import prisma from "../config/database.js";
+import { usuarios, gerarIdUsuario } from '../data/mock.js'
 
-export async function create(userData) {
-    const user = await prisma.user.create({
-        data: userData
-    })
+// criar usuario novo
+export async function create(dados) {
+    const novo = {
+        id: gerarIdUsuario(),
+        nome: dados.name || dados.nome,
+        email: dados.email,
+        senha: dados.password || dados.senha,
+        createdAt: new Date(),
+        updatedAt: new Date()
+    }
 
-    return user
+    usuarios.push(novo)
+    return novo
 }
 
+// buscar por id
 export async function getById(id) {
-        const user = await prisma.user.findUnique({
-            where: { id: Number(id) }
-        })
-
-        return user
+    const usuario = usuarios.find(u => u.id === Number(id))
+    return usuario || null
 }
 
+// buscar por email
 export async function getByEmail(email) {
-    const user = await prisma.user.findUnique({
-        where: { email }
-    })
-
-    return user
+    const usuario = usuarios.find(u => u.email === email)
+    return usuario || null
 }
 
+// buscar todos
 export async function get() {
-    const users = await prisma.user.findMany()
-
-    return users
+    return usuarios
 }
 
-export async function update(userData, id) {
-    const update = await prisma.user.update({
-        where: { id: Number(id) },
-        data: userData
-    })
+// atualizar usuario
+export async function update(dados, id) {
+    const index = usuarios.findIndex(u => u.id === Number(id))
+    if (index === -1) return null
 
-    return update
+    if (dados.nome) usuarios[index].nome = dados.nome
+    if (dados.email) usuarios[index].email = dados.email
+    if (dados.senha) usuarios[index].senha = dados.senha
+    usuarios[index].updatedAt = new Date()
+
+    return usuarios[index]
 }
 
+// deletar usuario
 export async function remove(id) {
-    const delUser = await prisma.user.delete({
-        where: { id: Number(id) }
-    })
+    const index = usuarios.findIndex(u => u.id === Number(id))
+    if (index === -1) return null
 
-    return delUser
+    const deletado = usuarios.splice(index, 1)
+    return deletado[0]
 }
