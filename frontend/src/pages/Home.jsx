@@ -8,9 +8,9 @@ import PesquisaLupa from '../assets/images/pesquisa-de-lupa 1.png'
 import MapaIlustrativo from '../assets/images/imagem mapinha.png'
 import PesquisaIcone from '../assets/images/pesquisa-de-lupa 1.png'
 import PlantinhaIcone from '../assets/images/plantar.png'
-import ImagemCard1 from '../assets/images/imagemCrard1.png'
-import ImagemCard2 from '../assets/images/imagemCard2.png'
-import ImagemCard3 from '../assets/images/imagemCard3.png'
+import img1 from '../assets/images/imagemCard1.png'
+import img2 from '../assets/images/imagemCard2.png'
+import img3 from '../assets/images/imagemCard3.png'
 import BannerDenunciarAgora from '../assets/images/fundoDenunciarAgora.png'
 
 import { NavLink } from 'react-router'
@@ -22,7 +22,7 @@ export default function Home() {
 
       <section className="w-full relative">
         {/* h-[450px] mobile, h-[550px] desktop. Meio termo entre 500px e o h-auto gigante */}
-        <img src={Banner} alt="Banner" className="w-full h-[450px] md:h-[820px] object-cover object-center" />
+        <img src={Banner} alt="Banner" className="w-full h-112.5 md:h-205 object-cover object-center" />
 
         <div className="absolute inset-0 bg-black/30 flex items-center">
           <div className="max-w-6xl px-6 ml-10 md:ml-20 text-white">
@@ -38,7 +38,7 @@ export default function Home() {
 
             <div className="flex items-center gap-4">
               {/* Aumentei padding e text dos botões */}
-              
+
 
               <NavLink to="/denunciar" className="bg-green-500 hover:bg-green-800 px-7 py-3 rounded-full font-semibold text-lg">
                 Denunciar
@@ -173,6 +173,7 @@ export default function Home() {
       </section>
 
       <section className="bg-green-950 py-16 text-white">
+
         <div className="max-w-6xl mx-auto px-6">
 
           <h2 className="text-2xl md:text-5xl font-semibold text-center mb-12 flex items-center justify-center gap-2">
@@ -185,61 +186,41 @@ export default function Home() {
           </h2>
 
 
-          <div className="grid md:grid-cols-3 gap-8">
+          {/* GRID */}
+          <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-3 max-w-5xl mx-auto">
 
-            {/* Card 1 */}
-            <div className="bg-white text-black rounded-xl overflow-hidden shadow hover:-translate-y-2 transition">
-              <img src={ImagemCard1} alt='imagem do card 1' className="w-full h-40 object-cover" />
-              <div className="p-4">
-                <h3 className="font-semibold mb-2">
-                  Impacto do descarte ilegal na natureza
+            {[
+              { img: img1, data: "12 Mar 2026", titulo: "Impacto do descarte ilegal", desc: "Veja como o descarte irregular do lixo afeta o meio ambiente." },
+              { img: img2, data: "20 Mar 2026", titulo: "Como reciclar corretamente", desc: "Dicas práticas para separar seu lixo de forma adequada." },
+              { img: img3, data: "15 Fev 2026", titulo: "Iniciativas ambientais locais", desc: "Projetos que estão fazendo a diferença na comunidade." },
+            ].map((card, index) => (
+
+              <div key={index} className="bg-white rounded-xl p-4 shadow flex flex-col h-full shadow hover:-translate-y-2 transition">
+
+                <img src={card.img} className="rounded-lg mb-4" />
+
+                <p className="text-[15px] text-gray-400">{card.data}</p>
+
+                <h3 className="font-bold text-green-900 text-lg">
+                  {card.titulo}
                 </h3>
-                <p className="text-sm text-gray-600 mb-3">
-                  Entenda os impactos ambientais e sociais causados pelo descarte incorreto.
-                </p>
-                <span className="text-green-600 font-semibold text-sm cursor-pointer">
-                  Ler mais
-                </span>
-              </div>
-            </div>
 
-            {/* Card 2 */}
-            <div className="bg-white text-black rounded-xl overflow-hidden shadow hover:-translate-y-2 transition">
-              <img src={ImagemCard2} alt='imagem do card 2' className="w-full h-40 object-cover" />
-              <div className="p-4">
-                <h3 className="font-semibold mb-2">
-                  5 ações do cotidiano para reciclar corretamente
-                </h3>
-                <p className="text-sm text-gray-600 mb-3">
-                  Dicas simples que ajudam na separação e destino dos resíduos.
+                <p className="text-sm text-black py-2">
+                  {card.desc}
                 </p>
-                <span className="text-green-600 font-semibold text-sm cursor-pointer">
-                  Ler mais
-                </span>
-              </div>
-            </div>
 
-            {/* Card 3 */}
-            <div className="bg-white text-black rounded-xl overflow-hidden shadow hover:-translate-y-2 transition">
-              <img src={ImagemCard3} alt='imagem do card 3' className="w-full h-40 object-cover" />
-              <div className="p-4">
-                <h3 className="font-semibold mb-2">
-                  Comunidades que se uniram pela limpeza
-                </h3>
-                <p className="text-sm text-gray-600 mb-3">
-                  Conheça iniciativas que fazem a diferença no meio ambiente.
+                <p className="mt-auto text-green-800 text-lg font-bold cursor-pointer hover:underline hover:text-green-900">
+                  Ler mais
                 </p>
-                <a href='' className="text-green-600 font-semibold text-sm cursor-pointer">
-                  Ler mais
-                </a>
-              </div>
-            </div>
 
+              </div>
+
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="relative w-full h-[300px] flex items-center justify-center">
+      <section className="relative w-full h-75 flex items-center justify-center">
 
         {/* IMAGEM DE FUNDO */}
         <img
@@ -258,8 +239,8 @@ export default function Home() {
           </h2>
 
           <NavLink to="/denunciar" className="bg-green-900 hover:bg-green-800 px-7 py-3 rounded-full font-semibold text-lg">
-                Denunciar agora
-              </NavLink>
+            Denunciar agora
+          </NavLink>
         </div>
 
       </section>

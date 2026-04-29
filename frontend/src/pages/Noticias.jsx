@@ -68,7 +68,6 @@ export default function Noticias() {
 </div>
 
 
-        {/* GRID */}
         <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-3 max-w-5xl mx-auto">
 
           {[
