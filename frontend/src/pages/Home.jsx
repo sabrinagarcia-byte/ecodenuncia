@@ -186,37 +186,37 @@ export default function Home() {
           </h2>
 
 
-          {/* GRID */}
-          <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-3 max-w-5xl mx-auto">
-
-            {[
-              { img: img1, data: "12 Mar 2026", titulo: "Impacto do descarte ilegal", desc: "Veja como o descarte irregular do lixo afeta o meio ambiente." },
-              { img: img2, data: "20 Mar 2026", titulo: "Como reciclar corretamente", desc: "Dicas práticas para separar seu lixo de forma adequada." },
-              { img: img3, data: "15 Fev 2026", titulo: "Iniciativas ambientais locais", desc: "Projetos que estão fazendo a diferença na comunidade." },
-            ].map((card, index) => (
-
-              <div key={index} className="bg-white rounded-xl p-4 shadow flex flex-col h-full shadow hover:-translate-y-2 transition">
-
-                <img src={card.img} className="rounded-lg mb-4" />
-
-                <p className="text-[15px] text-gray-400">{card.data}</p>
-
-                <h3 className="font-bold text-green-900 text-lg">
-                  {card.titulo}
-                </h3>
-
-                <p className="text-sm text-black py-2">
-                  {card.desc}
-                </p>
-
-                <p className="mt-auto text-green-800 text-lg font-bold cursor-pointer hover:underline hover:text-green-900">
-                  Ler mais
-                </p>
-
-              </div>
-
-            ))}
-          </div>
+         <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-3 max-w-5xl mx-auto">
+          
+                    {[
+                      { img: img1, data: "12 Mar 2026", titulo: "Impacto do descarte ilegal", desc: "Veja como o descarte irregular do lixo afeta o meio ambiente." },
+                      { img: img2, data: "20 Mar 2026", titulo: "Como reciclar corretamente", desc: "Dicas práticas para separar seu lixo de forma adequada." },
+                      { img: img3, data: "15 Fev 2026", titulo: "Iniciativas ambientais locais", desc: "Projetos que estão fazendo a diferença na comunidade." },
+                    ].map((card, index) => (
+          
+                      <div key={index} className="bg-white rounded-xl p-4 shadow flex flex-col h-full hover:-translate-y-2 transition">
+          
+                        <img src={card.img} className="rounded-lg mb-4" />
+          
+                        <p className="text-[15px] text-gray-400">{card.data}</p>
+          
+                        <h3 className="font-bold text-green-900 text-lg">
+                          {card.titulo}
+                        </h3>
+          
+                        <p className="text-sm text-black py-2">
+                          {card.desc}
+                        </p>
+          
+                        <p className="mt-auto text-green-800 text-lg font-bold cursor-pointer hover:underline hover:text-green-900">
+                          Ler mais
+                        </p>
+          
+                      </div>
+          
+                    ))}
+          
+                  </div>
         </div>
       </section>
 

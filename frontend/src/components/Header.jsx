@@ -1,45 +1,46 @@
+import { useState } from "react";
 import logo from "../assets/images/logo.png";
-import globe from '../assets/images/fi-rr-globe.png'
-import { NavLink } from 'react-router'
-import user from '../assets/images/fi-rr-user.png'
+import globe from "../assets/images/fi-rr-globe.png";
+import { NavLink } from "react-router";
+import user from "../assets/images/fi-rr-user.png";
 
 function linkClass({ isActive }) {
   return isActive
     ? "border-b-2 border-green-500 pb-1"
-    : "text-white"
+    : "text-white";
 }
 
-
-
 export default function Header({ lang, setLang }) {
-
+  const [open, setOpen] = useState(false);
 
   return (
+    <header className="bg-green-950 text-white">
 
-    <header className="flex items-center  justify-between px-10 py-4 bg-green-950">
-      {/* Logo */}
-      <div className="flex items-center gap-2">
-        <img src={logo} alt="Logotipo" />
+      {/* TOP BAR */}
+      <div className="flex items-center justify-between px-4 md:px-10 py-4">
 
-      </div>
+        {/* LOGO */}
+        <div className="flex items-center gap-2">
+          <img src={logo} alt="Logotipo" className="w-32 md:w-auto" />
+        </div>
 
-      {/* Menu */}
-      <ul className="flex gap-15 text-white text-lg">
-        <li><NavLink to="/" className={linkClass}>Página Inicial</NavLink></li>
-        <li><NavLink to="/denunciar" className={linkClass}>Denunciar</NavLink></li>
-        <li><NavLink to="/noticias" className={linkClass}>Notícias</NavLink></li>
-        <li><NavLink to="/aboutus" className={linkClass}>Sobre nós</NavLink></li>
-        <li><NavLink to="/faleconosco" className={linkClass}>Fale Conosco</NavLink></li>
-      </ul>
+        {/* MENU DESKTOP */}
+        <ul className="hidden md:flex gap-10 lg:gap-15 text-lg">
+          <li><NavLink to="/" className={linkClass}>Página Inicial</NavLink></li>
+          <li><NavLink to="/denunciar" className={linkClass}>Denunciar</NavLink></li>
+          <li><NavLink to="/noticias" className={linkClass}>Notícias</NavLink></li>
+          <li><NavLink to="/aboutus" className={linkClass}>Sobre nós</NavLink></li>
+          <li><NavLink to="/faleconosco" className={linkClass}>Fale Conosco</NavLink></li>
+        </ul>
 
-      {/* Botão */}
-      <div style={{ display: 'flex' }} className="">
-        <NavLink to="/login"><img src={user} alt="user" className=" mx-5 my-2" /></NavLink>
-        <div>
-          <div className="bg-green-800 text-white rounded-lg flex gap-3 py-2 px-3 items-center">
+        {/* DIREITA (DESKTOP) */}
+        <div className="hidden md:flex items-center">
+          <NavLink to="/login">
+            <img src={user} alt="user" className="mx-5 my-5" />
+          </NavLink>
 
-
-            <img src={globe} alt="globe" />
+          <div className="bg-green-800 rounded-lg flex gap-2 py-2 px-3 items-center">
+            <img src={globe} alt="globe" className="w-4" />
 
             <select
               value={lang}
@@ -50,13 +51,60 @@ export default function Header({ lang, setLang }) {
               <option value="en">EN</option>
               <option value="fr">FR</option>
             </select>
-
-
           </div>
+        </div>
+
+        {/* BOTÃO HAMBÚRGUER */}
+        <button
+          onClick={() => setOpen(!open)}
+          className="md:hidden flex flex-col gap-1"
+        >
+          <span className="w-6 h-0.5 bg-white"></span>
+          <span className="w-6 h-0.5 bg-white"></span>
+          <span className="w-6 h-0.5 bg-white"></span>
+        </button>
+      </div>
+
+      {/* MENU MOBILE */}
+      <div
+        className={`md:hidden bg-green-900 transition-all duration-300 overflow-hidden ${
+          open ? "max-h-125 py-4" : "max-h-0"
+        }`}
+      >
+        <ul className="flex flex-col items-center gap-4 text-lg">
+
+          <li><NavLink onClick={() => setOpen(false)} to="/" className={linkClass}>Página Inicial</NavLink></li>
+          <li><NavLink onClick={() => setOpen(false)} to="/denunciar" className={linkClass}>Denunciar</NavLink></li>
+          <li><NavLink onClick={() => setOpen(false)} to="/noticias" className={linkClass}>Notícias</NavLink></li>
+          <li><NavLink onClick={() => setOpen(false)} to="/aboutus" className={linkClass}>Sobre nós</NavLink></li>
+          <li><NavLink onClick={() => setOpen(false)} to="/faleconosco" className={linkClass}>Fale Conosco</NavLink></li>
+
+        </ul>
+
+        {/* PARTE DE BAIXO (LOGIN + LANG) */}
+        <div className="flex flex-col items-center gap-4 mt-4">
+
+          <NavLink to="/login" onClick={() => setOpen(false)}>
+            <img src={user} alt="user" />
+          </NavLink>
+
+          <div className="bg-green-800 rounded-lg flex gap-2 py-2 px-3 items-center">
+            <img src={globe} alt="globe" className="w-4" />
+
+            <select
+              value={lang}
+              onChange={(e) => setLang(e.target.value)}
+              className="bg-transparent text-white outline-none"
+            >
+              <option value="pt">BR</option>
+              <option value="en">EN</option>
+              <option value="fr">FR</option>
+            </select>
+          </div>
+
         </div>
       </div>
 
     </header>
-  )
-
+  );
 }

@@ -46,75 +46,103 @@ export default function LoginERegistro() {
   }
 
   return (
-    <div className="mx-auto max-w-7xl font-nunito px-6 py-10">
-      <section className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] rounded-[32px] overflow-hidden bg-white shadow-[0_40px_80px_rgba(15,23,42,0.12)]">
-        <div className="relative bg-[radial-gradient(circle_at_top_left,_rgba(22,163,74,0.20),transparent_40%),linear-gradient(180deg,#065f46,#047857)] p-10 text-white flex flex-col justify-center">
+    <div className="mx-auto max-w-7xl font-nunito px-4 sm:px-6 py-6 md:py-10">
+
+      <section className="grid gap-8 md:gap-12 lg:grid-cols-[1.2fr_0.8fr] rounded-4xl overflow-hidden bg-white shadow-[0_40px_80px_rgba(15,23,42,0.12)]">
+
+        {/* LADO ESQUERDO */}
+        <div className="relative hidden lg:flex bg-[radial-gradient(circle_at_top_left,_rgba(22,163,74,0.20),transparent_40%), linear-gradient(180deg,#065f46,#047857)] p-6 md:p-10 text-white items-center justify-center">
           <div className="absolute inset-0 bg-[url('assets/images/imgBgLoginECadastro.jpeg')] bg-cover bg-center" />
         </div>
 
-        <div className="p-10">
+        {/* LADO DIREITO */}
+        <div className="p-6 sm:p-8 md:p-10">
           <div className="max-w-md mx-auto space-y-6">
-            <div className="rounded-3xl border border-slate-200/70 bg-slate-50 p-8 shadow-sm">
-              <h2 className="text-2xl font-semibold text-slate-900">Entrar na sua conta</h2>
 
-              {/* Mensagem de sucesso */}
+            <div className="rounded-3xl border border-slate-200/70 bg-slate-50 p-5 sm:p-6 md:p-8 shadow-sm">
+
+              <h2 className="text-xl sm:text-2xl font-semibold text-green-800">
+                Entrar na sua conta
+              </h2>
+
+              {/* SUCESSO */}
               {mensagem && (
                 <div className="mt-4 rounded-xl bg-green-50 border border-green-200 px-4 py-3 text-sm text-green-700">
                   {mensagem}
                 </div>
               )}
 
-              {/* Mensagem de erro */}
+              {/* ERRO */}
               {erro && (
                 <div className="mt-4 rounded-xl bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-700">
                   {erro}
                 </div>
               )}
 
-              <form className="mt-8 space-y-5" onSubmit={handleLogin}>
+              <form className="mt-6 md:mt-8 space-y-4 md:space-y-5" onSubmit={handleLogin}>
+
                 <label className="block text-sm text-slate-700">
-                  <span className="mb-2 block text-xs uppercase tracking-[0.2em] text-slate-500">Email</span>
+                  <span className="mb-2 block text-xs uppercase tracking-[0.2em] text-slate-500">
+                    Email
+                  </span>
+
                   <input
                     type="email"
                     value={loginData.email}
-                    onChange={(event) => setLoginData({ ...loginData, email: event.target.value })}
+                    onChange={(event) =>
+                      setLoginData({ ...loginData, email: event.target.value })
+                    }
                     placeholder="seu@email.com"
                     required
-                    className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-200 focus:ring-offset-2"
+                    className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 md:px-4 md:py-3 text-sm md:text-base outline-none focus:border-green-500 focus:ring-2 focus:ring-green-200"
                   />
                 </label>
 
                 <label className="block text-sm text-slate-700">
-                  <span className="mb-2 block text-xs uppercase tracking-[0.2em] text-slate-500">Senha</span>
+                  <span className="mb-2 block text-xs uppercase tracking-[0.2em] text-slate-500">
+                    Senha
+                  </span>
+
                   <input
                     type="password"
                     value={loginData.password}
-                    onChange={(event) => setLoginData({ ...loginData, password: event.target.value })}
+                    onChange={(event) =>
+                      setLoginData({ ...loginData, password: event.target.value })
+                    }
                     placeholder="••••••••"
                     required
-                    className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-200"
+                    className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 md:px-4 md:py-3 text-sm md:text-base outline-none focus:border-green-500 focus:ring-2 focus:ring-green-200"
                   />
                 </label>
 
                 <button
                   type="submit"
                   disabled={carregando}
-                  className="inline-flex w-full justify-center rounded-xl bg-green-600 px-5 py-3 text-base font-semibold text-white transition hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full rounded-xl bg-green-900 px-4 py-2 md:px-5 md:py-3 text-sm md:text-base font-semibold text-white hover:bg-green-800 disabled:opacity-50"
                 >
                   {carregando ? 'Entrando...' : 'Entrar'}
                 </button>
 
-                <div className="text-center text-sm text-slate-500">
-                  <a href="#" className="font-medium text-green-600 hover:text-green-700">Esqueci minha senha</a>
+                <div className="text-center text-xs sm:text-sm text-slate-500">
+                  <a href="#" className="font-medium text-green-800 hover:text-green-700">
+                    Esqueci minha senha
+                  </a>
                 </div>
+
               </form>
             </div>
-            <div className="text-center text-sm text-slate-500">
-              Não tem conta? <a href="/cadastro" className="text-green-600 hover:text-green-700">Cadastre-se aqui</a>
+
+            <div className="text-center text-xs sm:text-sm text-slate-500">
+              Não tem conta?{" "}
+              <a href="/cadastro" className="text-green-800 hover:text-green-700">
+                Cadastre-se aqui
+              </a>
             </div>
+
           </div>
         </div>
+
       </section>
     </div>
-  )
+  );
 }

@@ -61,15 +61,15 @@ export default function LoginERegistro() {
 
   return (
     <div className="mx-auto max-w-7xl font-nunito px-6 py-10 space-y-20">
-      <section className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] rounded-[32px] overflow-hidden bg-white shadow-[0_40px_80px_rgba(15,23,42,0.12)]">
-        <div className="relative bg-[radial-gradient(circle_at_top_left,_rgba(22,163,74,0.20),transparent_40%),linear-gradient(180deg,#065f46,#047857)] p-10 text-white flex flex-col justify-center">
-<div className="absolute inset-0 bg-[url('assets/images/imgBgLoginECadastro.jpeg')] bg-cover bg-center" />
+      <section className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] rounded-4xl overflow-hidden bg-white shadow-[0_40px_80px_rgba(15,23,42,0.12)]">
+        <div className="relative bg-[radial-gradient(circle_at_top_left,_rgba(22,163,74,0.20),transparent_40%), linear-gradient(180deg,#065f46,#047857)] p-10 text-white flex flex-col justify-center">
+          <div className="absolute inset-0 bg-[url('assets/images/imgBgLoginECadastro.jpeg')] bg-cover bg-center" />
         </div>
 
         <div className="p-10">
           <div className="max-w-md mx-auto space-y-6">
             <div className="rounded-3xl border border-slate-200/70 bg-slate-50 p-8 shadow-sm">
-              <h2 className="text-2xl font-semibold text-slate-900">Criar uma conta</h2>
+              <h2 className="text-2xl font-semibold text-green-800">Criar uma conta</h2>
 
               {/* Mensagem de sucesso */}
               {mensagem && (
@@ -137,13 +137,13 @@ export default function LoginERegistro() {
                 <button
                   type="submit"
                   disabled={carregando}
-                  className="inline-flex w-full justify-center rounded-xl bg-green-600 px-5 py-3 text-base font-semibold text-white transition hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="inline-flex w-full justify-center rounded-xl bg-green-900 px-5 py-3 text-base font-semibold text-white transition hover:bg-green-800 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {carregando ? 'Criando conta...' : 'Criar conta'}
                 </button>
 
                 <div className="text-center text-sm text-slate-500">
-                  Já tem uma conta? <a href="/login" className="font-medium text-green-600 hover:text-green-700">Entrar</a>
+                  Já tem uma conta? <a href="/login" className="font-medium text-green-900 hover:text-green-600">Entrar</a>
                 </div>
               </form>
             </div>
