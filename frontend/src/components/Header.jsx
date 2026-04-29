@@ -26,11 +26,10 @@ export default function Header({ lang, setLang }) {
       {/* Menu */}
       <ul className="flex gap-15 text-white text-lg">
         <li><NavLink to="/" className={linkClass}>Página Inicial</NavLink></li>
-        <li><NavLink to="/faleconosco" className={linkClass}>Fale Conosco</NavLink></li>
-        <li><NavLink to="/noticias" className={linkClass}>Notícias</NavLink></li>
         <li><NavLink to="/denunciar" className={linkClass}>Denunciar</NavLink></li>
+        <li><NavLink to="/noticias" className={linkClass}>Notícias</NavLink></li>
         <li><NavLink to="/aboutus" className={linkClass}>Sobre nós</NavLink></li>
-
+        <li><NavLink to="/faleconosco" className={linkClass}>Fale Conosco</NavLink></li>
       </ul>
 
       {/* Botão */}
