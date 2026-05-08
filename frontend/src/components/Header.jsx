@@ -98,7 +98,7 @@ export default function Header({ lang, setLang }) {
             >
               <option value="pt">BR</option>
               <option value="en">EN</option>
-              <option value="fr">FR</option>
+            
             </select>
           </div>
 
