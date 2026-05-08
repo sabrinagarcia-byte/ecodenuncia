@@ -26,11 +26,11 @@ export default function Header({ lang, setLang }) {
 
         {/* MENU DESKTOP */}
         <ul className="hidden md:flex gap-10 lg:gap-15 text-lg">
-          <li><NavLink to="/" className={linkClass}>Página Inicial</NavLink></li>
+          <li><NavLink to="/" className={linkClass}>Início</NavLink></li>
           <li><NavLink to="/denunciar" className={linkClass}>Denunciar</NavLink></li>
           <li><NavLink to="/noticias" className={linkClass}>Notícias</NavLink></li>
-          <li><NavLink to="/aboutus" className={linkClass}>Sobre nós</NavLink></li>
-          <li><NavLink to="/faleconosco" className={linkClass}>Fale Conosco</NavLink></li>
+          <li><NavLink to="/aboutus" className={linkClass}>Sobre</NavLink></li>
+          <li><NavLink to="/faleconosco" className={linkClass}>Contato</NavLink></li>
         </ul>
 
         {/* DIREITA (DESKTOP) */}
