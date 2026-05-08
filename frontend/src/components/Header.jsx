@@ -73,11 +73,11 @@ export default function Header({ lang, setLang }) {
       >
         <ul className="flex flex-col items-center gap-4 text-lg">
 
-          <li><NavLink onClick={() => setOpen(false)} to="/" className={linkClass}>Página Inicial</NavLink></li>
+          <li><NavLink onClick={() => setOpen(false)} to="/" className={linkClass}>Início</NavLink></li>
           <li><NavLink onClick={() => setOpen(false)} to="/denunciar" className={linkClass}>Denunciar</NavLink></li>
           <li><NavLink onClick={() => setOpen(false)} to="/noticias" className={linkClass}>Notícias</NavLink></li>
-          <li><NavLink onClick={() => setOpen(false)} to="/aboutus" className={linkClass}>Sobre nós</NavLink></li>
-          <li><NavLink onClick={() => setOpen(false)} to="/faleconosco" className={linkClass}>Fale Conosco</NavLink></li>
+          <li><NavLink onClick={() => setOpen(false)} to="/aboutus" className={linkClass}>Sobre</NavLink></li>
+          <li><NavLink onClick={() => setOpen(false)} to="/faleconosco" className={linkClass}>Contato</NavLink></li>
 
         </ul>
 
