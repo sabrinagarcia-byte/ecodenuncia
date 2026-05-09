@@ -1,6 +1,5 @@
 import { useState } from "react";
 import logo from "../assets/images/logo.png";
-import globe from "../assets/images/fi-rr-globe.png";
 import { NavLink } from "react-router";
 import user from "../assets/images/fi-rr-user.png";
 
@@ -10,7 +9,7 @@ function linkClass({ isActive }) {
     : "text-white";
 }
 
-export default function Header({ lang, setLang }) {
+export default function Header() {
   const [open, setOpen] = useState(false);
 
   return (
@@ -21,11 +20,13 @@ export default function Header({ lang, setLang }) {
 
         {/* LOGO */}
         <div className="flex items-center gap-2">
-          <img src={logo} alt="Logotipo" className="w-32 md:w-auto" />
+          <NavLink to="/">
+            <img src={logo} alt="Logotipo" className="w-32 md:w-auto" />
+          </NavLink>
         </div>
 
         {/* MENU DESKTOP */}
-        <ul className="hidden md:flex gap-10 lg:gap-15 text-lg">
+        <ul className="hidden md:flex gap-10 lg:gap-16 text-lg">
           <li><NavLink to="/" className={linkClass}>Início</NavLink></li>
           <li><NavLink to="/denunciar" className={linkClass}>Denunciar</NavLink></li>
           <li><NavLink to="/noticias" className={linkClass}>Notícias</NavLink></li>
@@ -38,20 +39,6 @@ export default function Header({ lang, setLang }) {
           <NavLink to="/login">
             <img src={user} alt="user" className="mx-5 my-5" />
           </NavLink>
-
-          <div className="bg-green-800 rounded-lg flex gap-2 py-2 px-3 items-center">
-            <img src={globe} alt="globe" className="w-4" />
-
-            <select
-              value={lang}
-              onChange={(e) => setLang(e.target.value)}
-              className="bg-transparent text-white outline-none"
-            >
-              <option value="pt">BR</option>
-              <option value="en">EN</option>
-              <option value="fr">FR</option>
-            </select>
-          </div>
         </div>
 
         {/* BOTÃO HAMBÚRGUER */}
@@ -68,7 +55,7 @@ export default function Header({ lang, setLang }) {
       {/* MENU MOBILE */}
       <div
         className={`md:hidden bg-green-900 transition-all duration-300 overflow-hidden ${
-          open ? "max-h-125 py-4" : "max-h-0"
+          open ? "max-h-[500px] py-4" : "max-h-0"
         }`}
       >
         <ul className="flex flex-col items-center gap-4 text-lg">
@@ -81,26 +68,12 @@ export default function Header({ lang, setLang }) {
 
         </ul>
 
-        {/* PARTE DE BAIXO (LOGIN + LANG) */}
+        {/* PARTE DE BAIXO (LOGIN) */}
         <div className="flex flex-col items-center gap-4 mt-4">
 
           <NavLink to="/login" onClick={() => setOpen(false)}>
             <img src={user} alt="user" />
           </NavLink>
-
-          <div className="bg-green-800 rounded-lg flex gap-2 py-2 px-3 items-center">
-            <img src={globe} alt="globe" className="w-4" />
-
-            <select
-              value={lang}
-              onChange={(e) => setLang(e.target.value)}
-              className="bg-transparent text-white outline-none"
-            >
-              <option value="pt">BR</option>
-              <option value="en">EN</option>
-            
-            </select>
-          </div>
 
         </div>
       </div>
