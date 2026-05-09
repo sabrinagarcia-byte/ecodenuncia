@@ -3,133 +3,107 @@ import EmailSimbol from '../assets/images/o-email (2) 1.png'
 import TelefoneSimbol from '../assets/images/telefone (2) 1.png'
 import CheckIcon from '../assets/images/CheckIcon.png'
 
+export default function Contato() {
+  return (
+    <section className="w-full min-h-screen bg-white">
+      
+      {/* Banner Simples no Topo */}
+      <div className="w-full h-64 relative">
+        <img
+          src={BannerFaleConosco}
+          alt="Fundo Fale Conosco"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+          <h1 className="text-5xl font-bold text-white">Fale Conosco</h1>
+        </div>
+      </div>
 
-export default function FaleConosco() {
-    return (
-        <section className="w-full min-h-screen relative flex items-center justify-center">
+      {/* Conteúdo Principal */}
+      <div className="max-w-5xl mx-auto px-6 py-12">
+        <p className="text-xl text-center text-gray-700 mb-12">
+          Tem alguma sugestão ou problema? Entre em contato com a gente.
+        </p>
 
-            <img
-                src={BannerFaleConosco}
-                alt="Fundo"
-                className="absolute inset-0 w-full h-full object-cover"
-            />
+        <div className="grid md:grid-cols-2 gap-12">
 
-
-            <div className="absolute inset-0 bg-black/10"></div>
-
-
-            <div className="relative z-10 w-full max-w-5xl px-10 py-10 text-white text-center">
-
-
-                <h1 className="text-5xl pb-5 font-bold mb-2">Fale Conosco</h1>
-                <p className="mb-8 text-gray-200 text-2xl ">
-                    Tem alguma sugestão ou problema? Entre em contato com a gente.
-                </p>
-
-
-                <div className="bg-white text-black rounded-2xl p-8 shadow-lg text-left">
-
-                    <h1 className="text-4xl font-bold mb-2 text-center">
-                        Contato
-                    </h1>
-
-
-                    <div className="grid md:grid-cols-2 gap-6">
-
-
-                        <div className="space-y-4">
-
-                            <div>
-                                <label ><h1 className='font-bold text-lg'>Nome</h1></label>
-                                <input
-                                    type="text"
-                                    placeholder="Digite seu nome"
-                                    className="w-full border rounded-lg p-2 mt-1"
-                                />
-                            </div>
-
-
-                            <div>
-                                <label><h1 className='font-bold text-lg'>Email</h1></label>
-                                <input
-                                    type="text"
-                                    placeholder="Digite seu email"
-                                    className="w-full border rounded-lg p-2 mt-1"
-                                />
-                            </div>
-
-                            <div> <h1 className='font-bold text-lg'>Mensagem</h1>
-                                <textarea
-                                    placeholder="Escreva sua mensagem"
-                                    className="w-full border rounded-lg p-2 h-24"
-                                />
-                            </div>
-
-
-                            {/* BOTÃO */}
-                            <div className="flex justify-center mt-8">
-                                <button className="bg-green-900 hover:bg-green-800 text-white px-8 py-3 rounded-full  text-lg font-semibold">
-                                    Enviar mensagem
-                                </button>
-                            </div>
-                        </div>
-
-
-                        {/* DIREITA */}
-                        <div className="space-y-5">
-
-
-                            <div className="mt-8 space-y-3 text-xl">
-
-                                <div className="flex items-center gap-2"> 
-                                    <img src={EmailSimbol} alt="email" className="w-5 h-5" />
-              
-                                   <a href="https://www.google.com/gmail/about/signup_complete.html" className="flex items-center text-lg gap-2 hover:text-green-400 transition-colors">contato@ecodenuncia.com</a>
-
-                                </div>
-
-                                <div className="flex items-center gap-2">
-                                    <img src={TelefoneSimbol} alt="telefone" className="w-5 h-5" />
-
-                                    <a href="https://web.whatsapp.com/" className="flex items-center text-lg gap-2 hover:text-green-400 transition-colors">(12) 99999-9999</a>
-
-                                </div>
-
-                            </div>
-
-                            <div className="space-y-5 text-xl">
-
-                                <div className="flex items-center gap-3   text-green-800">
-
-                                    <img src={CheckIcon} alt="check" className="w-5 h-5" />
-
-                                    <span>Análise cuidadosa das informações</span>
-                                </div>
-
-                                <div className="flex items-center gap-3  text-green-800">
-
-                                    <img src={CheckIcon} alt="check" className="w-5 h-5" />
-
-                                    <span>Encaminhamento aos órgãos responsáveis</span>
-                                </div>
-
-                                <div className="flex items-center gap-3 text-green-800">
-                                    <img src={CheckIcon} alt="check" className="w-5 h-5" />
-                                    <span>Acompanhamento quando necessário</span>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-
-                </div>
-
+          {/* COLUNA ESQUERDA: FORMULÁRIO */}
+          <div className="flex flex-col gap-6">
+            <h2 className="text-2xl font-bold text-green-900">Envie uma mensagem</h2>
+            
+            <div className="flex flex-col gap-2">
+              <label className="font-semibold text-lg text-gray-800">Nome</label>
+              <input
+                type="text"
+                placeholder="Digite seu nome"
+                className="w-full border border-gray-300 rounded-lg p-3 outline-none focus:border-green-600"
+              />
             </div>
-        </section>
-    )
+
+            <div className="flex flex-col gap-2">
+              <label className="font-semibold text-lg text-gray-800">Email</label>
+              <input
+                type="email"
+                placeholder="Digite seu email"
+                className="w-full border border-gray-300 rounded-lg p-3 outline-none focus:border-green-600"
+              />
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <label className="font-semibold text-lg text-gray-800">Mensagem</label>
+              <textarea
+                placeholder="Escreva sua mensagem"
+                className="w-full border border-gray-300 rounded-lg p-3 h-32 outline-none resize-none focus:border-green-600"
+              />
+            </div>
+
+            <button className="bg-green-900 hover:bg-green-800 text-white px-8 py-3 rounded-full text-lg font-semibold mt-2 w-full sm:w-auto">
+              Enviar mensagem
+            </button>
+          </div>
+
+          {/* COLUNA DIREITA: INFORMAÇÕES */}
+          <div className="flex flex-col gap-8 md:pl-10">
+            <h2 className="text-2xl font-bold text-green-900">Contato Direto</h2>
+
+            <div className="flex flex-col gap-6">
+              <div className="flex items-center gap-4">
+                <img src={EmailSimbol} alt="E-mail" className="w-6 h-6" />
+                <a href="mailto:contato@ecodenuncia.com" className="text-lg text-gray-800 hover:text-green-600">
+                  contato@ecodenuncia.com
+                </a>
+              </div>
+
+              <div className="flex items-center gap-4">
+                <img src={TelefoneSimbol} alt="Telefone" className="w-6 h-6" />
+                <a href="https://web.whatsapp.com/" target="_blank" rel="noopener noreferrer" className="text-lg text-gray-800 hover:text-green-600">
+                  (12) 99999-9999
+                </a>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-4 mt-4">
+              <div className="flex items-center gap-3">
+                <img src={CheckIcon} alt="Check" className="w-6 h-6" />
+                <span className="text-lg font-medium text-gray-700">Análise cuidadosa das informações</span>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <img src={CheckIcon} alt="Check" className="w-6 h-6" />
+                <span className="text-lg font-medium text-gray-700">Encaminhamento aos órgãos responsáveis</span>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <img src={CheckIcon} alt="Check" className="w-6 h-6" />
+                <span className="text-lg font-medium text-gray-700">Acompanhamento quando necessário</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+  )
 }
