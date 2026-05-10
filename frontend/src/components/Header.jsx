@@ -5,28 +5,28 @@ import user from "../assets/images/fi-rr-user.png";
 
 function linkClass({ isActive }) {
   return isActive
-    ? "border-b-2 border-green-500 pb-1"
-    : "text-white";
+    ? "text-green-400 font-bold border-b-2 border-green-400 pb-1"
+    : "text-white hover:text-green-300 transition-all duration-300";
 }
 
 export default function Header() {
   const [open, setOpen] = useState(false);
 
   return ( 
-    <header className="bg-green-950 text-white">
+    <header className="bg-green-950 text-white shadow-md">
 
       {/* TOP BAR */}
-      <div className="flex items-center justify-between px-4 md:px-10 py-4">
+      <div className="flex items-center justify-between px-4 md:px-10 py-3">
 
         {/* LOGO */}
         <div className="flex items-center gap-2">
           <NavLink to="/">
-            <img src={logo} alt="Logotipo" className="w-32 md:w-auto" />
+            <img src={logo} alt="Logotipo" className="h-11 md:h-14 w-auto" />
           </NavLink>
         </div>
 
         {/* MENU DESKTOP */}
-        <ul className="hidden md:flex gap-10 lg:gap-16 text-lg">
+        <ul className="hidden md:flex gap-10 lg:gap-12 text-xs font-semibold tracking-widest uppercase">
           <li><NavLink to="/" className={linkClass}>Início</NavLink></li>
           <li><NavLink to="/denunciar" className={linkClass}>Denunciar</NavLink></li>
           <li><NavLink to="/noticias" className={linkClass}>Notícias</NavLink></li>
@@ -36,8 +36,8 @@ export default function Header() {
 
         {/* DIREITA (DESKTOP) */}
         <div className="hidden md:flex items-center">
-          <NavLink to="/login">
-            <img src={user} alt="user" className="mx-5 my-5" />
+          <NavLink to="/login" className="bg-green-600 hover:bg-green-500 p-2 rounded-full transition-colors shadow-md">
+            <img src={user} alt="user" className="w-5 h-5 invert" />
           </NavLink>
         </div>
 
