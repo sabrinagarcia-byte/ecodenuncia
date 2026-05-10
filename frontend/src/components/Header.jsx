@@ -12,7 +12,7 @@ function linkClass({ isActive }) {
 export default function Header() {
   const [open, setOpen] = useState(false);
 
-  return (
+  return ( 
     <header className="bg-green-950 text-white">
 
       {/* TOP BAR */}
