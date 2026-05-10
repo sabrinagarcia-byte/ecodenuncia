@@ -32,7 +32,7 @@ export default function Footer() {
               <NavLink to="/" className={linkClass}>Início</NavLink>
               <NavLink to="/denunciar" className={linkClass}>Denunciar</NavLink>
               <NavLink to="/noticias" className={linkClass}>Notícias</NavLink>
-              <NavLink to="/aboutus" className={linkClass}>Sobre Nós</NavLink>
+              <NavLink to="/aboutus" className={linkClass}>Sobre</NavLink>
               <NavLink to="/faleconosco" className={linkClass}>Contato</NavLink>
             </nav>
           </div>
