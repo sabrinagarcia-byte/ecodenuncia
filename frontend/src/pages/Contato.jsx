@@ -5,7 +5,7 @@ import CheckIcon from '../assets/images/CheckIcon.png'
 
 export default function Contato() {
   return (
-    <section className="w-full min-h-screen bg-white">
+    <section className="w-full min-h-screen bg-gray-50">
       
       {/* Banner Simples no Topo */}
       <div className="w-full h-32 relative">
