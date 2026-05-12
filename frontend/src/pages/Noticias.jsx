@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import banner from "../assets/images/bannerDenunciar.png"
 import img1 from "../assets/images/imagemCard1.png"
 import img2 from "../assets/images/imagemCard2.png"
@@ -44,6 +45,11 @@ const LISTA_NOTICIAS = [
 ];
 
 export default function Noticias() {
+  // Garantir que a página comece do topo ao carregar
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <main className="w-full">
 

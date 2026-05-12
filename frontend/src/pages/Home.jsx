@@ -40,7 +40,7 @@ export default function Home() {
                 Denunciar
               </NavLink>
 
-              <NavLink to="/noticias" className="bg-white text-green-700 hover:bg-gray-100 px-6 py-2 rounded-full font-bold text-base transition-colors w-full sm:w-auto text-center shadow-lg">
+              <NavLink to="/aboutus" className="bg-white text-green-700 hover:bg-gray-100 px-6 py-2 rounded-full font-bold text-base transition-colors w-full sm:w-auto text-center shadow-lg">
                 Saiba mais
               </NavLink>
             </div>
@@ -154,10 +154,14 @@ export default function Home() {
       <section className="bg-gray-100 py-10">
         <div className="max-w-7xl mx-auto px-6">
 
-          <h2 className="text-xl md:text-2xl font-bold text-center mb-10 flex flex-col md:flex-row items-center justify-center gap-3 text-green-950">
-            <img src={PlantinhaIcone} alt="Planta" className="w-10 h-10" />
-            Últimas Notícias
-          </h2>
+          <div className="text-center mb-10">
+            <h2 className="text-xl md:text-2xl font-bold text-green-950 mb-4">
+              Últimas Notícias
+            </h2>
+            <p className="text-sm text-gray-600 max-w-xl mx-auto">
+              Acompanhe as principais novidades e dicas sobre sustentabilidade em nossa comunidade.
+            </p>
+          </div>
 
           <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
           
@@ -232,6 +236,15 @@ export default function Home() {
               </div>
             </div>
           
+          </div>
+
+          <div className="mt-12 text-center">
+            <NavLink 
+              to="/noticias" 
+              className="inline-block bg-green-900 text-white px-8 py-3 rounded-full text-sm font-bold shadow-lg hover:bg-green-800 transition-all active:scale-95"
+            >
+              Ver mais
+            </NavLink>
           </div>
         </div>
       </section>
