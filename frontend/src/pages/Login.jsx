@@ -46,24 +46,20 @@ export default function LoginERegistro() {
   }
 
   return (
-    <div className="mx-auto max-w-7xl font-nunito px-4 sm:px-6 py-6 md:py-10">
-
-      <section className="grid gap-8 md:gap-12 lg:grid-cols-[1.2fr_0.8fr] rounded-4xl overflow-hidden bg-white shadow-[0_40px_80px_rgba(15,23,42,0.12)]">
+    <div className="mx-auto max-w-5xl font-nunito px-6 py-12">
+      <section className="grid lg:grid-cols-2 rounded-3xl overflow-hidden bg-white shadow-2xl">
 
         {/* LADO ESQUERDO */}
-        <div className="relative hidden lg:flex bg-[radial-gradient(circle_at_top_left,_rgba(22,163,74,0.20),transparent_40%), linear-gradient(180deg,#065f46,#047857)] p-6 md:p-10 text-white items-center justify-center">
+        <div className="relative hidden lg:flex items-center justify-center">
           <div className="absolute inset-0 bg-[url('assets/images/imgBgLoginECadastro.jpeg')] bg-cover bg-center" />
+          <div className="absolute inset-0 bg-green-900/20" />
         </div>
 
         {/* LADO DIREITO */}
-        <div className="p-6 sm:p-8 md:p-10">
-          <div className="max-w-md mx-auto space-y-6">
-
-            <div className="rounded-3xl border border-slate-200/70 bg-slate-50 p-5 sm:p-6 md:p-8 shadow-sm">
-
-              <h2 className="text-xl sm:text-2xl font-semibold text-green-800">
-                Entrar na sua conta
-              </h2>
+        <div className="p-8 md:p-12 flex flex-col justify-center">
+          <div className="max-w-md mx-auto w-full">
+            <h2 className="text-2xl font-bold text-green-900 mb-2">Bem-vindo de volta</h2>
+            <p className="text-sm text-slate-500 mb-8">Acesse sua conta para continuar.</p>
 
               {/* SUCESSO */}
               {mensagem && (
@@ -129,18 +125,16 @@ export default function LoginERegistro() {
                   </a>
                 </div>
 
+                <div className="text-center text-xs sm:text-sm text-slate-500 pt-4 border-t border-slate-100">
+                  Não tem conta?{" "}
+                  <a href="/cadastro" className="font-bold text-green-700 hover:text-green-600 transition-colors">
+                    Cadastre-se aqui
+                  </a>
+                </div>
+
               </form>
             </div>
-
-            <div className="text-center text-xs sm:text-sm text-slate-500">
-              Não tem conta?{" "}
-              <a href="/cadastro" className="text-green-800 hover:text-green-700">
-                Cadastre-se aqui
-              </a>
-            </div>
-
           </div>
-        </div>
 
       </section>
     </div>

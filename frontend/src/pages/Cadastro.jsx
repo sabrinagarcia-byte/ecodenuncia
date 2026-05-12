@@ -60,16 +60,17 @@ export default function LoginERegistro() {
   }
 
   return (
-    <div className="mx-auto max-w-7xl font-nunito px-6 py-10 space-y-20">
-      <section className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] rounded-4xl overflow-hidden bg-white shadow-[0_40px_80px_rgba(15,23,42,0.12)]">
-        <div className="relative bg-[radial-gradient(circle_at_top_left,_rgba(22,163,74,0.20),transparent_40%), linear-gradient(180deg,#065f46,#047857)] p-10 text-white flex flex-col justify-center">
+    <div className="mx-auto max-w-5xl font-nunito px-6 py-12">
+      <section className="grid lg:grid-cols-2 rounded-3xl overflow-hidden bg-white shadow-2xl">
+        <div className="relative hidden lg:flex items-center justify-center">
           <div className="absolute inset-0 bg-[url('assets/images/imgBgLoginECadastro.jpeg')] bg-cover bg-center" />
+          <div className="absolute inset-0 bg-green-900/20" />
         </div>
 
-        <div className="p-10">
-          <div className="max-w-md mx-auto space-y-6">
-            <div className="rounded-3xl border border-slate-200/70 bg-slate-50 p-8 shadow-sm">
-              <h2 className="text-2xl font-semibold text-green-800">Criar uma conta</h2>
+        <div className="p-8 md:p-12 flex flex-col justify-center">
+          <div className="max-w-md mx-auto w-full">
+            <h2 className="text-2xl font-bold text-green-900 mb-2">Criar uma conta</h2>
+            <p className="text-sm text-slate-500 mb-8">Preencha os dados abaixo para começar.</p>
 
               {/* Mensagem de sucesso */}
               {mensagem && (
@@ -142,13 +143,12 @@ export default function LoginERegistro() {
                   {carregando ? 'Criando conta...' : 'Criar conta'}
                 </button>
 
-                <div className="text-center text-sm text-slate-500">
-                  Já tem uma conta? <a href="/login" className="font-medium text-green-900 hover:text-green-600">Entrar</a>
+                <div className="text-center text-sm text-slate-500 pt-4 border-t border-slate-100">
+                  Já tem uma conta? <a href="/login" className="font-bold text-green-700 hover:text-green-600 transition-colors">Entrar</a>
                 </div>
               </form>
             </div>
           </div>
-        </div>
       </section>
     </div>
   )
