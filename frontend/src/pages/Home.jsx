@@ -237,15 +237,6 @@ export default function Home() {
             </div>
           
           </div>
-
-          <div className="mt-12 text-center">
-            <NavLink 
-              to="/noticias" 
-              className="inline-block bg-green-900 text-white px-8 py-3 rounded-full text-sm font-bold shadow-lg hover:bg-green-800 transition-all active:scale-95"
-            >
-              Ver mais
-            </NavLink>
-          </div>
         </div>
       </section>
 

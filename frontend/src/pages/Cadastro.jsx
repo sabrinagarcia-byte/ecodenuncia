@@ -60,17 +60,17 @@ export default function LoginERegistro() {
   }
 
   return (
-    <div className="mx-auto max-w-5xl font-nunito px-6 py-12">
+    <div className="mx-auto max-w-4xl font-nunito px-6 py-8">
       <section className="grid lg:grid-cols-2 rounded-3xl overflow-hidden bg-white shadow-2xl">
         <div className="relative hidden lg:flex items-center justify-center">
           <div className="absolute inset-0 bg-[url('assets/images/imgBgLoginECadastro.jpeg')] bg-cover bg-center" />
           <div className="absolute inset-0 bg-green-900/20" />
         </div>
 
-        <div className="p-8 md:p-12 flex flex-col justify-center">
-          <div className="max-w-md mx-auto w-full">
-            <h2 className="text-2xl font-bold text-green-900 mb-2">Criar uma conta</h2>
-            <p className="text-sm text-slate-500 mb-8">Preencha os dados abaixo para começar.</p>
+        <div className="p-8 md:p-10 flex flex-col justify-center">
+          <div className="max-w-sm mx-auto w-full">
+            <h2 className="text-xl md:text-2xl font-bold text-green-900 mb-1">Criar uma conta</h2>
+            <p className="text-xs md:text-sm text-slate-500 mb-6">Preencha os dados abaixo para começar.</p>
 
               {/* Mensagem de sucesso */}
               {mensagem && (
