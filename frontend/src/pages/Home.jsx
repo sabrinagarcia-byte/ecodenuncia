@@ -12,6 +12,7 @@ import PlantinhaIcone from '../assets/images/plantar.png'
 import img1 from '../assets/images/imagemCard1.png'
 import img2 from '../assets/images/imagemCard2.png'
 import img3 from '../assets/images/imagemCard3.png'
+import img4 from '../assets/images/imagemCard4.png'
 import BannerDenunciarAgora from '../assets/images/fundoDenunciarAgora.png'
 
 export default function Home() {
@@ -151,55 +152,84 @@ export default function Home() {
 
       {/* ÚLTIMAS NOTÍCIAS */}
       <section className="bg-gray-100 py-10">
-        <div className="max-w-5xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
 
           <h2 className="text-xl md:text-2xl font-bold text-center mb-10 flex flex-col md:flex-row items-center justify-center gap-3 text-green-950">
             <img src={PlantinhaIcone} alt="Planta" className="w-10 h-10" />
             Últimas Notícias
           </h2>
 
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
           
-            <div className="bg-white rounded-2xl p-5 shadow-md border border-gray-200 flex flex-col h-full hover:-translate-y-1 transition-transform">
-              <img src={img1} className="rounded-xl mb-3 w-full h-32 object-cover" alt="Impacto do descarte ilegal" />
-              <p className="text-xs text-gray-500 mb-1">12 Mar 2026</p>
-              <h3 className="font-bold text-green-900 text-lg mb-2">
-                Impacto do descarte ilegal
-              </h3>
-              <p className="text-sm text-gray-600 mb-4 leading-snug">
-                Veja como o descarte irregular do lixo afeta o meio ambiente e a saúde da população.
-              </p>
-              <p className="mt-auto text-green-700 text-sm font-bold cursor-pointer hover:underline">
-                Ler mais
-              </p>
+            <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full border border-gray-100">
+              <div className="overflow-hidden h-36">
+                <img src={img1} className="w-full h-full object-cover" alt="Impacto do descarte ilegal" />
+              </div>
+              <div className="p-4 flex flex-col flex-1">
+                <span className="text-[9px] font-bold text-green-600 uppercase tracking-widest mb-1">12 Mar 2026</span>
+                <h3 className="font-bold text-gray-900 text-base mb-2 leading-tight">
+                  Impacto do descarte ilegal
+                </h3>
+                <p className="text-gray-600 text-xs leading-relaxed mb-4 line-clamp-3">
+                  Veja como o descarte irregular do lixo afeta o meio ambiente e a saúde da população.
+                </p>
+                <p className="mt-auto text-green-700 text-sm font-bold cursor-pointer hover:underline">
+                  Ler mais
+                </p>
+              </div>
             </div>
 
-            <div className="bg-white rounded-2xl p-5 shadow-md border border-gray-200 flex flex-col h-full hover:-translate-y-1 transition-transform">
-              <img src={img2} className="rounded-xl mb-3 w-full h-32 object-cover" alt="Como reciclar corretamente" />
-              <p className="text-xs text-gray-500 mb-1">20 Mar 2026</p>
-              <h3 className="font-bold text-green-900 text-lg mb-2">
-                Como reciclar corretamente
-              </h3>
-              <p className="text-sm text-gray-600 mb-4 leading-snug">
-                Dicas simples e práticas para começar a separar o seu lixo de forma adequada hoje mesmo.
-              </p>
-              <p className="mt-auto text-green-700 text-sm font-bold cursor-pointer hover:underline">
-                Ler mais
-              </p>
+            <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full border border-gray-100">
+              <div className="overflow-hidden h-36">
+                <img src={img2} className="w-full h-full object-cover" alt="Como reciclar corretamente" />
+              </div>
+              <div className="p-4 flex flex-col flex-1">
+                <span className="text-[9px] font-bold text-green-600 uppercase tracking-widest mb-1">20 Mar 2026</span>
+                <h3 className="font-bold text-gray-900 text-base mb-2 leading-tight">
+                  Como reciclar corretamente
+                </h3>
+                <p className="text-gray-600 text-xs leading-relaxed mb-4 line-clamp-3">
+                  Dicas simples e práticas para começar a separar o seu lixo de forma adequada hoje mesmo.
+                </p>
+                <p className="mt-auto text-green-700 text-sm font-bold cursor-pointer hover:underline">
+                  Ler mais
+                </p>
+              </div>
             </div>
 
-            <div className="bg-white rounded-2xl p-5 shadow-md border border-gray-200 flex flex-col h-full hover:-translate-y-1 transition-transform">
-              <img src={img3} className="rounded-xl mb-3 w-full h-32 object-cover" alt="Iniciativas locais" />
-              <p className="text-xs text-gray-500 mb-1">15 Fev 2026</p>
-              <h3 className="font-bold text-green-900 text-lg mb-2">
-                Iniciativas ambientais locais
-              </h3>
-              <p className="text-sm text-gray-600 mb-4 leading-snug">
-                Conheça os projetos comunitários que estão fazendo a diferença em nossa região.
-              </p>
-              <p className="mt-auto text-green-700 text-sm font-bold cursor-pointer hover:underline">
-                Ler mais
-              </p>
+            <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full border border-gray-100">
+              <div className="overflow-hidden h-36">
+                <img src={img3} className="w-full h-full object-cover" alt="Iniciativas locais" />
+              </div>
+              <div className="p-4 flex flex-col flex-1">
+                <span className="text-[9px] font-bold text-green-600 uppercase tracking-widest mb-1">15 Fev 2026</span>
+                <h3 className="font-bold text-gray-900 text-base mb-2 leading-tight">
+                  Iniciativas ambientais locais
+                </h3>
+                <p className="text-gray-600 text-xs leading-relaxed mb-4 line-clamp-3">
+                  Conheça os projetos comunitários que estão fazendo a diferença em nossa região.
+                </p>
+                <p className="mt-auto text-green-700 text-sm font-bold cursor-pointer hover:underline">
+                  Ler mais
+                </p>
+              </div>
+            </div>
+            <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full border border-gray-100">
+              <div className="overflow-hidden h-36">
+                <img src={img4} className="w-full h-full object-cover" alt="Uso consciente da água" />
+              </div>
+              <div className="p-4 flex flex-col flex-1">
+                <span className="text-[9px] font-bold text-green-600 uppercase tracking-widest mb-1">1 Abr 2026</span>
+                <h3 className="font-bold text-gray-900 text-base mb-2 leading-tight">
+                  Uso consciente da água
+                </h3>
+                <p className="text-gray-600 text-xs leading-relaxed mb-4 line-clamp-3">
+                  Dicas simples para economizar água no dia a dia e preservar esse recurso essencial.
+                </p>
+                <p className="mt-auto text-green-700 text-sm font-bold cursor-pointer hover:underline">
+                  Ler mais
+                </p>
+              </div>
             </div>
           
           </div>
