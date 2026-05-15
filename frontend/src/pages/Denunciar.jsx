@@ -35,7 +35,7 @@ export default function Denunciar() {
         },
         body: JSON.stringify(formData)
       });
-      
+
       if (response.ok) {
         alert('Denúncia enviada com sucesso!');
         setFormData({
@@ -57,7 +57,7 @@ export default function Denunciar() {
 
   return (
     <section className="w-full bg-[#f8fafc] pb-6">
-      
+
       {/* Banner Idêntico ao de Contato */}
       <div className="w-full h-32 relative">
         <img
@@ -73,7 +73,7 @@ export default function Denunciar() {
       {/* Conteúdo Principal (sem sobreposição) */}
       <div className="max-w-6xl mx-auto px-4 py-4 relative z-10">
         <div className="bg-white rounded-2xl shadow-lg shadow-gray-200/50 p-6">
-          
+
           <form onSubmit={handleSubmit} className="grid lg:grid-cols-2 gap-10">
 
             {/* COLUNA ESQUERDA: FORMULÁRIO */}
@@ -86,7 +86,7 @@ export default function Denunciar() {
                 </div>
                 <h2 className="text-lg font-bold text-gray-900">Dados da Denúncia</h2>
               </div>
-              
+
               <div className="space-y-4">
                 <div className="flex flex-col gap-1.5">
                   <label className="font-bold text-xs text-gray-600 ml-1">Tipo de infração</label>
@@ -158,7 +158,7 @@ export default function Denunciar() {
                       className="w-full bg-white border border-gray-200 rounded-lg p-2.5 text-xs outline-none focus:border-green-500 transition-all"
                     />
                   </div>
-                  
+
                   <div className="flex items-center gap-4 pt-1">
                     <span className="text-[11px] font-bold text-gray-500 uppercase">Anônimo?</span>
                     <div className="flex gap-3">
@@ -233,7 +233,7 @@ export default function Denunciar() {
                   </ul>
                 </div>
 
-                <button 
+                <button
                   type="submit"
                   className="w-full mt-8 bg-green-900 hover:bg-black text-white px-6 py-4 rounded-2xl font-bold text-sm uppercase tracking-widest transition-all shadow-md active:scale-95 flex items-center justify-center gap-2"
                 >
