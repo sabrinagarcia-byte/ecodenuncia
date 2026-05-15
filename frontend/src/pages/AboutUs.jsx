@@ -26,7 +26,7 @@ export default function AboutUs() {
           </p>
         </div>
       </div>
-      
+
       <div className="bg-gray-50 py-10 px-6 flex justify-center">
         <div className="max-w-5xl w-full bg-white rounded-3xl shadow-lg p-8 flex flex-col md:flex-row items-center gap-10">
 
@@ -55,7 +55,7 @@ export default function AboutUs() {
       <div className="bg-gray-50 pb-12 px-6 flex justify-center">
         <div className="max-w-5xl w-full grid md:grid-cols-3 gap-6">
 
-         <div className="bg-white rounded-2xl p-3 shadow-md border-t-4 border-green-700 text-center flex flex-col items-center">
+          <div className="bg-white rounded-2xl p-3 shadow-md border-t-4 border-green-700 text-center flex flex-col items-center">
             <img src={MissaoIcon} className="w-16 mb-4" alt="Missão" />
             <h3 className="font-bold text-green-900 text-xl mb-2">Missão</h3>
             <p className="text-base text-gray-600">
@@ -63,7 +63,7 @@ export default function AboutUs() {
             </p>
           </div>
 
-         <div className="bg-white rounded-2xl p-3 shadow-md border-t-4 border-green-700 text-center flex flex-col items-center">
+          <div className="bg-white rounded-2xl p-3 shadow-md border-t-4 border-green-700 text-center flex flex-col items-center">
             <img src={VisaoIcon} className="w-16 mb-4" alt="Visão" />
             <h3 className="font-bold text-green-900 text-xl mb-2">Visão</h3>
             <p className="text-base text-gray-600">
@@ -71,7 +71,7 @@ export default function AboutUs() {
             </p>
           </div>
 
-         <div className="bg-white rounded-2xl p-3 shadow-md border-t-4 border-green-700 text-center flex flex-col items-center">
+          <div className="bg-white rounded-2xl p-3 shadow-md border-t-4 border-green-700 text-center flex flex-col items-center">
             <img src={ValoresIcon} className="w-16 mb-4" alt="Valores" />
             <h3 className="font-bold text-green-900 text-xl mb-2">Valores</h3>
             <ul className="text-base text-gray-600 space-y-1">
@@ -93,25 +93,53 @@ export default function AboutUs() {
 
           <div className="flex flex-col md:flex-row justify-center gap-8">
 
-            <div className="bg-white text-gray-800 rounded-2xl p-4 w-full max-w-[280px] mx-auto shadow-md hover:-translate-y-1 transition-transform">
-              <img src={Ana} className="w-20 h-20 rounded-full mx-auto mb-3 object-cover" alt="Ana" />
-              <h4 className="font-bold text-base text-green-950">Ana Beatriz dos Santos Maia</h4>
-              <p className="text-xs text-green-700 font-medium">Desenvolvedora / Designer</p>
+            {/* ANA */}
+            <div className="bg-white rounded-2xl p-6 w-full max-w-[280px] mx-auto text-center shadow-md">
+              <img src={Ana} className="w-20 h-20 rounded-full mx-auto mb-3 object-cover border-2 border-green-50" alt="Ana" />
+              <h4 className="font-bold text-gray-900 text-sm">Ana Beatriz Santos Maia</h4>
+              <p className="text-green-700 text-[10px] font-bold uppercase mb-4">Desenvolvedora & Designer</p>
+              <div className="flex justify-center gap-6 pt-3 border-t border-gray-50">
+                <a href="https://www.instagram.com/mayaabz._/" target="_blank" rel="noreferrer">
+                  <img src="https://img.icons8.com/material-outlined/24/15803d/instagram-new.png" className="w-5 h-5" alt="Instagram" />
+                </a>
+                <a href="https://github.com/acomnene-source" target="_blank" rel="noreferrer">
+                  <img src="https://img.icons8.com/material-outlined/24/000000/github.png" className="w-5 h-5" alt="GitHub" />
+                </a>
+              </div>
             </div>
 
-            <div className="bg-white text-gray-800 rounded-2xl p-4 w-full max-w-[280px] mx-auto shadow-md hover:-translate-y-1 transition-transform">
-              <img src={Sabrina} className="w-20 h-20 rounded-full mx-auto mb-3 object-cover" alt="Sabrina" />
-              <h4 className="font-bold text-base text-green-950">Sabrina Garcia Gonçalves</h4>
-              <p className="text-xs text-green-700 font-medium">Desenvolvedora / Designer</p>
+            {/* SABRINA */}
+            <div className="bg-white rounded-2xl p-6 w-full max-w-[280px] mx-auto text-center shadow-md">
+              <img src={Sabrina} className="w-20 h-20 rounded-full mx-auto mb-3 object-cover border-2 border-green-50" alt="Sabrina" />
+              <h4 className="font-bold text-gray-900 text-sm">Sabrina Garcia Gonçalves</h4>
+              <p className="text-green-700 text-[10px] font-bold uppercase mb-4">Desenvolvedora & Designer</p>
+              <div className="flex justify-center gap-6 pt-3 border-t border-gray-50">
+                <a href="https://www.instagram.com/sasawmit/" target="_blank" rel="noreferrer">
+                  <img src="https://img.icons8.com/material-outlined/24/15803d/instagram-new.png" className="w-5 h-5" alt="Instagram" />
+                </a>
+                <a href="https://github.com/sabrinagarcia-byte" target="_blank" rel="noreferrer">
+                  <img src="https://img.icons8.com/material-outlined/24/000000/github.png" className="w-5 h-5" alt="GitHub" />
+                </a>
+              </div>
             </div>
 
-            <div className="bg-white text-gray-800 rounded-2xl p-4 w-full max-w-[280px] mx-auto shadow-md hover:-translate-y-1 transition-transform">
-              <img src={Yasmin} className="w-20 h-20 rounded-full mx-auto mb-3 object-cover " alt="Yasmin" />
-              <h4 className="font-bold text-base text-green-950">Yasmin Rodrigues da Silva</h4>
-              <p className="text-xs text-green-700 font-medium">Desenvolvedora / Designer</p>
+            {/* YASMIN */}
+            <div className="bg-white rounded-2xl p-6 w-full max-w-[280px] mx-auto text-center shadow-md">
+              <img src={Yasmin} className="w-20 h-20 rounded-full mx-auto mb-3 object-cover border-2 border-green-50" alt="Yasmin" />
+              <h4 className="font-bold text-gray-900 text-sm">Yasmin Rodrigues da Silva</h4>
+              <p className="text-green-700 text-[10px] font-bold uppercase mb-4">Desenvolvedora & Designer</p>
+              <div className="flex justify-center gap-6 pt-3 border-t border-gray-50">
+                <a href="https://www.instagram.com/yasminrs.28/" target="_blank" rel="noreferrer">
+                  <img src="https://img.icons8.com/material-outlined/24/15803d/instagram-new.png" className="w-5 h-5" alt="Instagram" />
+                </a>
+                <a href="https://github.com/yayars" target="_blank" rel="noreferrer">
+                  <img src="https://img.icons8.com/material-outlined/24/000000/github.png" className="w-5 h-5" alt="GitHub" />
+                </a>
+              </div>
             </div>
 
           </div>
+
         </div>
       </div>
 
