@@ -82,22 +82,25 @@ export default function Contato() {
               </div>
             </div>
 
-            <div className="flex flex-col gap-4 mt-4">
-              <div className="flex items-center gap-3">
-                <img src={CheckIcon} alt="Check" className="w-5 h-5" />
-                <span className="text-sm font-medium text-gray-700">Análise cuidadosa das informações</span>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <img src={CheckIcon} alt="Check" className="w-5 h-5" />
-                <span className="text-sm font-medium text-gray-700">Encaminhamento aos órgãos responsáveis</span>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <img src={CheckIcon} alt="Check" className="w-5 h-5" />
-                <span className="text-sm font-medium text-gray-700">Acompanhamento quando necessário</span>
-              </div>
+            <div className="pt-12 border-t border-gray-100 mt-4">
+              <h3 className="text-xs font-bold text-green-900 uppercase tracking-widest mb-4">Nosso Compromisso</h3>
+              <ul className="space-y-4">
+                <li className="flex gap-3 text-sm text-gray-600 leading-relaxed">
+                  <span className="text-green-600 font-bold">•</span>
+                  Análise cuidadosa e humana das mensagens
+                </li>
+                <li className="flex gap-3 text-sm text-gray-600 leading-relaxed">
+                  <span className="text-green-600 font-bold">•</span>
+                  Resposta rápida via e-mail ou canais oficiais
+                </li>
+                <li className="flex gap-3 text-sm text-gray-600 leading-relaxed">
+                  <span className="text-green-600 font-bold">•</span>
+                  Encaminhamento aos órgãos responsáveis se necessário
+                </li>
+              </ul>
             </div>
+
+
 
           </div>
 
