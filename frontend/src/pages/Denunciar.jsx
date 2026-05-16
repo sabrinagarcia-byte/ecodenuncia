@@ -169,11 +169,11 @@ export default function Denunciar() {
         </div>
       </div>
 
-      {/* Conteúdo Principal (sem sobreposição) */}
-      <div className="max-w-6xl mx-auto px-4 py-4 relative z-10">
-        <div className="bg-white rounded-2xl shadow-lg shadow-gray-200/50 p-6">
+      {/* Conteúdo Principal */}
+      <div className="max-w-6xl mx-auto px-4 md:px-6 py-6 relative z-10">
+        <div className="bg-white rounded-xl shadow-lg p-5 md:p-8">
 
-          <form onSubmit={handleSubmit} className="grid lg:grid-cols-2 gap-10">
+          <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
 
             {/* COLUNA ESQUERDA: FORMULÁRIO */}
             <div className="flex flex-col gap-6">

@@ -20,7 +20,7 @@ export default function Home() {
     <main className="w-full">
 
       {/* HERO SECTION */}
-      <section className="relative w-full h-[50vh] min-h-[500px]">
+      <section className="relative w-full h-[40vh] md:h-[50vh] min-h-[400px] md:min-h-[500px]">
         <img src={Banner} alt="Banner" className="w-full h-full object-cover object-center" />
 
         <div className="absolute inset-0 bg-black/40"></div>

@@ -27,26 +27,26 @@ export default function AboutUs() {
         </div>
       </div>
 
-      <div className="bg-gray-50 py-10 px-6 flex justify-center">
-        <div className="max-w-5xl w-full bg-white rounded-3xl shadow-lg p-8 flex flex-col md:flex-row items-center gap-10">
-
-          <div className="flex-1 text-center md:text-left">
-            <p className="bg-green-900 text-white px-4 py-1 rounded-2xl text-lg font-semibold w-fit mx-auto md:mx-0 mb-4">
+      <div className="bg-gray-50 py-8 md:py-10 px-4 md:px-6 flex justify-center">
+        <div className="max-w-5xl w-full bg-white rounded-2xl md:rounded-3xl shadow-lg p-6 md:p-8 flex flex-col md:flex-row items-center gap-8 md:gap-10">
+          
+          <div className="flex-1 text-center md:text-left order-2 md:order-1">
+            <p className="bg-green-900 text-white px-4 py-1 rounded-2xl text-base md:text-lg font-semibold w-fit mx-auto md:mx-0 mb-4">
               Quem Somos?
             </p>
 
-            <h2 className="font-bold text-2xl text-gray-800 mb-4">
+            <h2 className="font-bold text-xl md:text-2xl text-gray-800 mb-4">
               Somos uma plataforma dedicada a facilitar a denúncia de descarte irregular de resíduos.
             </h2>
 
-            <p className="text-gray-600 text-base">
+            <p className="text-gray-600 text-sm md:text-base">
               Conectamos cidadãos, empresas e órgãos responsáveis para agir juntos por cidades mais limpas e sustentáveis.
             </p>
           </div>
 
           <img
             src={ImgQuemSomos}
-            className="w-64 object-cover rounded-2xl shadow-md"
+            className="w-48 md:w-64 object-cover rounded-2xl shadow-md order-1 md:order-2"
             alt="Quem Somos"
           />
         </div>
