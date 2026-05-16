@@ -15,33 +15,176 @@ import img12 from "../assets/images/imagemCard12.png"
 import Planta from "../assets/images/plantar.png"
 import Lupa from "../assets/images/pesquisa-de-lupa 1.png"
 
-// 1. Criamos uma lista (array) com todas as notícias.
 // Isso deixa o código mais organizado e fácil de ler.
 const LISTA_NOTICIAS = [
-  { img: img1, data: "12 Mar 2026", titulo: "Impacto do descarte ilegal", desc: "Veja como o descarte irregular do lixo afeta o meio ambiente." },
-  { img: img2, data: "20 Mar 2026", titulo: "Como reciclar corretamente", desc: "Dicas práticas para separar seu lixo de forma adequada." },
-  { img: img3, data: "15 Fev 2026", titulo: "Iniciativas ambientais locais", desc: "Projetos que estão fazendo a diferença na comunidade." },
-  { img: img4, data: "1 Abr 2026", titulo: "Uso consciente da água", desc: "Dicas simples para economizar água no dia a dia e preservar esse recurso." },
-  { img: img5, data: "05 Jan 2026", titulo: "Áreas verdes nas cidades", desc: "A importância de parques e árvores para melhorar a qualidade de vida urbana." },
-  { img: img6, data: "25 Mar 2026", titulo: "Poluição urbana em crescimento", desc: "Entenda os desafios enfrentados pelas grandes cidades." },
-  { img: img7, data: "25 Fev 2026", titulo: "Educação ambiental nas escolas", desc: "Conscientizar as crianças desde cedo é o melhor caminho para o futuro." },
-  { img: img8, data: "31 Mar 2026", titulo: "Como ajudar o meio ambiente", desc: "Dicas essenciais para se engajar na proteção da nossa natureza." },
-  { img: img9, data: "07 Fev 2026", titulo: "Descarte de eletrônicos", desc: "Saiba como descartar celulares e PCs sem poluir o solo." },
-  { img: img10, data: "08 Fev 2026", titulo: "Importância da coleta seletiva", desc: "Entenda como a separação do lixo ajuda no processo de reciclagem." },
-  { img: img11, data: "20 Mar 2026", titulo: "Praias limpas e voluntários", desc: "Grupos se unem para limpar praias e preservar a vida marinha." },
-  { img: img12, data: "12 Fev 2026", titulo: "Desperdício de alimentos", desc: "Veja como o desperdício impacta a natureza e como evitá-lo." },
-  { img: img1, data: "10 Abr 2026", titulo: "Energias Renováveis", desc: "Conheça o futuro da energia solar e eólica na nossa região." },
-  { img: img2, data: "15 Abr 2026", titulo: "Hortas Comunitárias", desc: "Como criar uma horta no seu bairro e colher alimentos frescos." },
-  { img: img3, data: "20 Abr 2026", titulo: "Consumo de Plástico", desc: "Estratégias para reduzir o uso de plásticos descartáveis no cotidiano." },
-  { img: img4, data: "25 Abr 2026", titulo: "Fauna Urbana", desc: "A vida selvagem que habita nossas cidades e como protegê-la." },
-  { img: img5, data: "02 Mai 2026", titulo: "Moda Sustentável", desc: "O impacto da indústria têxtil e como consumir de forma consciente." },
-  { img: img6, data: "05 Mai 2026", titulo: "Compostagem Doméstica", desc: "Transforme seus restos de comida em adubo para suas plantas." },
-  { img: img7, data: "10 Mai 2026", titulo: "Cidades Inteligentes", desc: "Tecnologias que ajudam a tornar o ambiente urbano mais eficiente." },
-  { img: img8, data: "15 Mai 2026", titulo: "Arborização Urbana", desc: "O plantio planejado de árvores como solução para o calor nas cidades." },
-  { img: img9, data: "20 Mai 2026", titulo: "Energia das Ondas", desc: "Novas tecnologias para captar energia limpa do movimento do mar." },
-  { img: img10, data: "22 Mai 2026", titulo: "Arquitetura Bioclimática", desc: "Prédios desenhados para aproveitar o sol e o vento natural." },
-  { img: img11, data: "25 Mai 2026", titulo: "Consumo de Água", desc: "Como monitorar o gasto de água em tempo real na sua residência." },
-  { img: img12, data: "30 Mai 2026", titulo: "Reflorestamento Local", desc: "Projeto comunitário planta mil árvores nativas em encostas da cidade." }
+  { 
+    img: "https://loremflickr.com/640/360/storm,clouds,weather", 
+    data: "16 Mai 2026", 
+    titulo: "Frente fria avança e traz chuva para Centro-Sul; veja previsão", 
+    desc: "Previsão indica que o ar gelado terá trajetória continental e deve favorecer a formação de geada em várias áreas.",
+    url: "https://g1.globo.com/meio-ambiente/noticia/2026/05/16/frente-fria-avanca-e-traz-chuva-e-baixas-temperaturas-para-centro-sul-veja-previsao-para-o-fim-de-semana.ghtml"
+  },
+  { 
+    img: "https://loremflickr.com/640/360/earth,planet,space", 
+    data: "15 Mai 2026", 
+    titulo: "Por que precisamos tratar a Terra como uma nave espacial", 
+    desc: "A ciência climática é o antídoto contra os mitos: cientistas observam como o cérebro humano lida com ameaças distantes.",
+    url: "https://g1.globo.com/meio-ambiente/noticia/2026/05/15/por-que-precisamos-tratar-a-terra-como-uma-nave-espacial.ghtml"
+  },
+  { 
+    img: "https://loremflickr.com/640/360/mosquito,insect", 
+    data: "15 Mai 2026", 
+    titulo: "Por que mosquitos são mais perigosos que leões", 
+    desc: "Mosquitos transmitem doenças que causam 760 mil mortes por ano. Cientistas avaliam os prós e contras do extermínio.",
+    url: "https://g1.globo.com/meio-ambiente/noticia/2026/05/15/por-que-mosquitos-sao-mais-perigosos-que-leoes.ghtml"
+  },
+  { 
+    img: "https://loremflickr.com/640/360/snow,winter,cold", 
+    data: "15 Mai 2026", 
+    titulo: "Nova massa de ar frio chega ao Sul do Brasil no domingo", 
+    desc: "Previsão indica queda brusca nos termômetros e formação de geada em várias áreas da região Sul na próxima semana.",
+    url: "https://g1.globo.com/meio-ambiente/noticia/2026/05/15/nova-massa-de-ar-frio-chega-ao-sul-do-brasil.ghtml"
+  },
+  { 
+    img: "https://loremflickr.com/640/360/ocean,waves,climate", 
+    data: "14 Mai 2026", 
+    titulo: "EUA elevam para 82% a chance de El Niño se formar em maio", 
+    desc: "Segundo a NOAA, a probabilidade de continuidade do fenômeno até o início de 2027 também chegou a 96%.",
+    url: "https://g1.globo.com/meio-ambiente/noticia/2026/05/14/el-nino-noaa-2026.ghtml"
+  },
+  { 
+    img: "https://loremflickr.com/640/360/plastic,pollution,trash", 
+    data: "14 Mai 2026", 
+    titulo: "Cientistas detectam microplásticos na chuva na Indonésia", 
+    desc: "Chuva de Jacarta transporta de 15 a 40 partículas por metro quadrado. Perigos da inalação ainda são estudados.",
+    url: "https://g1.globo.com/meio-ambiente/noticia/2026/05/14/cientistas-detectam-microplasticos-na-chuva-na-indonesia-veja-video.ghtml"
+  },
+  { 
+    img: "https://loremflickr.com/640/360/narwhal,whale,arctic", 
+    data: "14 Mai 2026", 
+    titulo: "O mistério dos unicórnios-do-mar; veja VÍDEO", 
+    desc: "Navios podem estar interferindo na ecolocalização dos narvais e forçando animais a abandonar seu habitat.",
+    url: "https://g1.globo.com/meio-ambiente/noticia/2026/05/14/o-misterio-dos-unicornios-do-mar-veja-video.ghtml"
+  },
+  { 
+    img: "https://loremflickr.com/640/360/snake,forest,python", 
+    data: "14 Mai 2026", 
+    titulo: "Machos com 'útero'? Descoberta inusitada sobre jiboias", 
+    desc: "Estudo da USP identifica machos com vestígios de ovidutos em espécie do Cerrado. Caso inédito de intersexualidade.",
+    url: "https://g1.globo.com/meio-ambiente/noticia/2026/05/14/pesquisa-da-usp-faz-descoberta-sobre-biologia-reprodutiva-de-jiboias-arco-iris-do-cerrado.ghtml"
+  },
+  { 
+    img: "https://loremflickr.com/640/360/soccer,stadium,heat", 
+    data: "14 Mai 2026", 
+    titulo: "Copa 2026: 25% dos jogos podem ter níveis de calor preocupantes", 
+    desc: "Análise revela que os riscos relacionados ao calor e à umidade extremos são muito maiores neste ano do que em 1994.",
+    url: "https://g1.globo.com/meio-ambiente/noticia/2026/05/14/copa-do-mundo-2026-cerca-de-25percent-dos-jogos-devem-ser-disputados-em-niveis-preocupantes-de-calor-alertam-especialistas.ghtml"
+  },
+  { 
+    img: "https://loremflickr.com/640/360/rain,umbrella,wet", 
+    data: "14 Mai 2026", 
+    titulo: "Novas frentes frias trazem chuva de volta ao Centro-Sul", 
+    desc: "Nova massa de ar de origem polar vai avançar pelo Sul do país na próxima semana e derrubar ainda mais os termômetros.",
+    url: "https://g1.globo.com/meio-ambiente/noticia/2026/05/14/novas-frentes-frias-trazem-chuva-de-volta-ao-centro-sul-temperaturas-caem-no-sudeste-e-frio-intenso-retorna-ao-sul.ghtml"
+  },
+  { 
+    img: "https://loremflickr.com/640/360/amazon,jungle,river", 
+    data: "Abril 2026", 
+    titulo: "Amazônia: Monitoramento de Áreas Protegidas e Sustentabilidade", 
+    desc: "Acompanhe as ações e os dados mais recentes sobre a preservação da maior floresta tropical do mundo.",
+    url: "https://g1.globo.com/meio-ambiente/amazonia/"
+  },
+  { 
+    img: "https://loremflickr.com/640/360/nature,landscape,wildlife", 
+    data: "Março 2026", 
+    titulo: "Globo Natureza: O Futuro da Conservação no Brasil", 
+    desc: "Explore documentários e reportagens exclusivas sobre a biodiversidade brasileira e os esforços para salvá-la.",
+    url: "https://g1.globo.com/meio-ambiente/globo-natureza/"
+  },
+  { 
+    img: "https://loremflickr.com/640/360/pantanal,wetlands", 
+    data: "Maio 2025", 
+    titulo: "Desmatamento no Pantanal cai 75%, aponta monitoramento", 
+    desc: "Dados mostram uma redução expressiva na supressão de vegetação nativa no bioma entre 2024 e 2025.",
+    url: "https://agenciabrasil.ebc.com.br/geral/noticia/2024-11/desmatamento-no-pantanal-cai-75-em-um-ano"
+  },
+  { 
+    img: "https://loremflickr.com/640/360/solar,panels,energy", 
+    data: "Abril 2026", 
+    titulo: "Brasil bate recorde de geração de energia solar fotovoltaica", 
+    desc: "A expansão das usinas solares reforça a posição do país como líder em fontes de energia limpa e renovável.",
+    url: "https://g1.globo.com/economia/agronegocios/globo-rural/noticia/2024/04/14/geracao-de-energia-solar-no-brasil-bate-recorde.ghtml"
+  },
+  { 
+    img: "https://loremflickr.com/640/360/humpback,whale,sea", 
+    data: "Junho 2024", 
+    titulo: "Baleia-jubarte deixa lista de espécies ameaçadas de extinção", 
+    desc: "O sucesso das medidas de proteção permitiu a recuperação da população desses gigantes dos oceanos.",
+    url: "https://g1.globo.com/meio-ambiente/noticia/2023/05/22/baleia-jubarte-deixa-lista-de-especies-ameacadas-no-brasil.ghtml"
+  },
+  { 
+    img: "https://loremflickr.com/640/360/recycling,bins,ecology", 
+    data: "Maio 2026", 
+    titulo: "Novas regras para logística reversa de eletrônicos entram em vigor", 
+    desc: "Medida visa aumentar a taxa de reciclagem de celulares, computadores e baterias em todo o território nacional.",
+    url: "https://www.gov.br/meioambiente/pt-br/assuntos/noticias/governo-regulamenta-logistica-reversa-de-eletroeletronicos"
+  },
+  { 
+    img: "https://loremflickr.com/640/360/blue,macaw,parrot", 
+    data: "Agosto 2025", 
+    titulo: "Ararinha-azul volta a voar na Caatinga após 20 anos de extinção", 
+    desc: "Projeto de reintrodução da espécie na natureza marca um marco histórico para a conservação da fauna brasileira.",
+    url: "https://g1.globo.com/meio-ambiente/noticia/2022/06/11/ararinhas-azuis-sao-soltas-na-caatinga-apos-20-anos-de-extincao-na-natureza.ghtml"
+  },
+  { 
+    img: "https://loremflickr.com/640/360/wind,turbines,renewable", 
+    data: "Maio 2026", 
+    titulo: "Energia Eólica: Parques offshore são a nova aposta do Brasil", 
+    desc: "Investimentos em usinas eólicas no mar prometem revolucionar a matriz energética e reduzir emissões de carbono.",
+    url: "https://www.cnnbrasil.com.br/economia/brasil-tem-potencial-para-ser-lider-mundial-em-energia-eolica-offshore-diz-especialista/"
+  },
+  { 
+    img: "https://loremflickr.com/640/360/vegetable,garden,plants", 
+    data: "Abril 2026", 
+    titulo: "Escolas públicas adotam hortas comunitárias como ferramenta de ensino", 
+    desc: "Projeto une educação ambiental, alimentação saudável e engajamento da comunidade escolar.",
+    url: "https://agenciabrasil.ebc.com.br/educacao/noticia/2023-06/hortas-escolares-ajudam-na-educacao-ambiental-e-alimentar"
+  },
+  { 
+    img: "https://loremflickr.com/640/360/city,park,sustainable", 
+    data: "Março 2026", 
+    titulo: "Cidades Sustentáveis: Curitiba recebe prêmio internacional de inovação", 
+    desc: "A capital paranaense é reconhecida por seus projetos de mobilidade urbana e gestão de resíduos sólidos.",
+    url: "https://g1.globo.com/pr/parana/noticia/2023/11/08/curitiba-e-eleita-a-cidade-mais-inteligente-do-mundo-em-premio-na-espanha.ghtml"
+  },
+  { 
+    img: "https://loremflickr.com/640/360/mangrove,roots,swamp", 
+    data: "Maio 2026", 
+    titulo: "Importância dos Manguezais no combate à erosão costeira", 
+    desc: "Estudos reforçam o papel vital dessas áreas como 'berçários da vida marinha' e barreiras naturais contra o mar.",
+    url: "https://www.sosma.org.br/noticias/importancia-dos-manguezais/"
+  },
+  { 
+    img: "https://loremflickr.com/640/360/farming,organic,soil", 
+    data: "Abril 2026", 
+    titulo: "Agricultura Regenerativa cresce entre pequenos produtores", 
+    desc: "Técnicas que recuperam o solo e aumentam a biodiversidade ganham força no interior do Brasil.",
+    url: "https://www.wwf.org.br/natureza_brasileira/reducao_de_impactos2/agricultura/"
+  },
+  { 
+    img: "https://loremflickr.com/640/360/satellite,space,earth", 
+    data: "Maio 2026", 
+    titulo: "IA e Satélites: Tecnologia de ponta detecta queimadas em segundos", 
+    desc: "Novo sistema permite uma resposta muito mais rápida das brigadas de incêndio em áreas remotas.",
+    url: "https://imazon.org.br/imprensa/tecnologia-ajuda-a-monitorar-a-amazonia/"
+  },
+  { 
+    img: "https://loremflickr.com/640/360/sea,turtle,beach", 
+    data: "Março 2026", 
+    titulo: "Projeto Tamar celebra recorde de soltura de tartarugas marinhas", 
+    desc: "Milhares de filhotes chegaram ao mar nesta temporada, fruto de décadas de trabalho de conservação.",
+    url: "https://www.tamar.org.br/noticias.php"
+  }
 ];
 
 export default function Noticias() {
@@ -114,9 +257,14 @@ export default function Noticias() {
                     {noticia.desc}
                   </p>
 
-                  <p className="mt-auto text-green-700 text-sm font-bold cursor-pointer hover:underline">
+                  <a 
+                    href={noticia.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="mt-auto text-green-700 text-sm font-bold hover:underline"
+                  >
                     Ler mais
-                  </p>
+                  </a>
                 </div>
               </article>
             ))}

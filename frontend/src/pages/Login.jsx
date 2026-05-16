@@ -46,17 +46,17 @@ export default function LoginERegistro() {
   }
 
   return (
-    <div className="mx-auto max-w-4xl font-nunito px-6 py-8">
+    <div className="mx-auto max-w-3xl font-nunito px-6 py-6">
       <section className="grid lg:grid-cols-2 rounded-3xl overflow-hidden bg-white shadow-2xl">
 
         {/* LADO ESQUERDO */}
         <div className="relative hidden lg:flex items-center justify-center">
-          <div className="absolute inset-0 bg-[url('assets/images/imgBgLoginECadastro.jpeg')] bg-cover bg-center" />
+          <div className="absolute inset-0 bg-[url('assets/images/nature_login_bg.png')] bg-cover bg-center" />
           <div className="absolute inset-0 bg-green-900/20" />
         </div>
 
         {/* LADO DIREITO */}
-        <div className="p-8 md:p-10 flex flex-col justify-center">
+        <div className="p-6 md:p-8 flex flex-col justify-center">
           <div className="max-w-sm mx-auto w-full">
             <h2 className="text-xl md:text-2xl font-bold text-green-900 mb-1">Bem-vindo de volta</h2>
             <p className="text-xs md:text-sm text-slate-500 mb-6">Acesse sua conta para continuar.</p>
@@ -75,10 +75,10 @@ export default function LoginERegistro() {
                 </div>
               )}
 
-              <form className="mt-6 md:mt-8 space-y-4 md:space-y-5" onSubmit={handleLogin}>
+              <form className="mt-4 md:mt-6 space-y-3 md:space-y-4" onSubmit={handleLogin}>
 
                 <label className="block text-sm text-slate-700">
-                  <span className="mb-2 block text-xs uppercase tracking-[0.2em] text-slate-500">
+                  <span className="mb-1.5 block text-xs uppercase tracking-[0.2em] text-slate-500">
                     Email
                   </span>
 
@@ -90,12 +90,12 @@ export default function LoginERegistro() {
                     }
                     placeholder="seu@email.com"
                     required
-                    className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 md:px-4 md:py-3 text-sm md:text-base outline-none focus:border-green-500 focus:ring-2 focus:ring-green-200"
+                    className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 md:px-4 md:py-2.5 text-sm md:text-base outline-none focus:border-green-500 focus:ring-2 focus:ring-green-200"
                   />
                 </label>
 
                 <label className="block text-sm text-slate-700">
-                  <span className="mb-2 block text-xs uppercase tracking-[0.2em] text-slate-500">
+                  <span className="mb-1.5 block text-xs uppercase tracking-[0.2em] text-slate-500">
                     Senha
                   </span>
 
@@ -107,14 +107,14 @@ export default function LoginERegistro() {
                     }
                     placeholder="••••••••"
                     required
-                    className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 md:px-4 md:py-3 text-sm md:text-base outline-none focus:border-green-500 focus:ring-2 focus:ring-green-200"
+                    className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 md:px-4 md:py-2.5 text-sm md:text-base outline-none focus:border-green-500 focus:ring-2 focus:ring-green-200"
                   />
                 </label>
 
                 <button
                   type="submit"
                   disabled={carregando}
-                  className="w-full rounded-xl bg-green-900 px-4 py-2 md:px-5 md:py-3 text-sm md:text-base font-semibold text-white hover:bg-green-800 disabled:opacity-50"
+                  className="w-full rounded-xl bg-green-900 px-4 py-2 md:px-5 md:py-2.5 text-sm md:text-base font-semibold text-white hover:bg-green-800 disabled:opacity-50"
                 >
                   {carregando ? 'Entrando...' : 'Entrar'}
                 </button>
@@ -125,7 +125,7 @@ export default function LoginERegistro() {
                   </a>
                 </div>
 
-                <div className="text-center text-xs sm:text-sm text-slate-500 pt-4 border-t border-slate-100">
+                <div className="text-center text-xs sm:text-sm text-slate-500 pt-3 border-t border-slate-100">
                   Não tem conta?{" "}
                   <a href="/cadastro" className="font-bold text-green-700 hover:text-green-600 transition-colors">
                     Cadastre-se aqui

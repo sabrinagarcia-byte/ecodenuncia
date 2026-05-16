@@ -60,14 +60,14 @@ export default function LoginERegistro() {
   }
 
   return (
-    <div className="mx-auto max-w-4xl font-nunito px-6 py-8">
+    <div className="mx-auto max-w-3xl font-nunito px-6 py-6">
       <section className="grid lg:grid-cols-2 rounded-3xl overflow-hidden bg-white shadow-2xl">
         <div className="relative hidden lg:flex items-center justify-center">
-          <div className="absolute inset-0 bg-[url('assets/images/imgBgLoginECadastro.jpeg')] bg-cover bg-center" />
+          <div className="absolute inset-0 bg-[url('assets/images/nature_login_bg.png')] bg-cover bg-center" />
           <div className="absolute inset-0 bg-green-900/20" />
         </div>
 
-        <div className="p-8 md:p-10 flex flex-col justify-center">
+        <div className="p-6 md:p-8 flex flex-col justify-center">
           <div className="max-w-sm mx-auto w-full">
             <h2 className="text-xl md:text-2xl font-bold text-green-900 mb-1">Criar uma conta</h2>
             <p className="text-xs md:text-sm text-slate-500 mb-6">Preencha os dados abaixo para começar.</p>
@@ -86,64 +86,64 @@ export default function LoginERegistro() {
                 </div>
               )}
 
-              <form className="mt-8 space-y-5" onSubmit={handleCadastro}>
+              <form className="mt-6 space-y-4" onSubmit={handleCadastro}>
                 <label className="block text-sm text-slate-700">
-                  <span className="mb-2 block text-xs uppercase tracking-[0.2em] text-slate-500">Nome</span>
+                  <span className="mb-1.5 block text-xs uppercase tracking-[0.2em] text-slate-500">Nome</span>
                   <input
                     type="text"
                     value={registerData.name}
                     onChange={(event) => setRegisterData({ ...registerData, name: event.target.value })}
                     placeholder="Seu nome"
                     required
-                    className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-200"
+                    className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-slate-900 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-200"
                   />
                 </label>
 
                 <label className="block text-sm text-slate-700">
-                  <span className="mb-2 block text-xs uppercase tracking-[0.2em] text-slate-500">Email</span>
+                  <span className="mb-1.5 block text-xs uppercase tracking-[0.2em] text-slate-500">Email</span>
                   <input
                     type="email"
                     value={registerData.email}
                     onChange={(event) => setRegisterData({ ...registerData, email: event.target.value })}
                     placeholder="seu@email.com"
                     required
-                    className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-200"
+                    className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-slate-900 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-200"
                   />
                 </label>
 
                 <label className="block text-sm text-slate-700">
-                  <span className="mb-2 block text-xs uppercase tracking-[0.2em] text-slate-500">Senha</span>
+                  <span className="mb-1.5 block text-xs uppercase tracking-[0.2em] text-slate-500">Senha</span>
                   <input
                     type="password"
                     value={registerData.password}
                     onChange={(event) => setRegisterData({ ...registerData, password: event.target.value })}
                     placeholder="••••••••"
                     required
-                    className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-200"
+                    className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-slate-900 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-200"
                   />
                 </label>
 
                 <label className="block text-sm text-slate-700">
-                  <span className="mb-2 block text-xs uppercase tracking-[0.2em] text-slate-500">Confirmar senha</span>
+                  <span className="mb-1.5 block text-xs uppercase tracking-[0.2em] text-slate-500">Confirmar senha</span>
                   <input
                     type="password"
                     value={registerData.confirm}
                     onChange={(event) => setRegisterData({ ...registerData, confirm: event.target.value })}
                     placeholder="••••••••"
                     required
-                    className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-200"
+                    className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-slate-900 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-200"
                   />
                 </label>
 
                 <button
                   type="submit"
                   disabled={carregando}
-                  className="inline-flex w-full justify-center rounded-xl bg-green-900 px-5 py-3 text-base font-semibold text-white transition hover:bg-green-800 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="inline-flex w-full justify-center rounded-xl bg-green-900 px-5 py-2.5 text-base font-semibold text-white transition hover:bg-green-800 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {carregando ? 'Criando conta...' : 'Criar conta'}
                 </button>
 
-                <div className="text-center text-sm text-slate-500 pt-4 border-t border-slate-100">
+                <div className="text-center text-sm text-slate-500 pt-3 border-t border-slate-100">
                   Já tem uma conta? <a href="/login" className="font-bold text-green-700 hover:text-green-600 transition-colors">Entrar</a>
                 </div>
               </form>
