@@ -45,6 +45,22 @@ export default function Denunciar() {
   const [mapPosition, setMapPosition] = useState([-23.6226, -45.4126]); // Caraguatatuba como centro do Litoral Norte
   const [markerPosition, setMarkerPosition] = useState(null);
 
+  // Estados do Modal Customizado
+  const [modal, setModal] = useState({
+    show: false,
+    title: '',
+    message: '',
+    type: 'success' // success ou delete
+  });
+
+  const openModal = (title, message, type = 'success') => {
+    setModal({ show: true, title, message, type });
+  };
+
+  const closeModal = () => {
+    setModal({ ...modal, show: false });
+  };
+
   // Carregar dados
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -89,7 +105,10 @@ export default function Denunciar() {
       });
 
       if (response.ok) {
-        alert(editingId ? 'Denúncia atualizada!' : 'Denúncia enviada com sucesso!');
+        openModal(
+          editingId ? 'Atualizado!' : 'Enviado!',
+          editingId ? 'Sua denúncia foi atualizada com sucesso.' : 'Obrigado por ajudar a proteger o meio ambiente!'
+        );
         setEditingId(null);
         setFormData({
           tipo: '',
@@ -103,7 +122,7 @@ export default function Denunciar() {
       }
     } catch (error) {
       console.error('Erro:', error);
-      alert('Erro de conexão com o servidor.');
+      openModal('Erro!', 'Não foi possível conectar ao servidor.', 'delete');
     }
   };
 
@@ -115,6 +134,7 @@ export default function Denunciar() {
         method: 'DELETE'
       });
       if (response.ok) {
+        openModal('Excluído!', 'A denúncia foi removida do sistema.', 'delete');
         fetchDenuncias();
       }
     } catch (error) {
@@ -134,6 +154,7 @@ export default function Denunciar() {
   };
 
   return (
+    <>
     <section className="w-full bg-[#f8fafc] pb-6">
 
       {/* Banner Idêntico ao de Contato */}
@@ -165,14 +186,14 @@ export default function Denunciar() {
                 <h2 className="text-lg font-bold text-gray-900">Dados da Denúncia</h2>
               </div>
 
-              <div className="space-y-5">
-                <div className="flex flex-col gap-1.5">
-                  <label className="font-bold text-[10px] uppercase tracking-wider text-green-900 ml-1">Tipo de infração</label>
+              <div className="space-y-4">
+                <div className="flex flex-col gap-1">
+                  <label className="font-bold text-xs text-gray-700">Tipo de infração:</label>
                   <select
                     name="tipo"
                     value={formData.tipo}
                     onChange={handleChange}
-                    className="w-full border border-gray-200 rounded-xl p-2.5 outline-none focus:ring-2 focus:ring-green-100 focus:border-green-600 text-[13px] bg-gray-50/50 transition-all cursor-pointer shadow-sm"
+                    className="w-full border border-gray-300 rounded-md p-2 text-sm"
                     required
                   >
                     <option value="">Selecione o tipo de crime ambiental...</option>
@@ -187,55 +208,50 @@ export default function Denunciar() {
                   </select>
                 </div>
 
-                <div className="flex flex-col gap-1.5">
-                  <label className="font-bold text-[10px] uppercase tracking-wider text-green-900 ml-1">Descrição dos fatos</label>
+                <div className="flex flex-col gap-1">
+                  <label className="font-bold text-xs text-gray-700">Descrição dos fatos:</label>
                   <textarea
                     name="descricao"
                     value={formData.descricao}
                     onChange={handleChange}
                     placeholder="Descreva detalhadamente o que está acontecendo..."
-                    className="w-full border border-gray-200 rounded-xl p-3 h-28 outline-none resize-none focus:ring-2 focus:ring-green-100 focus:border-green-600 text-[13px] bg-gray-50/50 transition-all shadow-sm"
+                    className="w-full border border-gray-300 rounded-md p-2 h-24 text-sm"
                     required
                   />
                 </div>
 
-                <div className="flex flex-col gap-1.5">
-                  <label className="font-bold text-[10px] uppercase tracking-wider text-green-900 ml-1">Localização aproximada</label>
+                <div className="flex flex-col gap-1">
+                  <label className="font-bold text-xs text-gray-700">Localização aproximada:</label>
                   <input
                     type="text"
                     name="local"
                     value={formData.local}
                     onChange={handleChange}
                     placeholder="Ex: Rua, número, bairro ou ponto de referência"
-                    className="w-full border border-gray-200 rounded-xl p-2.5 outline-none focus:ring-2 focus:ring-green-100 focus:border-green-600 text-[13px] bg-gray-50/50 transition-all shadow-sm"
+                    className="w-full border border-gray-300 rounded-md p-2 text-sm"
                     required
                   />
                 </div>
 
-                <div className="bg-green-50/30 rounded-xl p-3 border border-green-100 flex items-center justify-between mt-1">
-                  <div className="flex flex-col">
-                    <span className="text-[10px] font-bold text-green-900 uppercase tracking-wider">Identidade Protegida</span>
-                    <span className="text-[9px] text-gray-500">Enviar como anônima?</span>
-                  </div>
+                <div className="bg-gray-100 p-3 rounded-md">
+                  <p className="text-xs font-bold mb-2">Deseja ser anônimo?</p>
                   <div className="flex gap-4">
-                    <label className="flex items-center gap-2 cursor-pointer text-xs font-bold text-gray-700">
+                    <label className="flex items-center gap-1 text-xs">
                       <input
                         type="radio"
                         name="anonimo"
                         value="true"
                         checked={formData.anonimo === true}
                         onChange={handleChange}
-                        className="w-4 h-4 accent-green-600"
                       /> Sim
                     </label>
-                    <label className="flex items-center gap-2 cursor-pointer text-xs font-bold text-gray-700">
+                    <label className="flex items-center gap-1 text-xs">
                       <input
                         type="radio"
                         name="anonimo"
                         value="false"
                         checked={formData.anonimo === false}
                         onChange={handleChange}
-                        className="w-4 h-4 accent-green-800"
                       /> Não
                     </label>
                   </div>
@@ -243,11 +259,8 @@ export default function Denunciar() {
 
                 <button
                   type="submit"
-                  className="w-full mt-4 bg-green-900 hover:bg-black text-white px-5 py-3 rounded-xl font-bold text-xs uppercase tracking-widest transition-all shadow-lg hover:shadow-green-900/20 active:scale-[0.98] flex items-center justify-center gap-3"
+                  className="w-full bg-green-700 hover:bg-green-800 text-white p-3 rounded-md font-bold text-sm uppercase"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                  </svg>
                   {editingId ? 'Salvar Alterações' : 'Enviar denúncia'}
                 </button>
                 {editingId && (
@@ -277,8 +290,8 @@ export default function Denunciar() {
                 <h2 className="text-lg font-bold text-gray-900">Local e Anexos</h2>
               </div>
 
-              <div className="space-y-4 flex flex-col h-full">
-                <div className="w-full h-[320px] bg-gray-100 rounded-2xl overflow-hidden border border-gray-200 shadow-inner z-0">
+              <div className="space-y-4">
+                <div className="w-full h-60 bg-gray-200 rounded-md overflow-hidden border border-gray-300">
                   <MapContainer 
                     center={mapPosition} 
                     zoom={10} 
@@ -295,13 +308,12 @@ export default function Denunciar() {
                   Clique no mapa para marcar a localização exata da denúncia.
                 </p>
 
-                <div className="bg-green-50/50 border-2 border-dashed border-green-200 p-4 rounded-2xl text-center mt-auto">
+                <div className="bg-gray-50 border border-gray-300 p-4 rounded-md text-center">
                   <button
                     type="button"
-                    className="bg-white hover:bg-green-50 text-green-800 border border-green-700 px-4 py-2 rounded-xl flex items-center justify-center gap-2 mx-auto font-bold text-[10px] uppercase tracking-wider transition-all shadow-sm"
+                    className="bg-white hover:bg-gray-100 text-gray-800 border border-gray-400 px-4 py-2 rounded-md font-bold text-xs uppercase transition-all shadow-sm"
                   >
-                    <img src={ClipeSimbol} className="w-3 h-3" alt="Anexo" />
-                    Anexar provas fotográficas
+                    Anexar fotos
                   </button>
                 </div>
 
@@ -363,5 +375,29 @@ export default function Denunciar() {
       </div>
 
     </section>
+
+    {/* MODAL SIMPLIFICADO */}
+    {modal.show && (
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+        {/* Fundo com desfoque suave */}
+        <div 
+          className="absolute inset-0 bg-green-900/10 backdrop-blur-sm"
+          onClick={closeModal}
+        ></div>
+        
+        {/* Conteúdo */}
+        <div className="relative bg-white p-8 rounded-lg shadow-xl max-w-sm w-full text-center border-t-4 border-green-600 animate-in fade-in zoom-in duration-200">
+          <h3 className="text-xl font-bold mb-2">{modal.title}</h3>
+          <p className="text-gray-600 mb-6">{modal.message}</p>
+          <button
+            onClick={closeModal}
+            className="bg-green-700 text-white px-6 py-2 rounded-md font-bold"
+          >
+            Fechar
+          </button>
+        </div>
+      </div>
+    )}
+    </>
   );
 }
