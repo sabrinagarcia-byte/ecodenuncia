@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router'
+import { NavLink } from "react-router-dom";
 
 import Banner from '../assets/images/banner.png'
 import SimboloTriangulo from '../assets/images/reciclar-simbolo-triangular-de-rotacao-de-tres-setas 1.png'
@@ -26,7 +26,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/40"></div>
 
         <div className="absolute inset-0 flex items-center justify-center md:justify-start">
-          <div className="max-w-5xl w-full mx-auto px- text-white text-center md:text-left">
+          <div className="max-w-5xl w-full mx-auto px-4 text-white text-center md:text-left">
             <h1 className="text-3xl md:text-4xl font-bold mb-6 leading-normal tracking-wider drop-shadow-lg">
               Combate ao <br className="hidden md:block" /> descarte irregular de lixo
             </h1>
@@ -36,8 +36,11 @@ export default function Home() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
-              <NavLink to="/denunciar" className="bg-green-600 hover:bg-green-500 px-6 py-2 rounded-full font-bold text-base transition-colors w-full sm:w-auto text-center shadow-lg">
-                Denunciar
+              <NavLink 
+                to="/denunciar" 
+                className="bg-green-600 text-white hover:bg-green-500 px-6 py-2 rounded-full font-bold text-base transition-colors w-full sm:w-auto text-center shadow-lg"
+              >
+                Denunciar agora
               </NavLink>
 
               <NavLink to="/aboutus" className="bg-white text-green-700 hover:bg-gray-100 px-6 py-2 rounded-full font-bold text-base transition-colors w-full sm:w-auto text-center shadow-lg">
@@ -267,7 +270,10 @@ export default function Home() {
 
         <div className="relative z-10 px-6">
           <h2 className="text-2xl font-bold mb-6">Faça parte da mudança!</h2>
-          <NavLink to="/denunciar" className="inline-block bg-green-600 text-base px-6 py-2 rounded-full font-bold shadow-lg hover:bg-green-500 transition-colors">
+          <NavLink 
+            to="/denunciar" 
+            className="inline-block bg-green-600 text-white text-base px-6 py-2 rounded-full font-bold shadow-lg hover:bg-green-500 transition-colors"
+          >
             Denunciar agora
           </NavLink>
         </div>

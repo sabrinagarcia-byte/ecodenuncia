@@ -1,21 +1,67 @@
 import { useState, useEffect } from 'react';
+import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+
 import BannerDenunciar from '../assets/images/bannerDenunciar.png'
 import ClipeSimbol from '../assets/images/anexos 1.png'
-import Mapa from '../assets/images/foto de mapa.png'
+
+// Correção para os ícones do Leaflet no Vite
+import icon from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+
+let DefaultIcon = L.icon({
+    iconUrl: icon,
+    shadowUrl: iconShadow,
+    iconSize: [25, 41],
+    iconAnchor: [12, 41]
+});
+
+L.Marker.prototype.options.icon = DefaultIcon;
+
+// Componente para capturar o clique no mapa
+function LocationMarker({ position, setPosition }) {
+  useMapEvents({
+    click(e) {
+      setPosition(e.latlng);
+    },
+  });
+
+  return position === null ? null : (
+    <Marker position={position}></Marker>
+  );
+}
 
 export default function Denunciar() {
   const [formData, setFormData] = useState({
     tipo: '',
     descricao: '',
     local: '',
-    nome: '',
-    email: '',
     anonimo: false
   });
 
+  const [denuncias, setDenuncias] = useState([]);
+  const [editingId, setEditingId] = useState(null);
+  const [mapPosition, setMapPosition] = useState([-23.6226, -45.4126]); // Caraguatatuba como centro do Litoral Norte
+  const [markerPosition, setMarkerPosition] = useState(null);
+
+  // Carregar dados
   useEffect(() => {
     window.scrollTo(0, 0);
+    fetchDenuncias();
   }, []);
+
+  const fetchDenuncias = async () => {
+    try {
+      const response = await fetch(`http://localhost:3000/denuncia`);
+      if (response.ok) {
+        const data = await response.json();
+        setDenuncias(data);
+      }
+    } catch (error) {
+      console.error('Erro ao carregar denúncias:', error);
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value, type } = e.target;
@@ -27,9 +73,15 @@ export default function Denunciar() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const url = editingId 
+      ? `http://localhost:3000/denuncia/${editingId}` 
+      : 'http://localhost:3000/denuncia';
+    
+    const method = editingId ? 'PUT' : 'POST';
+
     try {
-      const response = await fetch('http://localhost:3000/denuncia', {
-        method: 'POST',
+      const response = await fetch(url, {
+        method: method,
         headers: {
           'Content-Type': 'application/json'
         },
@@ -37,22 +89,48 @@ export default function Denunciar() {
       });
 
       if (response.ok) {
-        alert('Denúncia enviada com sucesso!');
+        alert(editingId ? 'Denúncia atualizada!' : 'Denúncia enviada com sucesso!');
+        setEditingId(null);
         setFormData({
           tipo: '',
           descricao: '',
           local: '',
-          nome: '',
-          email: '',
           anonimo: false
         });
+        fetchDenuncias(); 
       } else {
-        alert('Erro ao enviar denúncia.');
+        alert('Erro ao processar denúncia.');
       }
     } catch (error) {
       console.error('Erro:', error);
       alert('Erro de conexão com o servidor.');
     }
+  };
+
+  const handleDelete = async (id) => {
+    if (!confirm('Tem certeza que deseja excluir esta denúncia?')) return;
+
+    try {
+      const response = await fetch(`http://localhost:3000/denuncia/${id}`, {
+        method: 'DELETE'
+      });
+      if (response.ok) {
+        fetchDenuncias();
+      }
+    } catch (error) {
+      console.error('Erro ao deletar:', error);
+    }
+  };
+
+  const handleEdit = (denuncia) => {
+    setEditingId(denuncia.id);
+    setFormData({
+      tipo: denuncia.tipo,
+      descricao: denuncia.descricao,
+      local: denuncia.local,
+      anonimo: denuncia.anonimo
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -87,104 +165,103 @@ export default function Denunciar() {
                 <h2 className="text-lg font-bold text-gray-900">Dados da Denúncia</h2>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-5">
                 <div className="flex flex-col gap-1.5">
-                  <label className="font-bold text-xs text-gray-600 ml-1">Tipo de infração</label>
+                  <label className="font-bold text-[10px] uppercase tracking-wider text-green-900 ml-1">Tipo de infração</label>
                   <select
                     name="tipo"
                     value={formData.tipo}
                     onChange={handleChange}
-                    className="w-full border border-gray-200 rounded-xl p-3 outline-none focus:border-green-500 text-sm bg-gray-50 transition-all cursor-pointer"
+                    className="w-full border border-gray-200 rounded-xl p-2.5 outline-none focus:ring-2 focus:ring-green-100 focus:border-green-600 text-[13px] bg-gray-50/50 transition-all cursor-pointer shadow-sm"
                     required
                   >
-                    <option value="">Selecione...</option>
-                    <option value="Descarte irregular de lixo doméstico">Descarte irregular</option>
-                    <option value="Descarte de entulho (construção)">Entulho</option>
+                    <option value="">Selecione o tipo de crime ambiental...</option>
+                    <option value="Descarte irregular de lixo doméstico">Descarte irregular de lixo</option>
+                    <option value="Descarte de entulho (construção)">Entulho de construção</option>
                     <option value="Lixo em via pública">Lixo em via pública</option>
-                    <option value="Descarte em área verde / mata">Área verde</option>
-                    <option value="Poluição de rios / água">Poluição de rios</option>
-                    <option value="Queima de lixo">Queima de lixo</option>
-                    <option value="Descarte de resíduos perigosos">Resíduos perigosos</option>
-                    <option value="Outro">Outro</option>
+                    <option value="Descarte em área verde / mata">Descarte em área verde</option>
+                    <option value="Poluição de rios / água">Poluição de rios ou lagos</option>
+                    <option value="Queima de lixo">Queima de lixo ao ar livre</option>
+                    <option value="Descarte de resíduos perigosos">Resíduos químicos ou perigosos</option>
+                    <option value="Outro">Outro tipo de infração</option>
                   </select>
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <label className="font-bold text-xs text-gray-600 ml-1">Descrição</label>
+                  <label className="font-bold text-[10px] uppercase tracking-wider text-green-900 ml-1">Descrição dos fatos</label>
                   <textarea
                     name="descricao"
                     value={formData.descricao}
                     onChange={handleChange}
-                    placeholder="O que está acontecendo?"
-                    className="w-full border border-gray-200 rounded-xl p-3 h-24 outline-none resize-none focus:border-green-500 text-sm bg-gray-50 transition-all"
+                    placeholder="Descreva detalhadamente o que está acontecendo..."
+                    className="w-full border border-gray-200 rounded-xl p-3 h-28 outline-none resize-none focus:ring-2 focus:ring-green-100 focus:border-green-600 text-[13px] bg-gray-50/50 transition-all shadow-sm"
                     required
                   />
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <label className="font-bold text-xs text-gray-600 ml-1">Local</label>
+                  <label className="font-bold text-[10px] uppercase tracking-wider text-green-900 ml-1">Localização aproximada</label>
                   <input
                     type="text"
                     name="local"
                     value={formData.local}
                     onChange={handleChange}
-                    placeholder="Endereço ou ponto de referência"
-                    className="w-full border border-gray-200 rounded-xl p-3 outline-none focus:border-green-500 text-sm bg-gray-50 transition-all"
+                    placeholder="Ex: Rua, número, bairro ou ponto de referência"
+                    className="w-full border border-gray-200 rounded-xl p-2.5 outline-none focus:ring-2 focus:ring-green-100 focus:border-green-600 text-[13px] bg-gray-50/50 transition-all shadow-sm"
                     required
                   />
                 </div>
 
-                <div className="bg-gray-50 rounded-xl p-4 border border-gray-100 space-y-3">
-                  <div className="flex flex-col gap-1.5">
-                    <label className="font-bold text-[11px] text-gray-500 uppercase ml-1">Seu Nome (opcional)</label>
-                    <input
-                      type="text"
-                      name="nome"
-                      value={formData.nome}
-                      onChange={handleChange}
-                      placeholder="Como podemos te chamar?"
-                      className="w-full bg-white border border-gray-200 rounded-lg p-2.5 text-xs outline-none focus:border-green-500 transition-all"
-                    />
+                <div className="bg-green-50/30 rounded-xl p-3 border border-green-100 flex items-center justify-between mt-1">
+                  <div className="flex flex-col">
+                    <span className="text-[10px] font-bold text-green-900 uppercase tracking-wider">Identidade Protegida</span>
+                    <span className="text-[9px] text-gray-500">Enviar como anônima?</span>
                   </div>
-
-                  <div className="flex flex-col gap-1.5">
-                    <label className="font-bold text-[11px] text-gray-500 uppercase ml-1">E-mail (opcional)</label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="email@exemplo.com"
-                      className="w-full bg-white border border-gray-200 rounded-lg p-2.5 text-xs outline-none focus:border-green-500 transition-all"
-                    />
-                  </div>
-
-                  <div className="flex items-center gap-4 pt-1">
-                    <span className="text-[11px] font-bold text-gray-500 uppercase">Anônimo?</span>
-                    <div className="flex gap-3">
-                      <label className="flex items-center gap-1.5 cursor-pointer text-xs">
-                        <input
-                          type="radio"
-                          name="anonimo"
-                          value="true"
-                          checked={formData.anonimo === true}
-                          onChange={handleChange}
-                          className="accent-green-600"
-                        /> Sim
-                      </label>
-                      <label className="flex items-center gap-1.5 cursor-pointer text-xs">
-                        <input
-                          type="radio"
-                          name="anonimo"
-                          value="false"
-                          checked={formData.anonimo === false}
-                          onChange={handleChange}
-                          className="accent-green-700"
-                        /> Não
-                      </label>
-                    </div>
+                  <div className="flex gap-4">
+                    <label className="flex items-center gap-2 cursor-pointer text-xs font-bold text-gray-700">
+                      <input
+                        type="radio"
+                        name="anonimo"
+                        value="true"
+                        checked={formData.anonimo === true}
+                        onChange={handleChange}
+                        className="w-4 h-4 accent-green-600"
+                      /> Sim
+                    </label>
+                    <label className="flex items-center gap-2 cursor-pointer text-xs font-bold text-gray-700">
+                      <input
+                        type="radio"
+                        name="anonimo"
+                        value="false"
+                        checked={formData.anonimo === false}
+                        onChange={handleChange}
+                        className="w-4 h-4 accent-green-800"
+                      /> Não
+                    </label>
                   </div>
                 </div>
+
+                <button
+                  type="submit"
+                  className="w-full mt-4 bg-green-900 hover:bg-black text-white px-5 py-3 rounded-xl font-bold text-xs uppercase tracking-widest transition-all shadow-lg hover:shadow-green-900/20 active:scale-[0.98] flex items-center justify-center gap-3"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                  </svg>
+                  {editingId ? 'Salvar Alterações' : 'Enviar denúncia'}
+                </button>
+                {editingId && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setEditingId(null);
+                      setFormData({ tipo: '', descricao: '', local: '', anonimo: false });
+                    }}
+                    className="w-full mt-2 text-gray-500 text-xs font-bold uppercase hover:underline"
+                  >
+                    Cancelar Edição
+                  </button>
+                )}
               </div>
             </div>
 
@@ -200,50 +277,88 @@ export default function Denunciar() {
                 <h2 className="text-lg font-bold text-gray-900">Local e Anexos</h2>
               </div>
 
-              <div className="space-y-6">
-                <div className="w-full h-40 bg-gray-100 rounded-2xl overflow-hidden border border-gray-200">
-                  <img src={Mapa} alt="Mapa" className="w-full h-full object-cover" />
+              <div className="space-y-4 flex flex-col h-full">
+                <div className="w-full h-[320px] bg-gray-100 rounded-2xl overflow-hidden border border-gray-200 shadow-inner z-0">
+                  <MapContainer 
+                    center={mapPosition} 
+                    zoom={10} 
+                    style={{ height: '100%', width: '100%' }}
+                  >
+                    <TileLayer
+                      attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    />
+                    <LocationMarker position={markerPosition} setPosition={setMarkerPosition} />
+                  </MapContainer>
                 </div>
+                <p className="text-[10px] text-gray-500 text-center italic mt-[-15px]">
+                  Clique no mapa para marcar a localização exata da denúncia.
+                </p>
 
-                <div className="bg-green-50/50 border border-dashed border-green-200 p-4 rounded-2xl text-center">
+                <div className="bg-green-50/50 border-2 border-dashed border-green-200 p-4 rounded-2xl text-center mt-auto">
                   <button
                     type="button"
-                    className="bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded-xl flex items-center justify-center gap-2 mx-auto font-bold text-[11px] uppercase tracking-wider transition-all"
+                    className="bg-white hover:bg-green-50 text-green-800 border border-green-700 px-4 py-2 rounded-xl flex items-center justify-center gap-2 mx-auto font-bold text-[10px] uppercase tracking-wider transition-all shadow-sm"
                   >
-                    <img src={ClipeSimbol} className="w-3.5 h-3.5" alt="Anexo" />
-                    Anexar provas
+                    <img src={ClipeSimbol} className="w-3 h-3" alt="Anexo" />
+                    Anexar provas fotográficas
                   </button>
                 </div>
 
-                <div className="pt-2">
-                  <h3 className="text-xs font-bold text-green-900 uppercase tracking-widest mb-4">Nosso Compromisso</h3>
-                  <ul className="space-y-4">
-                    <li className="flex gap-3 text-[11px] text-gray-600 leading-relaxed">
-                      <span className="text-green-600 font-bold">•</span>
-                      Análise sigilosa e profissional das informações
-                    </li>
-                    <li className="flex gap-3 text-[11px] text-gray-600 leading-relaxed">
-                      <span className="text-green-600 font-bold">•</span>
-                      Encaminhamento imediato aos órgãos ambientais
-                    </li>
-                    <li className="flex gap-3 text-[11px] text-gray-600 leading-relaxed">
-                      <span className="text-green-600 font-bold">•</span>
-                      Proteção total dos seus dados e anonimato
-                    </li>
-                  </ul>
                 </div>
-
-                <button
-                  type="submit"
-                  className="w-full mt-8 bg-green-900 hover:bg-black text-white px-6 py-4 rounded-2xl font-bold text-sm uppercase tracking-widest transition-all shadow-md active:scale-95 flex items-center justify-center gap-2"
-                >
-                  Enviar denúncia
-                </button>
               </div>
-            </div>
-
 
           </form>
+        </div>
+
+        {/* SEÇÃO DE LISTAGEM (O "READ" DO CRUD) */}
+        <div className="mt-12 bg-white rounded-2xl shadow-lg p-6">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-xl font-bold text-gray-900">Minhas Denúncias (Histórico)</h2>
+            <span className="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">
+              {denuncias.length} registros
+            </span>
+          </div>
+
+          {denuncias.length === 0 ? (
+            <div className="text-center py-10 text-gray-500 text-sm">
+              Nenhuma denúncia encontrada no sistema.
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 gap-4">
+              {denuncias.map((item) => (
+                <div key={item.id} className="border border-gray-100 rounded-2xl p-4 hover:border-green-200 transition-colors bg-gray-50/30">
+                  <div className="flex justify-between items-start mb-2">
+                    <span className="text-[10px] font-bold text-green-600 uppercase tracking-widest bg-white px-2 py-0.5 rounded-md shadow-sm border border-gray-100">
+                      {item.tipo}
+                    </span>
+                    <div className="flex gap-2">
+                      <button 
+                        onClick={() => handleEdit(item)}
+                        className="p-1.5 hover:bg-green-100 text-green-700 rounded-lg transition-colors"
+                        title="Editar"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                        </svg>
+                      </button>
+                      <button 
+                        onClick={() => handleDelete(item.id)}
+                        className="p-1.5 hover:bg-red-100 text-red-600 rounded-lg transition-colors"
+                        title="Excluir"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                  <h3 className="font-bold text-gray-800 text-sm mb-1">{item.local}</h3>
+                  <p className="text-gray-600 text-xs line-clamp-2 leading-relaxed">{item.descricao}</p>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
