@@ -167,72 +167,92 @@ export default function Home() {
           
             <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full border border-gray-100">
               <div className="overflow-hidden h-36">
-                <img src={img1} className="w-full h-full object-cover" alt="Impacto do descarte ilegal" />
+                <img src="https://loremflickr.com/640/360/storm,clouds,weather?lock=1" className="w-full h-full object-cover" alt="Frente fria no Brasil" />
               </div>
               <div className="p-4 flex flex-col flex-1">
-                <span className="text-[9px] font-bold text-green-600 uppercase tracking-widest mb-1">12 Mar 2026</span>
+                <span className="text-[9px] font-bold text-green-600 uppercase tracking-widest mb-1">16 Mai 2026</span>
                 <h3 className="font-bold text-gray-900 text-base mb-2 leading-tight">
-                  Impacto do descarte ilegal
+                  Frente fria avança e traz chuva para Centro-Sul
                 </h3>
                 <p className="text-gray-600 text-xs leading-relaxed mb-4 line-clamp-3">
-                  Veja como o descarte irregular do lixo afeta o meio ambiente e a saúde da população.
+                  Previsão indica queda brusca nos termômetros e formação de geada em várias áreas do país.
                 </p>
-                <p className="mt-auto text-green-700 text-sm font-bold cursor-pointer hover:underline">
+                <a 
+                  href="https://g1.globo.com/meio-ambiente/noticia/2026/05/16/frente-fria-avanca-e-traz-chuva-e-baixas-temperaturas-para-centro-sul-veja-previsao-para-o-fim-de-semana.ghtml" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="mt-auto text-green-700 text-sm font-bold hover:underline"
+                >
                   Ler mais
-                </p>
+                </a>
               </div>
             </div>
 
             <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full border border-gray-100">
               <div className="overflow-hidden h-36">
-                <img src={img2} className="w-full h-full object-cover" alt="Como reciclar corretamente" />
+                <img src="https://loremflickr.com/640/360/amazon,jungle,river?lock=11" className="w-full h-full object-cover" alt="Preservação da Amazônia" />
               </div>
               <div className="p-4 flex flex-col flex-1">
-                <span className="text-[9px] font-bold text-green-600 uppercase tracking-widest mb-1">20 Mar 2026</span>
+                <span className="text-[9px] font-bold text-green-600 uppercase tracking-widest mb-1">Abril 2026</span>
                 <h3 className="font-bold text-gray-900 text-base mb-2 leading-tight">
-                  Como reciclar corretamente
+                  Amazônia: Monitoramento e Sustentabilidade
                 </h3>
                 <p className="text-gray-600 text-xs leading-relaxed mb-4 line-clamp-3">
-                  Dicas simples e práticas para começar a separar o seu lixo de forma adequada hoje mesmo.
+                  Acompanhe os dados mais recentes sobre a preservação da maior floresta tropical do mundo.
                 </p>
-                <p className="mt-auto text-green-700 text-sm font-bold cursor-pointer hover:underline">
+                <a 
+                  href="https://g1.globo.com/meio-ambiente/amazonia/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="mt-auto text-green-700 text-sm font-bold hover:underline"
+                >
                   Ler mais
-                </p>
+                </a>
               </div>
             </div>
 
             <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full border border-gray-100">
               <div className="overflow-hidden h-36">
-                <img src={img3} className="w-full h-full object-cover" alt="Iniciativas locais" />
+                <img src="https://loremflickr.com/640/360/solar,panels,energy?lock=14" className="w-full h-full object-cover" alt="Energia Solar no Brasil" />
               </div>
               <div className="p-4 flex flex-col flex-1">
-                <span className="text-[9px] font-bold text-green-600 uppercase tracking-widest mb-1">15 Fev 2026</span>
+                <span className="text-[9px] font-bold text-green-600 uppercase tracking-widest mb-1">Abril 2026</span>
                 <h3 className="font-bold text-gray-900 text-base mb-2 leading-tight">
-                  Iniciativas ambientais locais
+                  Brasil bate recorde de geração de energia solar
                 </h3>
                 <p className="text-gray-600 text-xs leading-relaxed mb-4 line-clamp-3">
-                  Conheça os projetos comunitários que estão fazendo a diferença em nossa região.
+                  O país avança na transição energética e consolida o uso de fontes limpas e renováveis.
                 </p>
-                <p className="mt-auto text-green-700 text-sm font-bold cursor-pointer hover:underline">
+                <a 
+                  href="https://g1.globo.com/economia/agronegocios/globo-rural/noticia/2024/04/14/geracao-de-energia-solar-no-brasil-bate-recorde.ghtml" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="mt-auto text-green-700 text-sm font-bold hover:underline"
+                >
                   Ler mais
-                </p>
+                </a>
               </div>
             </div>
             <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full border border-gray-100">
               <div className="overflow-hidden h-36">
-                <img src={img4} className="w-full h-full object-cover" alt="Uso consciente da água" />
+                <img src="https://loremflickr.com/640/360/electronics,recycling,ewaste?lock=16" className="w-full h-full object-cover" alt="Reciclagem de eletrônicos" />
               </div>
               <div className="p-4 flex flex-col flex-1">
-                <span className="text-[9px] font-bold text-green-600 uppercase tracking-widest mb-1">1 Abr 2026</span>
+                <span className="text-[9px] font-bold text-green-600 uppercase tracking-widest mb-1">Maio 2026</span>
                 <h3 className="font-bold text-gray-900 text-base mb-2 leading-tight">
-                  Uso consciente da água
+                  Logística reversa de eletrônicos em vigor
                 </h3>
                 <p className="text-gray-600 text-xs leading-relaxed mb-4 line-clamp-3">
-                  Dicas simples para economizar água no dia a dia e preservar esse recurso essencial.
+                  Entenda as novas regras para o descarte correto de celulares e baterias no Brasil.
                 </p>
-                <p className="mt-auto text-green-700 text-sm font-bold cursor-pointer hover:underline">
+                <a 
+                  href="https://www.gov.br/meioambiente/pt-br/assuntos/noticias/governo-regulamenta-logistica-reversa-de-eletroeletronicos" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="mt-auto text-green-700 text-sm font-bold hover:underline"
+                >
                   Ler mais
-                </p>
+                </a>
               </div>
             </div>
           
