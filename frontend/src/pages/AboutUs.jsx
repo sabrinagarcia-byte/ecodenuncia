@@ -12,7 +12,7 @@ import Yasmin from '../assets/images/Yasmin.png'
 
 export default function AboutUs() {
   return (
-    <div className="w-full">
+    <div className="w-full overflow-x-hidden">
 
       <div className="relative h-[25vh] min-h-[190px]">
         <img src={Banner} className="w-full h-full object-cover" alt="Banner Sobre Nós" />

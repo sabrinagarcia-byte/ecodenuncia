@@ -17,7 +17,7 @@ import BannerDenunciarAgora from '../assets/images/fundoDenunciarAgora.png'
 
 export default function Home() {
   return (
-    <main className="w-full">
+    <main className="w-full overflow-x-hidden">
 
       {/* HERO SECTION */}
       <section className="relative w-full h-[40vh] md:h-[50vh] min-h-[400px] md:min-h-[500px]">
@@ -55,7 +55,7 @@ export default function Home() {
       <section className="bg-gray-50 py-10">
         <div className="max-w-5xl mx-auto px-6 text-center">
           
-          <h2 className="text-2xl md:text-3xl font-bold mb-12 text-gray-800">
+          <h2 className="text-2xl md:text-3xl font-bold mb-8 md:mb-12 text-gray-800">
             Conheça os 3 Rs do{" "}
             <span className="text-green-600">descarte consciente</span>
           </h2>
@@ -94,7 +94,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-green-900/40"></div>
         
         <div className="relative z-10 max-w-5xl mx-auto px-6">
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-10">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-10">
             Como funciona?
           </h2>
 
@@ -166,7 +166,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           
             <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full border border-gray-100">
               <div className="overflow-hidden h-36">

@@ -155,7 +155,7 @@ export default function Denunciar() {
 
   return (
     <>
-    <section className="w-full bg-[#f8fafc] pb-6">
+    <section className="w-full bg-[#f8fafc] pb-6 overflow-x-hidden">
 
       {/* Banner Idêntico ao de Contato */}
       <div className="w-full h-32 relative">

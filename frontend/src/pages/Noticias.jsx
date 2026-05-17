@@ -194,7 +194,7 @@ export default function Noticias() {
   }, []);
 
   return (
-    <main className="w-full">
+    <main className="w-full overflow-x-hidden">
 
       {/* Banner Simples no Topo */}
       <div className="w-full h-32 relative">

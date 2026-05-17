@@ -9,6 +9,12 @@ function linkClass({ isActive }) {
     : "text-white hover:text-green-300 transition-all duration-300";
 }
 
+function mobileLinkClass({ isActive }) {
+  return `block py-4 pl-8 transition-colors ${
+    isActive ? "bg-green-800/50 text-green-300 font-bold border-l-4 border-green-400" : "text-white hover:bg-green-800/50 border-l-4 border-transparent"
+  }`;
+}
+
 export default function Header() {
   const [open, setOpen] = useState(false);
 
@@ -44,7 +50,7 @@ export default function Header() {
         {/* BOTÃO HAMBÚRGUER */}
         <button
           onClick={() => setOpen(!open)}
-          className="md:hidden flex flex-col gap-1"
+          className="md:hidden flex flex-col gap-1.5 p-2 -mr-2"
         >
           <span className="w-6 h-0.5 bg-white"></span>
           <span className="w-6 h-0.5 bg-white"></span>
@@ -54,27 +60,30 @@ export default function Header() {
 
       {/* MENU MOBILE */}
       <div
-        className={`md:hidden bg-green-900 transition-all duration-300 overflow-hidden ${
-          open ? "max-h-[500px] py-4" : "max-h-0"
+        className={`md:hidden bg-green-900 transition-all duration-300 overflow-hidden shadow-inner ${
+          open ? "max-h-[600px]" : "max-h-0"
         }`}
       >
-        <ul className="flex flex-col items-center gap-4 text-lg">
+        <ul className="flex flex-col text-sm font-semibold tracking-widest uppercase pt-2">
 
-          <li><NavLink onClick={() => setOpen(false)} to="/" className={linkClass}>Início</NavLink></li>
-          <li><NavLink onClick={() => setOpen(false)} to="/denunciar" className={linkClass}>Denunciar</NavLink></li>
-          <li><NavLink onClick={() => setOpen(false)} to="/noticias" className={linkClass}>Notícias</NavLink></li>
-          <li><NavLink onClick={() => setOpen(false)} to="/aboutus" className={linkClass}>Sobre</NavLink></li>
-          <li><NavLink onClick={() => setOpen(false)} to="/faleconosco" className={linkClass}>Contato</NavLink></li>
+          <li><NavLink onClick={() => setOpen(false)} to="/" className={mobileLinkClass}>Início</NavLink></li>
+          <li><NavLink onClick={() => setOpen(false)} to="/denunciar" className={mobileLinkClass}>Denunciar</NavLink></li>
+          <li><NavLink onClick={() => setOpen(false)} to="/noticias" className={mobileLinkClass}>Notícias</NavLink></li>
+          <li><NavLink onClick={() => setOpen(false)} to="/aboutus" className={mobileLinkClass}>Sobre</NavLink></li>
+          <li><NavLink onClick={() => setOpen(false)} to="/faleconosco" className={mobileLinkClass}>Contato</NavLink></li>
 
         </ul>
 
         {/* PARTE DE BAIXO (LOGIN) */}
-        <div className="flex flex-col items-center gap-4 mt-4">
-
-          <NavLink to="/login" onClick={() => setOpen(false)}>
-            <img src={user} alt="user" />
+        <div className="flex justify-center py-6 border-t border-green-800/50 mt-2">
+          <NavLink 
+            to="/login" 
+            onClick={() => setOpen(false)}
+            className="flex items-center gap-2 bg-green-600 hover:bg-green-500 px-8 py-3 rounded-full text-sm font-bold uppercase tracking-widest transition-colors shadow-lg"
+          >
+            <img src={user} alt="Entrar" className="w-4 h-4 invert" />
+            <span>Entrar</span>
           </NavLink>
-
         </div>
       </div>
 

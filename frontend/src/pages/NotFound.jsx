@@ -3,7 +3,7 @@ import Planta from "../assets/images/plantar.png";
 
 export default function NotFound() {
   return (
-    <section className="w-full min-h-[60vh] flex flex-col items-center justify-center bg-white px-6 py-12 text-center">
+    <section className="w-full min-h-[60vh] flex flex-col items-center justify-center bg-white px-6 py-12 text-center overflow-x-hidden">
       
       <h1 className="text-6xl md:text-7xl font-bold text-green-900">
         404
