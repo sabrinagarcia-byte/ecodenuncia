@@ -35,6 +35,7 @@ export default function Header() {
         <ul className="hidden md:flex gap-10 lg:gap-12 text-xs font-semibold tracking-widest uppercase">
           <li><NavLink to="/" className={linkClass}>Início</NavLink></li>
           <li><NavLink to="/denunciar" className={linkClass}>Denunciar</NavLink></li>
+          <li><NavLink to="/blog" className={linkClass}>Comunidade</NavLink></li>
           <li><NavLink to="/noticias" className={linkClass}>Notícias</NavLink></li>
           <li><NavLink to="/aboutus" className={linkClass}>Sobre</NavLink></li>
           <li><NavLink to="/faleconosco" className={linkClass}>Contato</NavLink></li>
