@@ -10,9 +10,12 @@ import Contato from './pages/Contato.jsx'
 import Noticias from './pages/Noticias.jsx'
 import Denunciar from './pages/Denunciar.jsx'
 import AboutUs from './pages/AboutUs.jsx'
+import Blog from './pages/Blog.jsx'
 import Login from './pages/Login.jsx'
 import Cadastro from './pages/Cadastro.jsx'
 import NotFound from './pages/NotFound.jsx'
+
+
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -27,6 +30,8 @@ createRoot(document.getElementById('root')).render(
           <Route path='/aboutus' element={<AboutUs />} />
           <Route path='/login' element={<Login />} />
           <Route path='/cadastro' element={<Cadastro />} />
+          <Route path='/blog' element={<Blog />} />
+
         
         </Route>
 
