@@ -17,8 +17,8 @@ const usuarios = [
     {
         id: 3,
         nome: "Yasmin",
-        email: "yasminrs@gmail.com",
-        senha: "yasmin143"
+        email: "yasmin@gmail.com",
+        senha: "123456"
     }
     
 ]
@@ -47,7 +47,7 @@ const denuncias = [
 ]
 
 // contadores pra gerar ids novos
-let proximoIdUsuario = 3
+let proximoIdUsuario = 4
 let proximoIdDenuncia = 3
 
 function gerarIdUsuario() {
