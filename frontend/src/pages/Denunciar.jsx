@@ -93,7 +93,7 @@ export default function Denunciar() {
       ? `http://localhost:3000/denuncia/${editingId}` 
       : 'http://localhost:3000/denuncia';
     
-    const method = editingId ? 'PUT' : 'POST';
+    const method = editingId ? 'PATCH' : 'POST';
 
     try {
       const response = await fetch(url, {

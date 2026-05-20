@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import logo from "../assets/images/logo.png";
-import { NavLink } from "react-router";
+import { NavLink, useLocation } from "react-router";
 import user from "../assets/images/fi-rr-user.png";
 
 function linkClass({ isActive }) {
@@ -17,6 +17,27 @@ function mobileLinkClass({ isActive }) {
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [usuario, setUsuario] = useState(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    const userStr = localStorage.getItem('usuario');
+    if (userStr) {
+      try {
+        setUsuario(JSON.parse(userStr));
+      } catch (e) {
+        console.error("Erro ao analisar usuário:", e);
+      }
+    } else {
+      setUsuario(null);
+    }
+  }, [location]);
+
+  const handleLogout = () => {
+    localStorage.removeItem('usuario');
+    setUsuario(null);
+    window.location.href = '/';
+  };
 
   return ( 
     <header className="bg-green-950 text-white shadow-md">
@@ -42,10 +63,22 @@ export default function Header() {
         </ul>
 
         {/* DIREITA (DESKTOP) */}
-        <div className="hidden md:flex items-center">
-          <NavLink to="/login" className="bg-green-600 hover:bg-green-500 p-2 rounded-full transition-colors shadow-md">
-            <img src={user} alt="user" className="w-5 h-5 invert" />
-          </NavLink>
+        <div className="hidden md:flex items-center gap-3">
+          {usuario ? (
+            <div className="flex items-center gap-3">
+              <span className="text-xs font-semibold text-green-300">Olá, {usuario.nome}</span>
+              <button 
+                onClick={handleLogout} 
+                className="bg-red-600 hover:bg-red-500 text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full transition-colors shadow-md cursor-pointer"
+              >
+                Sair
+              </button>
+            </div>
+          ) : (
+            <NavLink to="/login" className="bg-green-600 hover:bg-green-500 p-2 rounded-full transition-colors shadow-md">
+              <img src={user} alt="user" className="w-5 h-5 invert" />
+            </NavLink>
+          )}
         </div>
 
         {/* BOTÃO HAMBÚRGUER */}
@@ -77,14 +110,26 @@ export default function Header() {
 
         {/* PARTE DE BAIXO (LOGIN) */}
         <div className="flex justify-center py-6 border-t border-green-800/50 mt-2">
-          <NavLink 
-            to="/login" 
-            onClick={() => setOpen(false)}
-            className="flex items-center gap-2 bg-green-600 hover:bg-green-500 px-8 py-3 rounded-full text-sm font-bold uppercase tracking-widest transition-colors shadow-lg"
-          >
-            <img src={user} alt="Entrar" className="w-4 h-4 invert" />
-            <span>Entrar</span>
-          </NavLink>
+          {usuario ? (
+            <div className="flex flex-col items-center gap-3 w-full px-8">
+              <span className="text-sm font-semibold text-green-300">Olá, {usuario.nome}</span>
+              <button 
+                onClick={() => { setOpen(false); handleLogout(); }}
+                className="w-full text-center bg-red-600 hover:bg-red-500 px-8 py-3 rounded-full text-sm font-bold uppercase tracking-widest transition-colors shadow-lg cursor-pointer"
+              >
+                Sair
+              </button>
+            </div>
+          ) : (
+            <NavLink 
+              to="/login" 
+              onClick={() => setOpen(false)}
+              className="flex items-center gap-2 bg-green-600 hover:bg-green-500 px-8 py-3 rounded-full text-sm font-bold uppercase tracking-widest transition-colors shadow-lg"
+            >
+              <img src={user} alt="Entrar" className="w-4 h-4 invert" />
+              <span>Entrar</span>
+            </NavLink>
+          )}
         </div>
       </div>
 
