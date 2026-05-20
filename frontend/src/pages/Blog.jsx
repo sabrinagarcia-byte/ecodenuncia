@@ -83,9 +83,10 @@ export default function BlogComunidade() {
                 {/* LEFT SIDEBAR */}
                 <aside className="space-y-6">
                     <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-6">
-                        <div className="w-24 h-24 rounded-full bg-linear-to-br from-green-900 to-green-700 flex items-center justify-center text-4xl mx-auto mb-4 text-white"> 
-                            
-                        </div>
+                        <div className="">
+                                        <img className="bg-white p-6 rounded-full" src={Foto1} alt="FotodePerfil" />
+                                            
+                                    </div>
 
                         <div className="text-center">
                             <h2 className="font-black text-2xl text-black">
@@ -162,7 +163,8 @@ export default function BlogComunidade() {
                     {/* CREATE POST */}
                     <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-6 mb-6">
                         <div className="flex gap-4">
-                            <div className="w-14 h-14 rounded-full bg-linear-to-br from-green-700 to-green-500"></div>
+                            <img className="w-14 h-14 rounded-full" src={Foto2} alt="FotodePerfil" />
+                                            
 
                             <div className="flex-1">
                                 <textarea
