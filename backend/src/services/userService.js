@@ -1,55 +1,68 @@
-import { usuarios, gerarIdUsuario } from '../data/mock.js'
+import prisma from '../config/prisma.js'
 
 // criar usuario novo
 export async function create(dados) {
-    const novo = {
-        id: gerarIdUsuario(),
-        nome: dados.name || dados.nome,
-        email: dados.email,
-        senha: dados.password || dados.senha,
-        createdAt: new Date(),
-        updatedAt: new Date()
-    }
+    const novoUsuario = await prisma.user.create({
+        data: {
+            name: dados.name || dados.nome,
+            email: dados.email,
+            password: dados.password || dados.senha
+        }
+    })
 
-    usuarios.push(novo)
-    return novo
+    return novoUsuario
 }
 
 // buscar por id
 export async function getById(id) {
-    const usuario = usuarios.find(u => u.id === Number(id))
-    return usuario || null
+    const usuario = await prisma.user.findUnique({
+        where: {
+            id: Number(id)
+        }
+    })
+
+    return usuario
 }
 
 // buscar por email
 export async function getByEmail(email) {
-    const usuario = usuarios.find(u => u.email === email)
-    return usuario || null
+    const usuario = await prisma.user.findUnique({
+        where: {
+            email
+        }
+    })
+
+    return usuario
 }
 
 // buscar todos
 export async function get() {
-    return usuarios
+    return await prisma.user.findMany()
 }
 
 // atualizar usuario
 export async function update(dados, id) {
-    const index = usuarios.findIndex(u => u.id === Number(id))
-    if (index === -1) return null
+    const usuario = await prisma.user.update({
+        where: {
+            id: Number(id)
+        },
+        data: {
+            name: dados.name || dados.nome,
+            email: dados.email,
+            password: dados.password || dados.senha
+        }
+    })
 
-    if (dados.nome) usuarios[index].nome = dados.nome
-    if (dados.email) usuarios[index].email = dados.email
-    if (dados.senha) usuarios[index].senha = dados.senha
-    usuarios[index].updatedAt = new Date()
-
-    return usuarios[index]
+    return usuario
 }
 
 // deletar usuario
 export async function remove(id) {
-    const index = usuarios.findIndex(u => u.id === Number(id))
-    if (index === -1) return null
+    const usuario = await prisma.user.delete({
+        where: {
+            id: Number(id)
+        }
+    })
 
-    const deletado = usuarios.splice(index, 1)
-    return deletado[0]
+    return usuario
 }
