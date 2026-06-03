@@ -8,12 +8,13 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  name      String
-  email     String   @unique
-  password  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          Int          @id @default(autoincrement())
+  name        String
+  email       String       @unique
+  password    String
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  publicacoes Publicacao[]
 }
 
 model Denuncia {
@@ -36,6 +37,7 @@ model Publicacao {
   userId       Int?
   criadoEm     DateTime @default(now())
   atualizadoEm DateTime @updatedAt
+  user         User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("publicacoes")
 }

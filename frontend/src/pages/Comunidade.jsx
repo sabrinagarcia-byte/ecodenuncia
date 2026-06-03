@@ -1,5 +1,4 @@
-import PublicacaoCRUD from '../components/PublicacaoCRUD.jsx';
-import { useState, useEffect } from 'react';   // se ainda não tiver
+import { useState, useEffect } from 'react';
 
 import Lupa from "../assets/images/pesquisa-de-lupa 1.png"
 import Imagem from "../assets/images/image.png"
@@ -79,12 +78,116 @@ export default function BlogComunidade() {
     ]
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [currentUser, setCurrentUser] = useState(null);
+    const [dbPosts, setDbPosts] = useState([]);
+    const [form, setForm] = useState({ titulo: '', conteudo: '', imagem: '' });
+    const [editingId, setEditingId] = useState(null);
+    const [showImageInput, setShowImageInput] = useState(false);
+    const [activeTab, setActiveTab] = useState('Todos os posts');
 
-useEffect(() => {
-  // Verifica se usuário está logado (ajuste conforme seu sistema de login)
-  const token = localStorage.getItem('token');
-  setIsLoggedIn(!!token);
-}, []);
+    const displayedPosts = activeTab === 'Minhas postagens' 
+        ? dbPosts.filter(p => p.userId === (currentUser ? currentUser.id : null)) 
+        : dbPosts;
+
+    useEffect(() => {
+        const userStr = localStorage.getItem('usuario');
+        if (userStr) {
+            try {
+                const parsed = JSON.parse(userStr);
+                setIsLoggedIn(true);
+                setCurrentUser(parsed);
+            } catch (e) {
+                console.error("Erro ao analisar usuário:", e);
+            }
+        }
+        fetchPosts();
+    }, []);
+
+    const fetchPosts = async () => {
+        try {
+            const res = await fetch('http://localhost:3000/publicacao');
+            if (res.ok) {
+                const data = await res.json();
+                setDbPosts(data);
+            }
+        } catch (error) {
+            console.error('Erro ao buscar publicações:', error);
+        }
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        
+        if (!form.titulo || !form.conteudo) {
+            alert('Título e conteúdo são obrigatórios!');
+            return;
+        }
+
+        const url = editingId 
+            ? `http://localhost:3000/publicacao/${editingId}` 
+            : 'http://localhost:3000/publicacao';
+        
+        const method = editingId ? 'PATCH' : 'POST';
+
+        try {
+            const res = await fetch(url, {
+                method: method,
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    titulo: form.titulo,
+                    conteudo: form.conteudo,
+                    imagem: form.imagem || '',
+                    userId: currentUser ? currentUser.id : null
+                })
+            });
+
+            if (res.ok) {
+                setForm({ titulo: '', conteudo: '', imagem: '' });
+                setEditingId(null);
+                setShowImageInput(false);
+                fetchPosts();
+            } else {
+                alert('Erro ao enviar a publicação.');
+            }
+        } catch (error) {
+            console.error('Erro ao salvar publicação:', error);
+        }
+    };
+
+    const handleLike = async (id) => {
+        try {
+            const res = await fetch(`http://localhost:3000/publicacao/${id}/like`, { method: 'POST' });
+            if (res.ok) {
+                fetchPosts();
+            }
+        } catch (error) {
+            console.error('Erro ao curtir:', error);
+        }
+    };
+
+    const handleEdit = (pub) => {
+        setEditingId(pub.id);
+        setForm({
+            titulo: pub.titulo,
+            conteudo: pub.conteudo,
+            imagem: pub.imagem || ''
+        });
+        if (pub.imagem) setShowImageInput(true);
+        window.scrollTo({ top: 150, behavior: 'smooth' });
+    };
+
+    const handleDelete = async (id) => {
+        if (confirm('Deseja excluir esta publicação da comunidade?')) {
+            try {
+                const res = await fetch(`http://localhost:3000/publicacao/${id}`, { method: 'DELETE' });
+                if (res.ok) {
+                    fetchPosts();
+                }
+            } catch (error) {
+                console.error('Erro ao deletar:', error);
+            }
+        }
+    };
 
     return (
         <main className="min-h-screen bg-[#f4f6f2] text-gray-900">
@@ -94,37 +197,52 @@ useEffect(() => {
                 {/* LEFT SIDEBAR */}
                 <aside className="space-y-6">
                     <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-6">
-                        <div className="w-24 h-24 rounded-full bg-linear-to-br from-green-900 to-green-700 flex items-center justify-center text-4xl mx-auto mb-4 text-white"> 
-                            
+                        <div className="w-24 h-24 rounded-full bg-linear-to-br from-green-900 to-green-700 flex items-center justify-center text-3xl mx-auto mb-4 text-white font-bold select-none shadow-md"> 
+                            {isLoggedIn && currentUser ? currentUser.nome.charAt(0).toUpperCase() : '🌿'}
                         </div>
 
                         <div className="text-center">
-                            <h2 className="font-black text-2xl text-black">
-                                EcoDenúncia
+                            <h2 className="font-black text-xl text-green-950">
+                                {isLoggedIn && currentUser ? currentUser.nome : 'EcoDenúncia'}
                             </h2>
-                            <p className="text-gray-500">@ecodenuncia</p>
+                            <p className="text-gray-500 text-sm">
+                                {isLoggedIn && currentUser ? `@${currentUser.nome.toLowerCase().replace(/\s+/g, '')}` : '@ecodenuncia'}
+                            </p>
                         </div>
 
-                        <div className="grid grid-cols-3 text-center mt-6 gap-4">
+                        <div className="grid grid-cols-3 text-center mt-6 gap-2 border-t pt-4 border-gray-50">
                             <div>
-                                <h3 className="font-black text-xl">128</h3>
-                                <p className="text-sm text-gray-500">Posts</p>
+                                <h3 className="font-black text-lg text-green-900">
+                                    {isLoggedIn && currentUser 
+                                        ? dbPosts.filter(p => p.userId === currentUser.id).length 
+                                        : dbPosts.length}
+                                </h3>
+                                <p className="text-[10px] text-gray-500 uppercase font-bold tracking-wider">Posts</p>
                             </div>
 
                             <div>
-                                <h3 className="font-black text-xl">532</h3>
-                                <p className="text-sm text-gray-500">Seguidores</p>
+                                <h3 className="font-black text-lg text-green-900">
+                                    {isLoggedIn && currentUser ? '1' : '532'}
+                                </h3>
+                                <p className="text-[10px] text-gray-500 uppercase font-bold tracking-wider">Seguidores</p>
                             </div>
 
                             <div>
-                                <h3 className="font-black text-xl">243</h3>
-                                <p className="text-sm text-gray-500">Seguindo</p>
+                                <h3 className="font-black text-lg text-green-900">
+                                    {isLoggedIn && currentUser ? '0' : '243'}
+                                </h3>
+                                <p className="text-[10px] text-gray-500 uppercase font-bold tracking-wider">Seguindo</p>
                             </div>
                         </div>
 
-                        <button className="w-full mt-6 bg-green-800 hover:bg-green-900 transition-colors text-white py-3 rounded-2xl font-bold">
-                            Nova publicação
-                        </button>
+                        {isLoggedIn && (
+                            <button 
+                                onClick={() => document.getElementById('post-title-input')?.focus()}
+                                className="w-full mt-6 bg-green-800 hover:bg-green-900 transition-all active:scale-95 text-white py-3 rounded-2xl font-bold text-sm cursor-pointer shadow-sm"
+                            >
+                                Nova publicação
+                            </button>
+                        )}
                     </div>
 
                     <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-6">
@@ -171,40 +289,93 @@ useEffect(() => {
                 {/* FEED */}
                 <section>
                     {/* CREATE POST */}
-                    <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-6 mb-6">
-                        <div className="flex gap-4">
-                            <div className="w-14 h-14 rounded-full bg-linear-to-br from-green-700 to-green-500"></div>
-
-                            <div className="flex-1">
-                                <textarea
-                                    rows="3"
-                                    placeholder="No que você está pensando, EcoColega?"
-                                    className="w-full bg-gray-50 rounded-2xl p-4 outline-none resize-none border border-gray-100 focus:border-green-400"
-                                ></textarea>
-                                <PublicacaoCRUD isLoggedIn={isLoggedIn} />
-
-                                <div className="flex flex-wrap items-center justify-between gap-4 mt-4">
-                                    <div className="flex flex-wrap gap-3 text-sm">
-                                        <button className="bg-green-50 text-green-700 px-4 py-2 rounded-full font-medium hover:bg-green-100 transition-colors">
-                                            <img src={Imagem} alt="imagem" />
-                                        </button>
-
-                                        <button className="bg-green-50 text-green-700 px-4 py-2 rounded-full font-medium hover:bg-green-100 transition-colors">
-                                            <img src={Localizacao} alt="localizacao simbolo" />
-                                        </button>
-
-                                        <button className="bg-green-50 text-green-700 px-4 py-2 rounded-full font-medium hover:bg-green-100 transition-colors">
-                                            <img src={Enquete} alt="enquete simbolo" />
-                                        </button>
-                                    </div>
-
-                                    <button className="bg-green-900 hover:bg-green-800 transition-colors text-white px-7 py-3 rounded-full font-bold shadow-md">
-                                        Publicar
-                                    </button>
+                    {isLoggedIn ? (
+                        <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-6 mb-6">
+                            <h3 className="font-bold text-lg text-green-950 mb-4 flex items-center gap-2 border-b pb-3 border-gray-50">
+                                {editingId ? '📝 Editar Publicação' : '🌱 Compartilhar Ação Ecológica'}
+                            </h3>
+                            <form onSubmit={handleSubmit} className="flex gap-4">
+                                <div className="w-12 h-12 rounded-full bg-linear-to-br from-green-900 to-green-700 text-white flex items-center justify-center font-bold uppercase text-lg select-none shadow-inner">
+                                    {currentUser?.nome ? currentUser.nome.charAt(0) : 'E'}
                                 </div>
-                            </div>
+
+                                <div className="flex-1 space-y-3">
+                                    <input
+                                        type="text"
+                                        placeholder="Título da publicação..."
+                                        value={form.titulo}
+                                        onChange={e => setForm({...form, titulo: e.target.value})}
+                                        className="w-full bg-gray-50 rounded-xl px-4 py-2.5 outline-none border border-gray-100 focus:border-green-400 text-sm font-semibold"
+                                        required
+                                    />
+                                    <textarea
+                                        rows="3"
+                                        placeholder="No que você está pensando, EcoColega? Compartilhe seus plantios, dicas e ações..."
+                                        value={form.conteudo}
+                                        onChange={e => setForm({...form, conteudo: e.target.value})}
+                                        className="w-full bg-gray-50 rounded-2xl p-4 outline-none resize-none border border-gray-100 focus:border-green-400 text-sm"
+                                        required
+                                    ></textarea>
+
+                                    {showImageInput && (
+                                        <input
+                                            type="text"
+                                            placeholder="URL da imagem (opcional)..."
+                                            value={form.imagem}
+                                            onChange={e => setForm({...form, imagem: e.target.value})}
+                                            className="w-full bg-gray-50 rounded-xl px-4 py-2.5 outline-none border border-gray-100 focus:border-green-400 text-xs"
+                                        />
+                                    )}
+
+                                    <div className="flex flex-wrap items-center justify-between gap-4 mt-2">
+                                        <div className="flex flex-wrap gap-3 text-sm">
+                                            <button 
+                                                type="button" 
+                                                onClick={() => setShowImageInput(!showImageInput)}
+                                                className={`px-4 py-2 rounded-full font-medium transition-colors flex items-center gap-1.5 text-xs ${showImageInput ? 'bg-green-800 text-white shadow-sm' : 'bg-green-50 text-green-700 hover:bg-green-100'}`}
+                                            >
+                                                <img src={Imagem} alt="imagem" className="w-4 h-4 object-contain invert-0" />
+                                                <span>{showImageInput ? 'Esconder URL' : 'Adicionar Imagem'}</span>
+                                            </button>
+                                        </div>
+
+                                        <div className="flex gap-2">
+                                            {editingId && (
+                                                <button 
+                                                    type="button" 
+                                                    onClick={() => {
+                                                        setEditingId(null);
+                                                        setForm({ titulo: '', conteudo: '', imagem: '' });
+                                                        setShowImageInput(false);
+                                                    }}
+                                                    className="bg-gray-100 hover:bg-gray-200 transition-colors text-gray-700 px-6 py-2 rounded-full font-bold text-xs uppercase"
+                                                >
+                                                    Cancelar
+                                                </button>
+                                            )}
+                                            <button 
+                                                type="submit"
+                                                className="bg-green-900 hover:bg-green-800 transition-colors text-white px-7 py-2 rounded-full font-bold shadow-md text-xs uppercase"
+                                            >
+                                                {editingId ? 'Salvar' : 'Publicar'}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                    </div>
+                    ) : (
+                        <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 mb-6 text-center">
+                            <span className="text-4xl">🌱</span>
+                            <h3 className="font-black text-xl text-green-950 mt-3">Faça parte da nossa comunidade ecológica!</h3>
+                            <p className="text-gray-500 text-sm mt-2 mb-4 max-w-md mx-auto">
+                                Faça login para postar dicas de reciclagem, compartilhar fotos de plantios e interagir com outros membros.
+                            </p>
+                            <a href="/login" className="inline-block bg-green-850 hover:bg-green-900 transition-colors text-white px-6 py-2.5 rounded-full font-bold text-sm shadow-md">
+                                Entrar / Cadastrar-se
+                            </a>
+                        </div>
+                    )}
 
                     {/* TABS */}
                     <div className="flex gap-6 overflow-auto mb-6 px-1">
@@ -225,6 +396,114 @@ useEffect(() => {
 
                     {/* POSTS */}
                     <div className="space-y-6">
+                        {/* DYNAMIC DATABASE POSTS */}
+                        {dbPosts.map((post) => (
+                            <article
+                                key={post.id}
+                                className="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-all border-l-4 border-l-green-700"
+                            >
+                                <div className="p-6">
+                                    <div className="flex items-start justify-between gap-4">
+                                        <div className="flex gap-4">
+                                            <div className="w-14 h-14 rounded-full bg-linear-to-br from-green-800 to-green-600 flex items-center justify-center font-bold text-white uppercase text-xl select-none shadow-sm">
+                                                {post.titulo ? post.titulo.charAt(0) : 'P'}
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center gap-2 flex-wrap">
+                                                    <h3 className="font-black text-lg text-green-950">{post.titulo}</h3>
+                                                    <span className="text-green-700 text-xs bg-green-50 px-2.5 py-0.5 rounded-full font-bold">
+                                                        @comunidade
+                                                    </span>
+                                                    <span className="text-gray-400 text-xs">
+                                                        | {new Date(post.criadoEm).toLocaleDateString('pt-BR')}
+                                                    </span>
+                                                </div>
+
+                                                <p className="mt-3 text-gray-750 leading-relaxed text-sm">
+                                                    {post.conteudo}
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        {isLoggedIn && (
+                                            <div className="flex gap-2">
+                                                <button 
+                                                    onClick={() => handleEdit(post)}
+                                                    className="p-2 hover:bg-green-50 text-green-700 rounded-xl transition-all active:scale-95 cursor-pointer"
+                                                    title="Editar"
+                                                >
+                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                                    </svg>
+                                                </button>
+                                                <button 
+                                                    onClick={() => handleDelete(post.id)}
+                                                    className="p-2 hover:bg-red-50 text-red-600 rounded-xl transition-all active:scale-95 cursor-pointer"
+                                                    title="Excluir"
+                                                >
+                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    {post.imagem && (
+                                        <div className="rounded-3xl overflow-hidden mt-5">
+                                            <img
+                                                src={post.imagem}
+                                                alt={post.titulo}
+                                                className="w-full max-h-96 object-cover hover:scale-105 transition-transform duration-700"
+                                            />
+                                        </div>
+                                    )}
+
+                                    <div className="flex items-center justify-between mt-6 text-gray-500 border-t pt-5">
+                                        <button className="hover:text-green-700 transition-colors flex items-center gap-2 font-medium text-xs cursor-pointer">
+                                            <img
+                                                src={Comentar}
+                                                alt="comentar símbolo"
+                                                className="w-4 h-4 object-contain opacity-60"
+                                            />
+                                            <span>0</span>
+                                        </button>
+
+                                        <button className="hover:text-green-700 transition-colors flex items-center gap-2 font-medium text-xs cursor-pointer">
+                                            <img
+                                                src={Republicar}
+                                                alt="republicar símbolo"
+                                                className="w-4 h-4 object-contain opacity-60"
+                                            />
+                                            <span>0</span>
+                                        </button>
+
+                                        <button 
+                                            onClick={() => handleLike(post.id)}
+                                            className="hover:text-pink-500 transition-all flex items-center gap-2 font-black text-xs text-pink-600 active:scale-95 bg-pink-50/50 hover:bg-pink-50 px-3.5 py-1.5 rounded-full cursor-pointer"
+                                        >
+                                            <img
+                                                src={Like}
+                                                alt="like símbolo"
+                                                className="w-4 h-4 object-contain animate-pulse" 
+                                            />
+                                            <span>{post.likes}</span>
+                                        </button>
+
+                                        <button className="hover:text-green-700 transition-colors flex items-center gap-2 font-medium text-xs cursor-pointer">
+                                            <img
+                                                src={Favoritar}
+                                                alt="favoritar símbolo"
+                                                className="w-4 h-4 object-contain opacity-60"
+                                            />
+                                            <span>Salvar</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </article>
+                        ))}
+
                         {posts.map((post, index) => (
                             <article
                                 key={index}

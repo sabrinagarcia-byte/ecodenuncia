@@ -7,7 +7,13 @@ export async function create(data) {
 export async function getAll() {
   return prisma.publicacao.findMany({
     orderBy: { criadoEm: 'desc' },
-    include: { user: { select: { nome: true } } }
+    include: {
+      user: {
+        select: {
+          name: true
+        }
+      }
+    }
   });
 }
 
