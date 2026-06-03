@@ -20,7 +20,7 @@ export default function Footer() {
               </NavLink>
             </div>
 
-            <p className="text-green-100 text-sm leading-relaxed max-w-[250px]">
+            <p className="text-green-100 text-sm leading-relaxed max-w-65.2">
               Cuidando do meio ambiente através do descarte consciente.
             </p>
           </div>

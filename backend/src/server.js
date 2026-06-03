@@ -8,6 +8,7 @@ import cors from 'cors';
 import userRoutes from './routes/userRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 import denunciaRoutes from './routes/denunciaRoutes.js';
+import publicacaoRoutes from './routes/publicacaoRoutes.js';
 
 const app = express();
 
@@ -23,6 +24,7 @@ const PORT = process.env.PORT || 3000;
 app.use(userRoutes);
 app.use(authRoutes);
 app.use(denunciaRoutes);
+app.use(publicacaoRoutes);
 
 app.listen(PORT, () => {
     console.log(`Servidor rodando em http://localhost:${PORT}`);

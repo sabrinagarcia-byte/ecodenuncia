@@ -1,3 +1,6 @@
+import PublicacaoCRUD from '../components/PublicacaoCRUD.jsx';
+import { useState, useEffect } from 'react';   // se ainda não tiver
+
 import Lupa from "../assets/images/pesquisa-de-lupa 1.png"
 import Imagem from "../assets/images/image.png"
 import Localizacao from "../assets/images/localizacao.png"
@@ -74,6 +77,14 @@ export default function BlogComunidade() {
         '#MudançasClimáticas',
         '#ConsumoConsciente',
     ]
+
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+useEffect(() => {
+  // Verifica se usuário está logado (ajuste conforme seu sistema de login)
+  const token = localStorage.getItem('token');
+  setIsLoggedIn(!!token);
+}, []);
 
     return (
         <main className="min-h-screen bg-[#f4f6f2] text-gray-900">
@@ -170,6 +181,7 @@ export default function BlogComunidade() {
                                     placeholder="No que você está pensando, EcoColega?"
                                     className="w-full bg-gray-50 rounded-2xl p-4 outline-none resize-none border border-gray-100 focus:border-green-400"
                                 ></textarea>
+                                <PublicacaoCRUD isLoggedIn={isLoggedIn} />
 
                                 <div className="flex flex-wrap items-center justify-between gap-4 mt-4">
                                     <div className="flex flex-wrap gap-3 text-sm">
