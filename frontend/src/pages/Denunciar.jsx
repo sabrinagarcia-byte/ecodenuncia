@@ -53,6 +53,9 @@ export default function Denunciar() {
     type: 'success' // success ou delete
   });
 
+  // Modal de confirmação de exclusão
+  const [confirmModal, setConfirmModal] = useState({ show: false, id: null });
+
   const openModal = (title, message, type = 'success') => {
     setModal({ show: true, title, message, type });
   };
@@ -60,6 +63,9 @@ export default function Denunciar() {
   const closeModal = () => {
     setModal({ ...modal, show: false });
   };
+
+  const askDelete = (id) => setConfirmModal({ show: true, id });
+  const cancelDelete = () => setConfirmModal({ show: false, id: null });
 
   // Carregar dados
   useEffect(() => {
@@ -127,8 +133,7 @@ export default function Denunciar() {
   };
 
   const handleDelete = async (id) => {
-    if (!confirm('Tem certeza que deseja excluir esta denúncia?')) return;
-
+    cancelDelete();
     try {
       const response = await fetch(`http://localhost:3000/denuncia/${id}`, {
         method: 'DELETE'
@@ -355,7 +360,7 @@ export default function Denunciar() {
                         </svg>
                       </button>
                       <button 
-                        onClick={() => handleDelete(item.id)}
+                        onClick={() => askDelete(item.id)}
                         className="p-1.5 hover:bg-red-100 text-red-600 rounded-lg transition-colors"
                         title="Excluir"
                       >
@@ -395,6 +400,33 @@ export default function Denunciar() {
           >
             Fechar
           </button>
+        </div>
+      </div>
+    )}
+    {/* MODAL DE CONFIRMAÇÃO DE EXCLUSÃO */}
+    {confirmModal.show && (
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div
+          className="absolute inset-0 bg-green-900/10 backdrop-blur-sm"
+          onClick={cancelDelete}
+        />
+        <div className="relative bg-white p-8 rounded-lg shadow-xl max-w-sm w-full text-center border-t-4 border-red-500">
+          <h3 className="text-xl font-bold mb-2">Excluir denúncia?</h3>
+          <p className="text-gray-600 mb-6">Essa ação não pode ser desfeita.</p>
+          <div className="flex gap-3 justify-center">
+            <button
+              onClick={cancelDelete}
+              className="text-gray-600 border border-gray-300 px-5 py-2 rounded-md font-bold hover:bg-gray-50 transition-colors"
+            >
+              Cancelar
+            </button>
+            <button
+              onClick={() => handleDelete(confirmModal.id)}
+              className="bg-red-600 text-white px-5 py-2 rounded-md font-bold hover:bg-red-700 transition-colors"
+            >
+              Excluir
+            </button>
+          </div>
         </div>
       </div>
     )}
